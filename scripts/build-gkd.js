@@ -70,17 +70,35 @@ function stable(value) {
 }
 
 function ruleSignature(rule, inheritedActivityIds) {
+  if (typeof rule === "string") {
+    return JSON.stringify(
+      stable({
+        raw: rule,
+        activityIds: toArray(inheritedActivityIds),
+      }),
+    );
+  }
   return JSON.stringify(
     stable({
       matches: rule.matches,
       anyMatches: rule.anyMatches,
       excludeMatches: rule.excludeMatches,
       position: rule.position,
+      action: rule.action,
+      actionDelay: rule.actionDelay,
+      actionCd: rule.actionCd,
+      actionCdKey: rule.actionCdKey,
+      actionMaximum: rule.actionMaximum,
+      actionMaximumKey: rule.actionMaximumKey,
+      fastQuery: rule.fastQuery,
+      matchTime: rule.matchTime,
+      resetMatch: rule.resetMatch,
+      order: rule.order,
+      preKeys: toArray(rule.preKeys),
+      excludeActivityIds: toArray(rule.excludeActivityIds),
       activityIds: toArray(rule.activityIds).length
         ? toArray(rule.activityIds)
         : toArray(inheritedActivityIds),
-      exampleUrls: toArray(rule.exampleUrls),
-      snapshotUrls: toArray(rule.snapshotUrls),
     }),
   );
 }
@@ -90,6 +108,7 @@ function mergeUniqueArrays(a, b) {
 }
 
 function normalizeRule(rule) {
+  if (typeof rule === "string") return rule;
   const next = { ...rule };
   if (next.snapshotUrls) next.snapshotUrls = mergeUniqueArrays(next.snapshotUrls, []);
   if (next.exampleUrls) next.exampleUrls = mergeUniqueArrays(next.exampleUrls, []);
@@ -117,6 +136,9 @@ function mergeRules(targetGroup, incomingGroup) {
       mergedRules.push(normalized);
       continue;
     }
+    if (typeof normalized === "string" || typeof existing === "string") {
+      continue;
+    }
     if (normalized.snapshotUrls || existing.snapshotUrls) {
       existing.snapshotUrls = mergeUniqueArrays(existing.snapshotUrls, normalized.snapshotUrls);
     }
@@ -126,6 +148,33 @@ function mergeRules(targetGroup, incomingGroup) {
   }
 
   targetGroup.rules = mergedRules;
+}
+
+function dedupeGroupRules(group) {
+  const seen = new Map();
+  const deduped = [];
+
+  for (const rule of toArray(group.rules)) {
+    const normalized = normalizeRule(rule);
+    const sig = ruleSignature(normalized, group.activityIds);
+    const existing = seen.get(sig);
+    if (!existing) {
+      seen.set(sig, normalized);
+      deduped.push(normalized);
+      continue;
+    }
+    if (typeof normalized === "string" || typeof existing === "string") {
+      continue;
+    }
+    if (normalized.snapshotUrls || existing.snapshotUrls) {
+      existing.snapshotUrls = mergeUniqueArrays(existing.snapshotUrls, normalized.snapshotUrls);
+    }
+    if (normalized.exampleUrls || existing.exampleUrls) {
+      existing.exampleUrls = mergeUniqueArrays(existing.exampleUrls, normalized.exampleUrls);
+    }
+  }
+
+  group.rules = deduped;
 }
 
 function mergeGroups(baseGroups, incomingGroups) {
@@ -261,6 +310,9 @@ function sortOutput(subscription) {
   subscription.apps = toArray(subscription.apps).sort((a, b) => String(a.id).localeCompare(String(b.id)));
   for (const app of subscription.apps) {
     app.groups = toArray(app.groups).sort((a, b) => (a.key ?? 0) - (b.key ?? 0));
+    for (const group of app.groups) {
+      dedupeGroupRules(group);
+    }
   }
   return subscription;
 }
