@@ -1,0 +1,8 @@
+{
+  "name": "gkd-rules-aggregator",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/build-gkd.js"
+  }
+}

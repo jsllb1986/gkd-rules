@@ -1,0 +1,55 @@
+{
+  "apps": [
+    {
+      "id": "com.gfd.ecprint",
+      "name": "小白智慧打印",
+      "groups": [
+        {
+          "key": 1,
+          "name": "关闭优惠券弹窗",
+          "rules": [
+            {
+              "matches": "View[id=\"com.gfd.ecprint:id/base_cp_dlg_close\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/27823579"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 2,
+          "name": "关闭广告弹窗",
+          "rules": [
+            {
+              "matches": "ImageView[id=\"com.gfd.ecprint:id/dg_dialog_frag_ads_popup_x\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/27824625"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.oray.sunlogin",
+      "name": "向日葵远程控制",
+      "groups": [
+        {
+          "key": 1,
+          "name": "关闭插屏广告",
+          "activityIds": [
+            "com.windmill.sdk.widget.InterstitialView_4012001"
+          ],
+          "rules": [
+            {
+              "matches": "@LinearLayout[id=\"com.oray.sunlogin:id/tobid_interstitial_skip_ll\"][clickable=true] > TextView[id=\"com.oray.sunlogin:id/tobid_interstitial_skip_text\"][text=\"关闭\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28672313"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

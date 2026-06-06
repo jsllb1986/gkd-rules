@@ -1,0 +1,40 @@
+name: Update subscription
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+  push:
+    paths:
+      - "local-rules.json"
+      - "scripts/build-gkd.js"
+      - ".github/workflows/update-subscription.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Build merged subscription
+        run: npm run build
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gkd.json5
+          git commit -m "Auto update merged subscription"
+          git push
