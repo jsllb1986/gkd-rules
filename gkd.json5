@@ -5,7 +5,7 @@
   "updateUrl": "https://raw.githubusercontent.com/jsllb1986/gkd-rules/main/gkd.json5",
   "checkUpdateUrl": "https://raw.githubusercontent.com/jsllb1986/gkd-rules/main/gkd.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 7,
+  "version": 8,
   "categories": [
     {
       "key": 0,
