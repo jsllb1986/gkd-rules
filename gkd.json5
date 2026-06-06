@@ -1,6 +1,6 @@
 {
   id: 100001,
-  name: '我的 GKD 规则',
+  name: 'LionLiu 的 GKD 订阅',
   version: 2,
   author: 'LionLiu',
   updateUrl: 'https://raw.githubusercontent.com/jsllb1986/gkd-rules/main/gkd.json5',
