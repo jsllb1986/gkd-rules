@@ -3,9 +3,9 @@
   name: '我的 GKD 规则',
   version: 1,
   author: 'vbayyds',
-  updateUrl: '',
-  checkUpdateUrl: '',
-  supportUri: '',
+  updateUrl: 'https://raw.githubusercontent.com/jsllb1986/gkd-rules/main/gkd.json5',
+  checkUpdateUrl: 'https://raw.githubusercontent.com/jsllb1986/gkd-rules/main/gkd.json5',
+  supportUri: 'https://github.com/jsllb1986/gkd-rules',
   apps: [
     {
       id: 'com.gfd.ecprint',
