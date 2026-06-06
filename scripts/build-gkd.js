@@ -3,6 +3,7 @@ const path = require("path");
 const vm = require("vm");
 
 const OUTPUT_PATH = path.join(process.cwd(), "gkd.json5");
+const VERSION_OUTPUT_PATH = path.join(process.cwd(), "gkd.version.json5");
 const LOCAL_RULES_PATH = path.join(process.cwd(), "local-rules.json");
 
 const UPSTREAMS = [
@@ -21,7 +22,7 @@ const OUTPUT_META = {
   name: "LionLiu 的 GKD 订阅",
   author: "LionLiu",
   updateUrl: "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
-  checkUpdateUrl: "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
+  checkUpdateUrl: "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   supportUri: "https://github.com/jsllb1986/gkd-rules",
 };
 
@@ -340,7 +341,13 @@ async function main() {
   });
 
   fs.writeFileSync(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`, "utf8");
+  fs.writeFileSync(
+    VERSION_OUTPUT_PATH,
+    `${JSON.stringify({ id: output.id, version: output.version }, null, 2)}\n`,
+    "utf8",
+  );
   console.log(`Generated ${OUTPUT_PATH}`);
+  console.log(`Generated ${VERSION_OUTPUT_PATH}`);
   console.log(`Version: ${output.version}`);
   console.log(`Apps: ${output.apps.length}`);
   console.log(`Global groups: ${output.globalGroups.length}`);
