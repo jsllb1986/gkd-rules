@@ -1,4 +1,4 @@
-const fs = require("fs");
+﻿const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
@@ -8,26 +8,26 @@ const LOCAL_RULES_PATH = path.join(process.cwd(), "local-rules.json");
 
 const UPSTREAMS = [
   {
-    name: "id667",
+    name: "聚合版",
     url: "https://gkd-subscription-667.pages.dev/gkd.json5",
   },
   {
-    name: "ganlinte",
+    name: "聚合版",
     url: "https://registry.npmmirror.com/@ganlinte/gkd-subscription/latest/files",
   },
   {
-    name: "aisouler",
+    name: "聚合版",
     url: "https://registry.npmmirror.com/@aisouler/gkd_subscription/latest/files/dist/AIsouler_gkd.json5",
   },
   {
-    name: "dream-xiaoyao",
+    name: "聚合版",
     url: "https://registry.npmmirror.com/gkd-subscription/latest/files",
   },
 ];
 
 const OUTPUT_META = {
   id: 100001,
-  name: "LionLiu 的 GKD 订阅",
+  name: "聚合版",
   author: "LionLiu",
   updateUrl: "https://raw.githubusercontent.com/jsllb1986/gkd-rules/main/gkd.json5",
   checkUpdateUrl: "https://raw.githubusercontent.com/jsllb1986/gkd-rules/main/gkd.version.json5",
@@ -367,3 +367,4 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
+
