@@ -29,8 +29,8 @@ const OUTPUT_META = {
   id: 100001,
   name: "LionLiu 的 GKD 订阅",
   author: "LionLiu",
-  updateUrl: "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
-  checkUpdateUrl: "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
+  updateUrl: "https://raw.githubusercontent.com/jsllb1986/gkd-rules/main/gkd.json5",
+  checkUpdateUrl: "https://raw.githubusercontent.com/jsllb1986/gkd-rules/main/gkd.version.json5",
   supportUri: "https://github.com/jsllb1986/gkd-rules",
 };
 
