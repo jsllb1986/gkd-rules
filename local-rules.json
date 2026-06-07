@@ -27,6 +27,69 @@
               ]
             }
           ]
+        },
+        {
+          "key": 3,
+          "name": "开屏广告跳过",
+          "activityIds": [
+            "com.gfd.ecprint.ui.NavAct"
+          ],
+          "rules": [
+            {
+              "matches": "ImageView[id=\"com.gfd.ecprint:id/print_navact_jump\"][clickable=true]"
+            }
+          ]
+        },
+        {
+          "key": 4,
+          "name": "会员领取码引导跳过",
+          "activityIds": [
+            "com.mango.login.act.ChannelCodeAct"
+          ],
+          "rules": [
+            {
+              "matches": "TextView[text=\"跳过\"][clickable=true]"
+            }
+          ]
+        },
+        {
+          "key": 5,
+          "name": "关闭福利中心调整提醒",
+          "activityIds": [
+            "com.mango.login.main.MainAct"
+          ],
+          "rules": [
+            {
+              "matches": "View[id=\"com.gfd.ecprint:id/tool_bcudlg_update_rule\"][clickable=true]"
+            }
+          ]
+        },
+        {
+          "key": 6,
+          "name": "关闭奖励发放弹层",
+          "activityIds": [
+            "com.mango.login.main.MainAct"
+          ],
+          "rules": [
+            {
+              "matches": "ImageView[id=\"com.gfd.ecprint:id/loadingClose\"][clickable=true]"
+            }
+          ]
+        },
+        {
+          "key": 7,
+          "name": "关闭进入后首页广告位",
+          "activityIds": [
+            "com.mango.login.main.MainAct"
+          ],
+          "rules": [
+            {
+              "matches": "ImageView[id=\"com.gfd.ecprint:id/ad_close\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28674939"
+              ]
+            }
+          ]
         }
       ]
     },

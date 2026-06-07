@@ -15,6 +15,14 @@ const UPSTREAMS = [
     name: "ganlinte",
     url: "https://registry.npmmirror.com/@ganlinte/gkd-subscription/latest/files",
   },
+  {
+    name: "aisouler",
+    url: "https://registry.npmmirror.com/@aisouler/gkd_subscription/latest/files/dist/AIsouler_gkd.json5",
+  },
+  {
+    name: "dream-xiaoyao",
+    url: "https://registry.npmmirror.com/gkd-subscription/latest/files",
+  },
 ];
 
 const OUTPUT_META = {
@@ -330,6 +338,8 @@ async function main() {
   let mergedApps = [];
   mergedApps = mergeApps(mergedApps, upstreams[0].apps || []);
   mergedApps = mergeApps(mergedApps, upstreams[1].apps || []);
+  mergedApps = mergeApps(mergedApps, upstreams[2].apps || []);
+  mergedApps = mergeApps(mergedApps, upstreams[3].apps || []);
   mergedApps = mergeApps(mergedApps, localRules.apps || []);
 
   const output = sortOutput({
