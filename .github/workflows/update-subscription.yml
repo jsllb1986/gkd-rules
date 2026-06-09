@@ -1,4 +1,4 @@
-name: Update subscription
+﻿name: Update subscription
 
 on:
   workflow_dispatch:
@@ -35,6 +35,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gkd.json5
+          git add gkd.json5 gkd.version.json5
           git commit -m "Auto update merged subscription"
           git push
+
