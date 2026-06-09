@@ -42,6 +42,9 @@ function main() {
   const dreamXiaoyaoApp = output.apps.find((app) => app.id === "com.skyworthdigital.picamera");
   assert.ok(dreamXiaoyaoApp, "output should include an app from the dream-xiaoyao upstream");
 
+  const gkd667App = output.apps.find((app) => app.id === "com.abdownloadmanager");
+  assert.ok(gkd667App, "output should include an app from the gkd667.vv.ax upstream");
+
   const splashRule = ecprintApp.groups
     .flatMap((group) => group.rules || [])
     .find((rule) => rule.matches === 'ImageView[id="com.gfd.ecprint:id/print_navact_jump"][clickable=true]');

@@ -8,20 +8,24 @@ const LOCAL_RULES_PATH = path.join(process.cwd(), "local-rules.json");
 
 const UPSTREAMS = [
   {
-    name: "聚合版",
+    name: "id667-pages",
     url: "https://gkd-subscription-667.pages.dev/gkd.json5",
   },
   {
-    name: "聚合版",
+    name: "ganlinte",
     url: "https://registry.npmmirror.com/@ganlinte/gkd-subscription/latest/files",
   },
   {
-    name: "聚合版",
+    name: "aisouler",
     url: "https://registry.npmmirror.com/@aisouler/gkd_subscription/latest/files/dist/AIsouler_gkd.json5",
   },
   {
-    name: "聚合版",
+    name: "dream-xiaoyao",
     url: "https://registry.npmmirror.com/gkd-subscription/latest/files",
+  },
+  {
+    name: "gkd667-vv-ax",
+    url: "https://gkd667.vv.ax/gkd.json5",
   },
 ];
 
@@ -336,10 +340,9 @@ async function main() {
   const previousVersion = parseLooseObject(fs.readFileSync(OUTPUT_PATH, "utf8"), "current output").version || 1;
 
   let mergedApps = [];
-  mergedApps = mergeApps(mergedApps, upstreams[0].apps || []);
-  mergedApps = mergeApps(mergedApps, upstreams[1].apps || []);
-  mergedApps = mergeApps(mergedApps, upstreams[2].apps || []);
-  mergedApps = mergeApps(mergedApps, upstreams[3].apps || []);
+  for (const subscription of upstreams) {
+    mergedApps = mergeApps(mergedApps, subscription.apps || []);
+  }
   mergedApps = mergeApps(mergedApps, localRules.apps || []);
 
   const output = sortOutput({
