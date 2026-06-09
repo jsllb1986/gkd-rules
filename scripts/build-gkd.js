@@ -38,6 +38,17 @@ const OUTPUT_META = {
   supportUri: "https://github.com/jsllb1986/gkd-rules",
 };
 
+function readExistingOutput() {
+  if (!fs.existsSync(OUTPUT_PATH)) return null;
+  return parseLooseObject(fs.readFileSync(OUTPUT_PATH, "utf8"), "current output");
+}
+
+function withoutVersion(subscription) {
+  if (!subscription) return null;
+  const { version, ...rest } = subscription;
+  return rest;
+}
+
 function parseLooseObject(text, sourceName) {
   try {
     return vm.runInNewContext(`(${text})`, {}, { timeout: 5000 });
@@ -337,7 +348,8 @@ async function main() {
   }
 
   const localRules = readLocalRules();
-  const previousVersion = parseLooseObject(fs.readFileSync(OUTPUT_PATH, "utf8"), "current output").version || 1;
+  const previousOutput = readExistingOutput();
+  const previousVersion = previousOutput?.version || 1;
 
   let mergedApps = [];
   for (const subscription of upstreams) {
@@ -345,13 +357,21 @@ async function main() {
   }
   mergedApps = mergeApps(mergedApps, localRules.apps || []);
 
-  const output = sortOutput({
+  const nextOutputBase = sortOutput({
     ...OUTPUT_META,
-    version: Number(previousVersion) + 1,
+    version: previousVersion,
     categories: mergeCategories(upstreams),
     globalGroups: mergeGlobalGroups(upstreams),
     apps: mergedApps,
   });
+
+  const hasContentChange =
+    JSON.stringify(withoutVersion(previousOutput)) !== JSON.stringify(withoutVersion(nextOutputBase));
+
+  const output = {
+    ...nextOutputBase,
+    version: hasContentChange ? Number(previousVersion) + 1 : Number(previousVersion),
+  };
 
   fs.writeFileSync(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`, "utf8");
   fs.writeFileSync(
