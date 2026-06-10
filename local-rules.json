@@ -90,6 +90,18 @@
               ]
             }
           ]
+        },
+        {
+          "key": 8,
+          "name": "?????????",
+          "activityIds": [
+            "com.gfd.ecprint.ui.FlashAct"
+          ],
+          "rules": [
+            {
+              "matches": "[vid=\"tev_countdown\"][clickable=true]"
+            }
+          ]
         }
       ]
     },
