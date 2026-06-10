@@ -1,5 +1,6 @@
 ﻿const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 const vm = require("vm");
 
 const OUTPUT_PATH = path.join(process.cwd(), "gkd.json5");
@@ -38,15 +39,12 @@ const OUTPUT_META = {
   supportUri: "https://github.com/jsllb1986/gkd-rules",
 };
 
+const FETCH_TIMEOUT_MS = 20000;
+const FETCH_RETRIES = 2;
+
 function readExistingOutput() {
   if (!fs.existsSync(OUTPUT_PATH)) return null;
   return parseLooseObject(fs.readFileSync(OUTPUT_PATH, "utf8"), "current output");
-}
-
-function withoutVersion(subscription) {
-  if (!subscription) return null;
-  const { version, ...rest } = subscription;
-  return rest;
 }
 
 function parseLooseObject(text, sourceName) {
@@ -57,18 +55,38 @@ function parseLooseObject(text, sourceName) {
   }
 }
 
-async function fetchSubscription(url, sourceName) {
-  const response = await fetch(url, {
+function fingerprint(subscription) {
+  return crypto.createHash("sha256").update(JSON.stringify(stable(subscription ?? null))).digest("hex");
+}
+
+function fetchWithTimeout(url, timeoutMs) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(new Error("Request timed out")), timeoutMs);
+  return fetch(url, {
     headers: {
       "user-agent": "gkd-rules-aggregator",
       accept: "application/json,text/plain,*/*",
     },
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${sourceName}: HTTP ${response.status}`);
+    signal: controller.signal,
+  }).finally(() => clearTimeout(timer));
+}
+
+async function fetchSubscription(url, sourceName) {
+  let lastError;
+  for (let attempt = 1; attempt <= FETCH_RETRIES; attempt += 1) {
+    try {
+      const response = await fetchWithTimeout(url, FETCH_TIMEOUT_MS);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${sourceName}: HTTP ${response.status}`);
+      }
+      const text = await response.text();
+      return parseLooseObject(text, sourceName);
+    } catch (error) {
+      lastError = error;
+      if (attempt < FETCH_RETRIES) continue;
+    }
   }
-  const text = await response.text();
-  return parseLooseObject(text, sourceName);
+  throw new Error(`Failed to fetch ${sourceName} after ${FETCH_RETRIES} attempts: ${lastError.message}`);
 }
 
 function readLocalRules() {
@@ -136,6 +154,7 @@ function normalizeRule(rule) {
   const next = { ...rule };
   if (next.snapshotUrls) next.snapshotUrls = mergeUniqueArrays(next.snapshotUrls, []);
   if (next.exampleUrls) next.exampleUrls = mergeUniqueArrays(next.exampleUrls, []);
+  if (next.excludeSnapshotUrls) next.excludeSnapshotUrls = mergeUniqueArrays(next.excludeSnapshotUrls, []);
   if (next.activityIds) next.activityIds = mergeUniqueArrays(next.activityIds, []);
   return next;
 }
@@ -341,11 +360,17 @@ function sortOutput(subscription) {
   return subscription;
 }
 
-async function main() {
-  const upstreams = [];
-  for (const upstream of UPSTREAMS) {
-    upstreams.push(await fetchSubscription(upstream.url, upstream.name));
+function writeFileIfChanged(filePath, contents) {
+  if (fs.existsSync(filePath)) {
+    const existing = fs.readFileSync(filePath, "utf8");
+    if (existing === contents) return false;
   }
+  fs.writeFileSync(filePath, contents, "utf8");
+  return true;
+}
+
+async function main() {
+  const upstreams = await Promise.all(UPSTREAMS.map((upstream) => fetchSubscription(upstream.url, upstream.name)));
 
   const localRules = readLocalRules();
   const previousOutput = readExistingOutput();
@@ -365,20 +390,17 @@ async function main() {
     apps: mergedApps,
   });
 
-  const hasContentChange =
-    JSON.stringify(withoutVersion(previousOutput)) !== JSON.stringify(withoutVersion(nextOutputBase));
+  const hasContentChange = fingerprint(previousOutput) !== fingerprint(nextOutputBase);
 
   const output = {
     ...nextOutputBase,
     version: hasContentChange ? Number(previousVersion) + 1 : Number(previousVersion),
   };
 
-  fs.writeFileSync(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`, "utf8");
-  fs.writeFileSync(
-    VERSION_OUTPUT_PATH,
-    `${JSON.stringify({ id: output.id, version: output.version }, null, 2)}\n`,
-    "utf8",
-  );
+  const outputText = `${JSON.stringify(output, null, 2)}\n`;
+  const versionText = `${JSON.stringify({ id: output.id, version: output.version }, null, 2)}\n`;
+  writeFileIfChanged(OUTPUT_PATH, outputText);
+  writeFileIfChanged(VERSION_OUTPUT_PATH, versionText);
   console.log(`Generated ${OUTPUT_PATH}`);
   console.log(`Generated ${VERSION_OUTPUT_PATH}`);
   console.log(`Version: ${output.version}`);
@@ -390,4 +412,3 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-

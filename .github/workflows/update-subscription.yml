@@ -10,6 +10,10 @@ on:
       - "scripts/build-gkd.js"
       - ".github/workflows/update-subscription.yml"
 
+concurrency:
+  group: update-subscription
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,4 +42,3 @@ jobs:
           git add gkd.json5 gkd.version.json5
           git commit -m "Auto update merged subscription"
           git push
-
