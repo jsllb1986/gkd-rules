@@ -42,9 +42,12 @@ const OUTPUT_META = {
 const FETCH_TIMEOUT_MS = 20000;
 const FETCH_RETRIES = 2;
 
-function readExistingOutput() {
-  if (!fs.existsSync(OUTPUT_PATH)) return null;
-  return parseLooseObject(fs.readFileSync(OUTPUT_PATH, "utf8"), "current output");
+function parseJson(text, sourceName) {
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    throw new Error(`Failed to parse ${sourceName}: ${error.message}`);
+  }
 }
 
 function parseLooseObject(text, sourceName) {
@@ -53,6 +56,21 @@ function parseLooseObject(text, sourceName) {
   } catch (error) {
     throw new Error(`Failed to parse ${sourceName}: ${error.message}`);
   }
+}
+
+function readExistingOutput() {
+  if (!fs.existsSync(OUTPUT_PATH)) return null;
+  try {
+    return parseJson(fs.readFileSync(OUTPUT_PATH, "utf8"), "current output");
+  } catch (error) {
+    console.warn(error.message);
+    return null;
+  }
+}
+
+function readExistingVersion() {
+  if (!fs.existsSync(VERSION_OUTPUT_PATH)) return null;
+  return parseJson(fs.readFileSync(VERSION_OUTPUT_PATH, "utf8"), "current version output");
 }
 
 function fingerprint(subscription) {
@@ -369,12 +387,38 @@ function writeFileIfChanged(filePath, contents) {
   return true;
 }
 
+async function fetchRemoteVersionMeta() {
+  const versionUrls = [
+    OUTPUT_META.checkUpdateUrl.replace('cdn.jsdelivr.net/gh', 'raw.githubusercontent.com').replace('@main/', '/main/'),
+    OUTPUT_META.checkUpdateUrl,
+  ];
+
+  for (const url of versionUrls) {
+    try {
+      const response = await fetchWithTimeout(url, FETCH_TIMEOUT_MS);
+      if (!response.ok) continue;
+      const text = await response.text();
+      return parseJson(text, 'remote version output');
+    } catch (error) {
+      continue;
+    }
+  }
+
+  return null;
+}
+
 async function main() {
   const upstreams = await Promise.all(UPSTREAMS.map((upstream) => fetchSubscription(upstream.url, upstream.name)));
 
   const localRules = readLocalRules();
   const previousOutput = readExistingOutput();
-  const previousVersion = previousOutput?.version || 1;
+  const previousVersionMeta = readExistingVersion();
+  const remoteVersionMeta = await fetchRemoteVersionMeta();
+  const previousVersion = Math.max(
+    Number(previousOutput?.version || 1),
+    Number(previousVersionMeta?.version || 1),
+    Number(remoteVersionMeta?.version || 1),
+  );
 
   let mergedApps = [];
   for (const subscription of upstreams) {
