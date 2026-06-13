@@ -125,6 +125,24 @@
           ]
         }
       ]
+    },
+    {
+      "id": "com.fenbi.android.leo",
+      "name": "小猿AI",
+      "groups": [
+        {
+          "key": 1,
+          "name": "关闭烟花弹窗",
+          "rules": [
+            {
+              "matches": "[vid=\"v_firework_close\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28905158"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
