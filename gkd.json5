@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 40,
+  "version": 41,
   "categories": [
     {
       "key": -1,
@@ -39712,7 +39712,37 @@
           "key": 26,
           "name": "局部广告-直播悬浮窗",
           "desc": "点击关闭",
+          "activityIds": [
+            "com.alipay.mobile.nebulax.xriver.activity.XRiverActivity"
+          ],
           "rules": [
+            {
+              "key": 0,
+              "name": "①坐标点击x掉",
+              "fastQuery": true,
+              "position": {
+                "left": "width * 0.8893",
+                "top": "width * 0.1230"
+              },
+              "matches": "[id=\"android:id/content\"][width.div(3)>prev.width] >n [id=\"com.alipay.mobile.beevideo:id/fl_bee_player_view_container\"][childCount=2][visibleToUser=true]",
+              "exampleUrls": [
+                "https://e.gkd.li/3698e238-f39b-47ce-b0df-e2e47c15b400"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/21467483"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/23763580",
+                "https://i.gkd.li/i/28927558"
+              ]
+            },
+            {
+              "key": 1,
+              "matches": "@TextView[clickable=true][width<110 && height<110] +n [text=\"产品动态\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/24548034"
+              ]
+            },
             {
               "key": 0,
               "fastQuery": true,
@@ -39733,25 +39763,13 @@
               "excludeSnapshotUrls": [
                 "https://i.gkd.li/i/23763580"
               ]
-            },
-            {
-              "key": 1,
-              "activityIds": [
-                "com.alipay.mobile.nebulax.xriver.activity.XRiverActivity"
-              ],
-              "matches": "@TextView[clickable=true][width<110 && height<110] +n [text=\"产品动态\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/24548034"
-              ]
             }
-          ],
-          "activityIds": []
+          ]
         },
         {
           "key": 27,
           "name": "功能类-余额宝转出自动勾选[短期不再提示]",
           "actionMaximum": 1,
-          "resetMatch": "activity",
           "rules": [
             {
               "activityIds": [
@@ -76084,6 +76102,44 @@
       ]
     },
     {
+      "id": "com.quora.android",
+      "name": "Quora",
+      "groups": [
+        {
+          "key": 1,
+          "name": "分段广告-信息流广告",
+          "desc": "赞助推广",
+          "fastQuery": true,
+          "activityIds": [
+            ".components.activities.QuoraActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "matches": "[text=\"Sponsored\"] < View <3 [childCount=3] <2 [childCount>5] >6 @Button[desc=\"Hide\"] <<(10-n) View[visibleToUser=true][childCount=1] <n [id=\"root\"] <<(7-n) [vid=\"swiperefresh\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28922252",
+                "https://i.gkd.li/i/28922253"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/8764eb22-4910-4602-a3de-973fcd9d8e53"
+              ]
+            },
+            {
+              "key": 20,
+              "preKeys": [
+                0
+              ],
+              "matches": "@Button[desc=\"Dismiss\"] < View < View < View < View < View < View <2 View < WebView < WebView < [vid=\"swiperefresh\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28922254"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "com.quqi.quqioffice",
       "name": "曲奇云盘",
       "groups": [
@@ -90172,12 +90228,15 @@
               ],
               "key": 50,
               "name": "③点击[关闭]",
-              "matches": "[text*=\"关闭\" || text=\"Close\"][clickable=true]",
+              "matches": "[text=\"直接关闭\" || text=\"Close\" || text=\"关闭广告\"][clickable=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/12663984",
                 "https://i.gkd.li/i/12905846",
                 "https://i.gkd.li/i/14647940",
                 "https://i.gkd.li/i/14783534"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/28927197"
               ]
             },
             {
@@ -90301,6 +90360,20 @@
               "snapshotUrls": [
                 "https://i.gkd.li/i/14647413",
                 "https://i.gkd.li/i/19633571"
+              ]
+            },
+            {
+              "preKeys": [
+                25
+              ],
+              "key": 50,
+              "name": "点击[关闭]",
+              "matches": "[text*=\"关闭\" || text=\"Close\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/12663984",
+                "https://i.gkd.li/i/12905846",
+                "https://i.gkd.li/i/14647940",
+                "https://i.gkd.li/i/14783534"
               ]
             }
           ]
@@ -110380,7 +110453,7 @@
                 ".ui.activity.HomeActivity",
                 ".ui.activity.MainFrameActivity"
               ],
-              "excludeMatches": "[text=\"我的订单\" || text=\"聊天\"][bottom<500][visibleToUser=true]",
+              "excludeMatches": "[text=\"我的订单\" || text=\"聊天\"][bottom<650][visibleToUser=true]",
               "matches": "[text=\"开心收下\" || text=\"去抢购\" || text=\"立即抽免单\" || text=\"去刮奖\" || text=\"立即领取\" || text=\"去领大额金币\" || text=\"送你大额现金\" || text*=\"红包助手\" || text=\"刮刮卡发来的消息通知\" || text=\"立即充值\" || text=\"打款金额\"][top>600][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13625441",
@@ -110399,7 +110472,8 @@
               ],
               "excludeSnapshotUrls": [
                 "https://i.gkd.li/i/23352586",
-                "https://i.gkd.li/i/23607429"
+                "https://i.gkd.li/i/23607429",
+                "https://i.gkd.li/i/28929991"
               ]
             },
             {
@@ -110498,6 +110572,36 @@
               "matches": "@ViewGroup[width<86 && height<86][clickable=true][focusable=true][clickable=true] + ViewGroup [text=\"元\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25572172"
+              ]
+            },
+            {
+              "key": 3,
+              "fastQuery": true,
+              "action": "back",
+              "activityIds": [
+                ".ui.activity.HomeActivity",
+                ".ui.activity.MainFrameActivity"
+              ],
+              "excludeMatches": "[text=\"我的订单\" || text=\"聊天\"][bottom<500][visibleToUser=true]",
+              "matches": "[text=\"开心收下\" || text=\"去抢购\" || text=\"立即抽免单\" || text=\"去刮奖\" || text=\"立即领取\" || text=\"去领大额金币\" || text=\"送你大额现金\" || text*=\"红包助手\" || text=\"刮刮卡发来的消息通知\" || text=\"立即充值\" || text=\"打款金额\"][top>600][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13625441",
+                "https://i.gkd.li/i/13761182",
+                "https://i.gkd.li/i/13944165",
+                "https://i.gkd.li/i/14456101",
+                "https://i.gkd.li/i/14596990",
+                "https://i.gkd.li/i/14614135",
+                "https://i.gkd.li/i/15360330",
+                "https://i.gkd.li/i/15032649",
+                "https://i.gkd.li/i/15076322",
+                "https://i.gkd.li/i/17564786",
+                "https://i.gkd.li/i/17585645",
+                "https://i.gkd.li/i/17625608",
+                "https://i.gkd.li/i/18481318"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/23352586",
+                "https://i.gkd.li/i/23607429"
               ]
             },
             {
