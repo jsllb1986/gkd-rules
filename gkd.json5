@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 42,
+  "version": 43,
   "categories": [
     {
       "key": -1,
@@ -74192,7 +74192,29 @@
           "enable": false
         },
         {
+          "enable": false,
           "key": 8,
+          "name": "功能类-起点中文网登录自动确认",
+          "desc": "自动点击【登录】",
+          "activityIds": [
+            "com.qidian.QDReader.ui.activity.QDBrowserActivity"
+          ],
+          "rules": [
+            "[id=\"scanLogin\"]",
+            {
+              "activityIds": [
+                "com.qidian.QDReader.ui.activity.QDBrowserActivity"
+              ],
+              "matches": "[id=\"scanLogin\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/12903081"
+              ]
+            }
+          ],
+          "snapshotUrls": "https://i.gkd.li/import/12903081"
+        },
+        {
+          "key": 9,
           "name": "全屏广告-福利中心-我知道了",
           "desc": "福利中心看视频后获得奖励，自动点击“我知道了”",
           "activityIds": [
@@ -74208,44 +74230,23 @@
           "enable": false
         },
         {
-          "key": 9,
-          "name": "功能类-自动点击\"知道了\"",
-          "desc": "福利中心自动点击\"知道了\"",
-          "rules": [
-            {
-              "matches": "@TextView[text*=\"知道了\"] <<n View <<n WebView < FrameLayout < [vid=\"webViewContainer\"]"
-            }
-          ],
-          "enable": false
-        },
-        {
           "key": 10,
-          "name": "功能类-起点中文网登录自动确认",
-          "desc": "自动点击\"登录\"",
+          "name": "功能类-扫描自动确认[登录]",
+          "desc": "点击[登录]",
           "rules": [
             {
+              "fastQuery": true,
               "activityIds": [
                 ".ui.activity.QDBrowserActivity"
               ],
-              "matches": "[id=\"scanLogin\"]",
+              "matches": "@[id=\"scanLogin\"] <<(7,9) [vid=\"webViewContainer\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/12903081"
-              ]
-            },
-            "[id=\"scanLogin\"]",
-            {
-              "activityIds": [
-                "com.qidian.QDReader.ui.activity.QDBrowserActivity"
-              ],
-              "matches": "[id=\"scanLogin\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/12903081"
+                "https://i.gkd.li/i/12903081",
+                "https://i.gkd.li/i/28999743"
               ]
             }
           ],
-          "activityIds": [
-            "com.qidian.QDReader.ui.activity.QDBrowserActivity"
-          ]
+          "activityIds": []
         },
         {
           "key": 11,
@@ -74509,6 +74510,17 @@
         },
         {
           "key": 17,
+          "name": "功能类-自动点击\"知道了\"",
+          "desc": "福利中心自动点击\"知道了\"",
+          "rules": [
+            {
+              "matches": "@TextView[text*=\"知道了\"] <<n View <<n WebView < FrameLayout < [vid=\"webViewContainer\"]"
+            }
+          ],
+          "enable": false
+        },
+        {
+          "key": 18,
           "name": "功能类-自动看广告",
           "desc": "点击去完成",
           "rules": [
@@ -77234,6 +77246,28 @@
       "id": "com.sankuai.meituan",
       "name": "美团",
       "groups": [
+        {
+          "key": -1,
+          "name": "开屏广告",
+          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "rules": [
+            {
+              "key": 0,
+              "matches": "TextView[text*=\"跳过\"][text.length<8][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28997249"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/17827264"
+              ]
+            }
+          ],
+          "order": -10,
+          "activityIds": []
+        },
         {
           "key": 1,
           "name": "更新提示",
@@ -123680,26 +123714,36 @@
               "activityIds": [
                 "org.telegram.ui.LaunchActivity"
               ],
-              "matches": "@ImageView[clickable=true] - * >2 [text^=\"添加您的生日\" || text^=\"Add your birthday\"]",
+              "matches": "@ImageView[clickable=true] - * >2 [text^=\"添加您的生日\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/22971075"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "key": 3,
+          "name": "局部广告-顶部横幅提示",
+          "desc": "此规则覆盖生日提示、拍卖提示以及部分广告",
+          "rules": [
             {
               "fastQuery": true,
               "activityIds": [
                 "org.telegram.ui.LaunchActivity"
               ],
-              "matches": "@ImageView[clickable=true] - * >2 [text^=\"添加您的生日\"]",
+              "matches": "@ImageView[desc=null][clickable=true][width<140 && height<140] - LinearLayout >2 TextView[text*=\"生日\" || text*=\"birthday\" || text$=\"!\" || text$=\".\"][text.length>10]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/22971075"
+                "https://i.gkd.li/i/22971075",
+                "https://i.gkd.li/i/23725025",
+                "https://i.gkd.li/i/24560612",
+                "https://i.gkd.li/i/28998200"
               ]
             }
           ],
           "activityIds": []
         },
         {
-          "key": 3,
+          "key": 4,
           "name": "局部广告-拍卖提示",
           "rules": [
             {
@@ -123712,28 +123756,7 @@
                 "https://i.gkd.li/i/23725025"
               ]
             }
-          ],
-          "activityIds": []
-        },
-        {
-          "key": 4,
-          "name": "其他-首页公告栏",
-          "desc": "此规则覆盖生日提示、拍卖提示以及部分广告",
-          "rules": [
-            {
-              "activityIds": [
-                "org.telegram.ui.LaunchActivity"
-              ],
-              "matches": "@ImageView[desc=null][clickable=true][width<140 && height<140][left>540] - LinearLayout[!(getChild(0).getChild(0).text=null)] < FrameLayout -2 FrameLayout >2 [text=\"Telegram\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/24560612"
-              ],
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/25030822"
-              ]
-            }
-          ],
-          "activityIds": []
+          ]
         },
         {
           "key": 5,
@@ -123806,6 +123829,25 @@
             }
           ],
           "activityIds": []
+        },
+        {
+          "key": 8,
+          "name": "其他-首页公告栏",
+          "desc": "此规则覆盖生日提示、拍卖提示以及部分广告",
+          "rules": [
+            {
+              "activityIds": [
+                "org.telegram.ui.LaunchActivity"
+              ],
+              "matches": "@ImageView[desc=null][clickable=true][width<140 && height<140][left>540] - LinearLayout[!(getChild(0).getChild(0).text=null)] < FrameLayout -2 FrameLayout >2 [text=\"Telegram\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/24560612"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/25030822"
+              ]
+            }
+          ]
         }
       ]
     },
