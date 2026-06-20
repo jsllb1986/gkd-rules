@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 46,
+  "version": 47,
   "categories": [
     {
       "key": -1,
@@ -28190,6 +28190,38 @@
               ]
             }
           ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "com.chowbus.branded.molly",
+      "name": "Molly Tea",
+      "groups": [
+        {
+          "key": 0,
+          "name": "开屏广告",
+          "matchTime": 10000,
+          "forcedTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "matchRoot": true,
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.chowbus.branded.branded_app.MainActivity"
+              ],
+              "matches": "@[desc^=\"Skip\"][visibleToUser=true] < [childCount=2] <<5 [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29147518"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/a43170a0-8196-49d8-bb4d-3554aeae1900"
+              ]
+            }
+          ],
+          "order": -10,
           "activityIds": []
         }
       ]
