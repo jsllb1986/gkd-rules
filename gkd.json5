@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 49,
+  "version": 50,
   "categories": [
     {
       "key": -1,
@@ -28203,16 +28203,15 @@
           "name": "开屏广告",
           "matchTime": 10000,
           "forcedTime": 10000,
-          "actionMaximum": 1,
+          "actionMaximum": 3,
+          "actionCd": 800,
           "resetMatch": "app",
-          "matchRoot": true,
           "rules": [
             {
-              "fastQuery": true,
               "activityIds": [
                 "com.chowbus.branded.branded_app.MainActivity"
               ],
-              "matches": "@[desc^=\"Skip\"][visibleToUser=true] < [childCount=2] <<5 [id=\"android:id/content\"]",
+              "matches": "[desc^=\"Skip\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/29147518"
               ],
@@ -34971,8 +34970,8 @@
         },
         {
           "key": 3,
-          "name": "分段广告-信息流广告",
-          "desc": "点击关闭-点击不感兴趣",
+          "name": "分段广告",
+          "desc": "①点击[关闭] ②点击[不感兴趣]",
           "fastQuery": true,
           "rules": [
             {
@@ -34997,14 +34996,14 @@
               "key": 2,
               "activityIds": [
                 ".group.activity.GroupDetailActivity",
-                ".group.activity.GroupTopicActivity"
+                ".group.activity.GroupTopicActivity",
+                ".search.activity.NewSearchActivity"
               ],
-              "matches": "[vid=\"ad_not_interest\" || vid=\"ad_tag\" || vid=\"group_ad_not_interest\"][visibleToUser=true]",
+              "matches": "[vid=\"ad_footer\" || vid=\"feed_ad_group\"] >(1,2) [text=\"广告\"][clickable=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/18424568",
-                "https://i.gkd.li/i/18424574",
                 "https://i.gkd.li/i/18424681",
-                "https://i.gkd.li/i/18424818"
+                "https://i.gkd.li/i/18424818",
+                "https://i.gkd.li/i/29299047"
               ],
               "excludeSnapshotUrls": [
                 "https://i.gkd.li/i/18422533"
@@ -35012,13 +35011,13 @@
             },
             {
               "key": 3,
-              "actionMaximum": 1,
               "activityIds": [
-                ".group.activity.GroupTopicActivity"
+                ".search.activity.NewSearchActivity"
               ],
-              "matches": "@Image[childCount=0][visibleToUser=true][text=\"\"] < View[childCount=1] -2 View >2 [childCount=0][text=\"广告\"] <<n [vid=\"structure_header_container\"]",
+              "matches": "@[vid=\"ad_not_interest\" || vid=\"group_ad_not_interest\"] -n [text=\"广告\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/18424747"
+                "https://i.gkd.li/i/29295745",
+                "https://i.gkd.li/i/29298939"
               ]
             },
             {
@@ -35035,28 +35034,41 @@
               ]
             },
             {
+              "key": 5,
+              "activityIds": [
+                ".group.activity.GroupTopicActivity"
+              ],
+              "matches": "@Image[childCount=0][visibleToUser=true][text=\"\"] < View[childCount=1] -2 View >2 [childCount=0][text=\"广告\"] <<n [vid=\"structure_header_container\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18424747"
+              ]
+            },
+            {
+              "key": 20,
               "preKeys": [
                 1,
                 2,
                 3,
                 4
               ],
+              "name": "②点击[不感兴趣]",
+              "matches": "@[clickable=true] > [text=\"不感兴趣\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18424404",
+                "https://i.gkd.li/i/18424419",
+                "https://i.gkd.li/i/18424574",
+                "https://i.gkd.li/i/18424711",
+                "https://i.gkd.li/i/19615333",
+                "https://i.gkd.li/i/29295746"
+              ],
               "activityIds": [
                 ".activity.SplashActivity",
                 ".subject.structure.activity.MovieActivity",
                 ".group.activity.GroupDetailActivity",
                 ".group.activity.GroupTopicActivity",
-                ".fangorns.topic.TopicsActivity"
-              ],
-              "matches": "@[clickable=true] > [text=\"不感兴趣\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/18424404",
-                "https://i.gkd.li/i/18424419",
-                "https://i.gkd.li/i/18424568",
-                "https://i.gkd.li/i/18424674",
-                "https://i.gkd.li/i/18424711",
-                "https://i.gkd.li/i/19615333",
-                "https://i.gkd.li/i/19621163"
+                ".fangorns.topic.TopicsActivity",
+                ".subject.struct2.MovieActivity2",
+                ".search.activity.NewSearchActivity"
               ]
             }
           ],
@@ -35256,10 +35268,11 @@
                 ".group.activity.GroupTopicActivity",
                 ".search.activity.NewSearchActivity"
               ],
-              "matches": "@ImageView[childCount=0][visibleToUser=true] < FrameLayout[childCount=1] - LinearLayout[childCount=2] > [text=\"下载应用\" || text=\"立即下载\" || text=\"查看详情\" || text=\"领取优惠\" || text=\"进入小程序\" || text=\"了解更多\"][visibleToUser=true]",
+              "matches": "@ImageView[visibleToUser=true] < FrameLayout - [childCount=2] > [text^=\"立即\" || text^=\"了解\" || text*=\"查看\" || text*=\"下载\" || text*=\"领取\" || text$=\"应用\" || text$=\"详情\" || text$=\"小程序\"][text.length<6]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/18424415",
-                "https://i.gkd.li/i/29175754"
+                "https://i.gkd.li/i/29175754",
+                "https://i.gkd.li/i/29298575"
               ]
             },
             {
@@ -35267,7 +35280,7 @@
               "activityIds": [
                 ".group.activity.GroupTopicActivity"
               ],
-              "matches": "@ImageView[childCount=0][visibleToUser=true] < FrameLayout[childCount=1] <3 FrameLayout +2 FrameLayout >2 [text=\"下载应用\" || text=\"立即下载\" || text=\"查看详情\" || text=\"领取优惠\" || text=\"进入小程序\" || text=\"了解更多\"]",
+              "matches": "@ImageView[childCount=0][visibleToUser=true] < FrameLayout[childCount=1] <3 FrameLayout +2 FrameLayout >2 [text^=\"立即\" || text^=\"了解\" || text*=\"查看\" || text*=\"下载\" || text*=\"领取\" || text$=\"应用\" || text$=\"详情\" || text$=\"小程序\"][text.length<6]",
               "exampleUrls": [
                 "https://e.gkd.li/735decb0-7f08-4c7d-8199-a38faf213f77"
               ],
@@ -35508,6 +35521,98 @@
             }
           ],
           "activityIds": []
+        },
+        {
+          "key": 12,
+          "name": "分段广告-信息流广告",
+          "desc": "点击关闭-点击不感兴趣",
+          "fastQuery": true,
+          "rules": [
+            {
+              "key": 1,
+              "activityIds": [
+                ".activity.SplashActivity",
+                ".subject.structure.activity.MovieActivity",
+                ".group.activity.GroupTopicActivity",
+                ".fangorns.topic.TopicsActivity",
+                ".subject.struct2.MovieActivity2"
+              ],
+              "matches": "[vid=\"ad_header_new\"] > [vid=\"menu_item\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18424402",
+                "https://i.gkd.li/i/18424418",
+                "https://i.gkd.li/i/18424924",
+                "https://i.gkd.li/i/19615325",
+                "https://i.gkd.li/i/23982599"
+              ]
+            },
+            {
+              "key": 2,
+              "activityIds": [
+                ".group.activity.GroupDetailActivity",
+                ".group.activity.GroupTopicActivity"
+              ],
+              "matches": "[vid=\"ad_not_interest\" || vid=\"ad_tag\" || vid=\"group_ad_not_interest\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18424568",
+                "https://i.gkd.li/i/18424574",
+                "https://i.gkd.li/i/18424681",
+                "https://i.gkd.li/i/18424818"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/18422533"
+              ]
+            },
+            {
+              "key": 3,
+              "actionMaximum": 1,
+              "activityIds": [
+                ".group.activity.GroupTopicActivity"
+              ],
+              "matches": "@Image[childCount=0][visibleToUser=true][text=\"\"] < View[childCount=1] -2 View >2 [childCount=0][text=\"广告\"] <<n [vid=\"structure_header_container\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18424747"
+              ]
+            },
+            {
+              "key": 4,
+              "activityIds": [
+                ".group.activity.GroupTopicActivity"
+              ],
+              "matches": "@View[clickable=true][childCount=0][visibleToUser=true] < FrameLayout[desc^=\"dislike\"] -2 FrameLayout >2 [text=\"广告\"]",
+              "exampleUrls": [
+                "https://e.gkd.li/11d3ea75-c640-4b91-942e-3bf83b2e5f5e"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/19621152"
+              ]
+            },
+            {
+              "preKeys": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "activityIds": [
+                ".activity.SplashActivity",
+                ".subject.structure.activity.MovieActivity",
+                ".group.activity.GroupDetailActivity",
+                ".group.activity.GroupTopicActivity",
+                ".fangorns.topic.TopicsActivity"
+              ],
+              "matches": "@[clickable=true] > [text=\"不感兴趣\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18424404",
+                "https://i.gkd.li/i/18424419",
+                "https://i.gkd.li/i/18424568",
+                "https://i.gkd.li/i/18424674",
+                "https://i.gkd.li/i/18424711",
+                "https://i.gkd.li/i/19615333",
+                "https://i.gkd.li/i/19621163"
+              ]
+            }
+          ]
         },
         {
           "key": 13,
@@ -55761,6 +55866,30 @@
           "enable": false
         },
         {
+          "key": 7,
+          "name": "权限提示-悬浮窗权限",
+          "desc": "点击[下次再说]",
+          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "rules": [
+            {
+              "activityIds": [
+                "com.hellobike.business.hitch.common.home.HLPHHomeActivity"
+              ],
+              "matches": [
+                "[text*=\"悬浮窗\"]",
+                "[vid=\"btnCancel\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29299377"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
           "key": 8,
           "name": "权限提示-通知权限",
           "fastQuery": true,
@@ -55818,13 +55947,15 @@
               "activityIds": [
                 "com.hellobike.ads.widget.insert.dialog.HBAdvertDialog",
                 "com.hellobike.atlas.business.portal.PortalActivity",
-                "com.hellobike.hitch.business.homenew.HitchHomeActivity"
+                "com.hellobike.hitch.business.homenew.HitchHomeActivity",
+                "com.hellobike.business.hitch.common.home.HLPHHomeActivity"
               ],
               "matches": "[vid=\"actionDialogClose\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/12650090",
                 "https://i.gkd.li/i/16503613",
-                "https://i.gkd.li/i/23407810"
+                "https://i.gkd.li/i/23407810",
+                "https://i.gkd.li/i/29299383"
               ]
             },
             {
@@ -55873,6 +56004,21 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/23415363"
+              ]
+            },
+            {
+              "key": 0,
+              "fastQuery": true,
+              "activityIds": [
+                "com.hellobike.ads.widget.insert.dialog.HBAdvertDialog",
+                "com.hellobike.atlas.business.portal.PortalActivity",
+                "com.hellobike.hitch.business.homenew.HitchHomeActivity"
+              ],
+              "matches": "[vid=\"actionDialogClose\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/12650090",
+                "https://i.gkd.li/i/16503613",
+                "https://i.gkd.li/i/23407810"
               ]
             },
             {
@@ -58100,7 +58246,7 @@
         {
           "key": 7,
           "name": "功能类-刷到推广视频时[上滑]",
-          "desc": "购物/游戏/汽车/咨询/一键出片/品牌活动 等推广视频",
+          "desc": "广告/购物/游戏/汽车/咨询/一键出片/品牌活动 等推广视频",
           "rules": [
             {
               "fastQuery": true,
@@ -58120,8 +58266,9 @@
               "activityIds": [
                 "com.yxcorp.gifshow.HomeActivity"
               ],
-              "matches": "[vid=\"plc_tv_biz_text\"][text=\"游戏\" || text=\"购物\" || text=\"购买\" || text=\"汽车\" || text=\"咨询\" || text=\"品牌活动\" || text=\"一键出片\"][visibleToUser=true]",
+              "matches": "[vid=\"ad_detail_content_layout\" || vid=\"plc_tv_biz_text\" && (text=\"游戏\" || text=\"购物\" || text=\"购买\" || text=\"汽车\" || text=\"咨询\" || text=\"品牌活动\" || text=\"一键出片\")][visibleToUser=true]",
               "snapshotUrls": [
+                "https://i.gkd.li/i/29213590",
                 "https://i.gkd.li/i/29029850",
                 "https://i.gkd.li/i/29029852",
                 "https://i.gkd.li/i/29029853",
@@ -78646,27 +78793,18 @@
       "groups": [
         {
           "key": 1,
-          "name": "局部广告-打车页面右上角红包广告",
-          "desc": "点击卡片广告左上角x",
+          "name": "局部广告-悬浮窗",
+          "desc": "点击x掉",
           "rules": [
             {
               "fastQuery": true,
               "activityIds": [
                 "com.didi.sdk.app.MainActivity"
               ],
-              "matches": "ImageView[vid=\"second_entrance_img\"] + @ImageView[vid=\"left_close_img\"]",
+              "matches": "ImageView[vid=\"left_close_img\" || vid=\"thumb_close_iv\"][visibleToUser=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/13760846"
-              ]
-            },
-            {
-              "fastQuery": true,
-              "activityIds": [
-                "com.didi.sdk.app.MainActivity"
-              ],
-              "matches": "ImageView[id=\"com.sdu.didi.psnger:id/second_entrance_img\"] + @ImageView[id=\"com.sdu.didi.psnger:id/left_close_img\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/13760846"
+                "https://i.gkd.li/i/13760846",
+                "https://i.gkd.li/i/29299387"
               ]
             }
           ],
@@ -78779,6 +78917,23 @@
             }
           ],
           "enable": false
+        },
+        {
+          "key": 7,
+          "name": "局部广告-打车页面右上角红包广告",
+          "desc": "点击卡片广告左上角x",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.didi.sdk.app.MainActivity"
+              ],
+              "matches": "ImageView[id=\"com.sdu.didi.psnger:id/second_entrance_img\"] + @ImageView[id=\"com.sdu.didi.psnger:id/left_close_img\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13760846"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -86692,6 +86847,39 @@
               "matches": "@ImageView[clickable=true] - [text$=\"桌面小组件\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25208769"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 13,
+          "name": "功能类-刷到推广视频时[上滑]",
+          "desc": "广告/应用/购物/游戏/咨询/预约/子薇剧场 等推广视频",
+          "rules": [
+            {
+              "fastQuery": true,
+              "actionCd": 300,
+              "actionDelay": 200,
+              "swipeArg": {
+                "start": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.6"
+                },
+                "end": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.3"
+                },
+                "duration": 200
+              },
+              "activityIds": [
+                "com.ss.android.ugc.aweme.main.MainActivity",
+                "com.ss.android.ugc.aweme.detail.ultra.ui.UltraDetailActivity"
+              ],
+              "matches": "([text*=\"广告\"][vid=\"desc\"][visibleToUser=true]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"子薇剧场\" || text=\"预约\"][text.length<6][index=1][visibleToUser=true])",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29214101",
+                "https://i.gkd.li/i/29214002"
               ]
             }
           ],
@@ -106563,6 +106751,24 @@
         },
         {
           "key": 2,
+          "name": "局部广告-顶部横幅",
+          "desc": "点击x掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".framework.plugin.rn.PluginRNActivity"
+              ],
+              "matches": "@[desc=\"关闭\"] <3 ViewGroup < [visibleToUser=true] <2 [childCount=2] < [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29299389"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 3,
           "name": "全屏广告-米家智惠广告",
           "activityIds": [
             "com.xiaomi.smarthome.SmartHomeMainActivity"
@@ -106579,7 +106785,7 @@
         },
         {
           "enable": false,
-          "key": 3,
+          "key": 4,
           "name": "全屏广告-设备固件升级提示弹窗",
           "activityIds": [
             "com.xiaomi.smarthome.framework.plugin.rn.PluginRNActivity"
