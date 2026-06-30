@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 53,
+  "version": 54,
   "categories": [
     {
       "key": -1,
@@ -71922,22 +71922,35 @@
         {
           "key": 2,
           "name": "评价提示",
-          "desc": "点击[残忍拒绝]",
+          "desc": "①勾选[不再显示] ②点击x掉",
+          "fastQuery": true,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "activityIds": [
+            ".MainActivity"
+          ],
           "rules": [
             {
-              "fastQuery": true,
-              "actionMaximum": 1,
-              "resetMatch": "app",
-              "activityIds": [
-                "com.One.WoodenLetter.MainActivity"
-              ],
-              "matches": "[childCount=2] > Button[text=\"残忍拒绝\"][clickable=true]",
+              "key": 0,
+              "name": "①勾选[不再显示]",
+              "matches": "[text=\"不再显示\"][checked=false]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/28805036"
+                "https://i.gkd.li/i/29465827"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "②点击x掉",
+              "matches": [
+                "[text*=\"好评\"]",
+                "[vid=\"dialog_close_view\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28805036",
+                "https://i.gkd.li/i/29465828"
               ]
             }
-          ],
-          "activityIds": []
+          ]
         }
       ]
     },
@@ -102116,6 +102129,42 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/23834355"
+              ]
+            }
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "com.valvesoftware.android.steam.community",
+      "name": "Steam",
+      "groups": [
+        {
+          "key": 123,
+          "name": "功能类-自动展开信息",
+          "desc": "展开游戏介绍的详细信息",
+          "matchRoot": true,
+          "rules": [
+            {
+              "fastQuery": true,
+              "position": {
+                "left": "width * 0.5",
+                "bottom": "height * 0.3"
+              },
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "@[text^=\"展开\" || getChild(0).text^=\"展开\"][visibleToUser=true][bottom<getPrev(7).bottom] <n View <2 View[childCount=2] <n [id=\"tabletGrid\"] <2 * <2 [id=\"responsive_page_template_content\"] <3 [childCount=4] <2 View[childCount=2] <<2 WebView[text!=null] <<3 ViewGroup -2 HorizontalScrollView >3 [text=\"菜单\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29454381",
+                "https://i.gkd.li/i/29454378"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/29472521"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/583ee471-9cbf-4025-9445-206f4c2ef357"
               ]
             }
           ],
