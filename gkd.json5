@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 54,
+  "version": 55,
   "categories": [
     {
       "key": -1,
@@ -16841,6 +16841,7 @@
             },
             {
               "key": 2,
+              "action": "clickCenter",
               "actionMaximum": 1,
               "resetMatch": "app",
               "activityIds": [
@@ -16848,7 +16849,8 @@
               ],
               "matches": "[vid=\"showAudioButton\"][clickable=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/20877514"
+                "https://i.gkd.li/i/20877514",
+                "https://i.gkd.li/i/29557697"
               ]
             }
           ],
@@ -21774,9 +21776,10 @@
               "activityIds": [
                 ".pb.pb.main.PbActivity"
               ],
-              "matches": "ImageView < @[clickable=true][width<82 && height<82] <5 [childCount=5] >2 [text=\"贴吧游戏\"]",
+              "matches": "ImageView < @[clickable=true][width<82 && height<82] <5 [childCount=5] + [childCount=1] >4 [text=\"权限\" || text=\"隐私\" || text=\"功能\"] -(1,2,3) [text$=\"有限公司\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/28389197"
+                "https://i.gkd.li/i/28389197",
+                "https://i.gkd.li/i/29578950"
               ]
             },
             {
@@ -86345,7 +86348,7 @@
               "activityIds": [
                 ".main.MainActivity"
               ],
-              "matches": "([visibleToUser=true] > [text$=\"广告\" || text$=\"（推广）\"][vid=\"desc\" || desc=\"广告\"]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"服务\" || text=\"预约\" || text=\"子薇剧场\"][text.length<6][index=1][visibleToUser=true])",
+              "matches": "([visibleToUser=true] > [text$=\"广告\" || text$=\"（推广）\"][vid=\"desc\" || desc=\"广告\"]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"服务\" || text=\"预约\" || text=\"子薇剧场\"][text.length<6][index=1][visibleToUser=true]) || (ViewGroup[childCount=5] > ImageView +3 [text^=\"已售\" || text^=\" 已售\"][text$=\"+\"] - TextView - [text=\"讲解中 丨 \"][index=1][visibleToUser=true])",
               "snapshotUrls": [
                 "https://i.gkd.li/i/21142063",
                 "https://i.gkd.li/i/29403811",
@@ -86358,7 +86361,10 @@
                 "https://i.gkd.li/i/25355868",
                 "https://i.gkd.li/i/29403479",
                 "https://i.gkd.li/i/21765934",
-                "https://i.gkd.li/i/21523849"
+                "https://i.gkd.li/i/21523849",
+                "https://i.gkd.li/i/29605884",
+                "https://i.gkd.li/i/29605791",
+                "https://i.gkd.li/i/29605901"
               ]
             }
           ],
@@ -86636,14 +86642,15 @@
           "rules": [
             {
               "anyMatches": [
-                "@[text=\"关闭,按钮\"][clickable=true] - [text$=\"评论氛围是否满意？,匿名\"][visibleToUser=true]",
+                "@[text=\"关闭,按钮\"][clickable=true] - [text$=\"？,匿名\"][text*=\"评论\"][visibleToUser=true]",
                 "@UIImage[clickable=true] - [text$=\"评论氛围是否满意？,匿名\"][visibleToUser=true] < FrameLayout[childCount=7] <<4 FrameLayout[childCount=1][id=null][desc=null][text=null][clickable=false][visibleToUser=true][left=0][top!=0] + * > ViewGroup > [vid=\"avatar\"]"
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/25571238",
                 "https://i.gkd.li/i/29388014",
                 "https://i.gkd.li/i/29387403",
-                "https://i.gkd.li/i/29388032"
+                "https://i.gkd.li/i/29388032",
+                "https://i.gkd.li/i/29606115"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/f4c54b34-7d3c-499d-9ea0-f865f4cf9375"
@@ -87235,11 +87242,13 @@
               },
               "activityIds": [
                 "com.ss.android.ugc.aweme.main.MainActivity",
-                "com.ss.android.ugc.aweme.detail.ultra.ui.UltraDetailActivity"
+                "com.ss.android.ugc.aweme.detail.ultra.ui.UltraDetailActivity",
+                "com.ss.android.ugc.aweme.detail.ui.DetailActivity"
               ],
               "matches": "([text*=\"广告\"][vid=\"desc\"][visibleToUser=true]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"子薇剧场\" || text=\"预约\"][text.length<6][index=1][visibleToUser=true])",
               "snapshotUrls": [
                 "https://i.gkd.li/i/29214101",
+                "https://i.gkd.li/i/29579093",
                 "https://i.gkd.li/i/29214002"
               ]
             }
@@ -112381,6 +112390,7 @@
           "name": "功能类-自动处方流程",
           "desc": "自动点击处方流程到支付",
           "fastQuery": true,
+          "matchTime": 10000,
           "activityIds": [
             ".activity.NewPageActivity"
           ],
@@ -112389,13 +112399,9 @@
               "key": 0,
               "name": "点击已确诊的疾病",
               "actionMaximum": 1,
-              "matches": "[text=\"选择已确诊的疾病\"] + View > * > TextView[index=0]",
+              "matches": "@TextView[index=0] <<2 View - [text=\"选择已确诊的疾病\"] <n [id=\"main\"] < WebView[text!=null] <<3 FrameLayout <2 ViewGroup -2 FrameLayout >3 [text=\"购买处方药需填写用药信息\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25639924"
-              ],
-              "excludeMatches": "RelativeLayout > [text=\"请选择已确诊的疾病\"]",
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/25639813"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/f92b5d13-da8a-4eb2-b981-66bdc12b9c1c"
@@ -112407,7 +112413,9 @@
               "preKeys": [
                 0
               ],
-              "matches": "@[text=\"提交并开药\"][clickable=true][visibleToUser=true] -n [index=0] < [id=\"main\"] < [text^=\"购买处方药\"] <<n [id=\"android:id/content\"]",
+              "actionCd": 800,
+              "matches": "@Button[text=\"提交并开药\"][clickable=true][visibleToUser=true] <n [id=\"main\"] < WebView[text!=null] <<3 FrameLayout <2 ViewGroup -2 FrameLayout >3 [text=\"购买处方药需填写用药信息\"]",
+              "action": "clickCenter",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25639924"
               ]
@@ -112432,7 +112440,7 @@
               "preKeys": [
                 2
               ],
-              "matchDelay": 2600,
+              "matchDelay": 3000,
               "matches": "@[clickable=true] >2 [text=\"立即支付\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25640017"
@@ -112475,11 +112483,23 @@
             },
             {
               "key": 2,
-              "name": "通用[展开]",
+              "name": "订单页",
               "action": "clickCenter",
-              "matches": "[text=\"展开\"][visibleToUser=true]",
+              "matches": "@[text=\"展开\"] <<3 View <n [id=\"main\"] <<2 WebView[text!=null] <<3 FrameLayout <2 ViewGroup -2 FrameLayout >3 [text=\"交易成功\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/27208567"
+              ]
+            },
+            {
+              "key": 3,
+              "name": "商品评论",
+              "fastQuery": true,
+              "activityIds": [
+                ".activity.NewPageActivity"
+              ],
+              "matches": "@[desc=\"展开\"][clickable=true] - FrameLayout > ViewGroup[vid=\"pdd\"][childCount>5] >2 [text^=\"全部(\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29604643"
               ]
             }
           ]
@@ -113594,7 +113614,7 @@
                 "dev.xesam.chelaile.app.module.line.gray.LineDetailActivity"
               ],
               "excludeMatches": "[text=\"选择下车站\"][visibleToUser=true]",
-              "matches": "[vid=\"cll_line_single_ad_close\" || vid=\"cll_close\" || vid=\"cll_card_single_ad_close\"][visibleToUser=true][width<110 && height<110]",
+              "matches": "[text!=\"收藏成功\"] + [vid=\"cll_line_single_ad_close\" || vid=\"cll_close\" || vid=\"cll_card_single_ad_close\"][visibleToUser=true][width<110 && height<110]",
               "exampleUrls": [
                 "https://e.gkd.li/7d7b7d94-eb64-41a5-a5c2-c8418d6371a1"
               ],
@@ -113605,7 +113625,8 @@
                 "https://i.gkd.li/i/16988894"
               ],
               "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/25092999"
+                "https://i.gkd.li/i/25092999",
+                "https://i.gkd.li/i/29597847"
               ]
             },
             {
@@ -113634,6 +113655,29 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/16987313"
+              ]
+            },
+            {
+              "key": 1,
+              "fastQuery": true,
+              "activityIds": [
+                "dev.xesam.chelaile.app.module.PanelHostActivity",
+                "dev.xesam.chelaile.app.module.line.TimeTableActivity",
+                "dev.xesam.chelaile.app.module.line.gray.LineDetailActivity"
+              ],
+              "excludeMatches": "[text=\"选择下车站\"][visibleToUser=true]",
+              "matches": "[vid=\"cll_line_single_ad_close\" || vid=\"cll_close\" || vid=\"cll_card_single_ad_close\"][visibleToUser=true][width<110 && height<110]",
+              "exampleUrls": [
+                "https://e.gkd.li/7d7b7d94-eb64-41a5-a5c2-c8418d6371a1"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13625374",
+                "https://i.gkd.li/i/16956570",
+                "https://i.gkd.li/i/16987313",
+                "https://i.gkd.li/i/16988894"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/25092999"
               ]
             }
           ],
@@ -113748,8 +113792,16 @@
                 "dev.xesam.chelaile.app.module.PanelHostActivity"
               ],
               "matches": "@FrameLayout[clickable=true][getChild(0).vid=\"fav_line_layout\"] - LinearLayout >2 [text=\"我的收藏\"][visibleToUser=true]",
+              "excludeMatches": [
+                "[text=\"不在运营时间\"]",
+                "[text=\"末班时间已过\"]"
+              ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/25091170"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/29600340",
+                "https://i.gkd.li/i/29600413"
               ]
             }
           ],
@@ -113769,8 +113821,16 @@
                 "dev.xesam.chelaile.app.module.PanelHostActivity"
               ],
               "matches": "@FrameLayout[clickable=true][getChild(0).vid=\"fav_line_layout\"] - LinearLayout >2 [text=\"我的收藏\"][visibleToUser=true]",
+              "excludeMatches": [
+                "[text=\"不在运营时间\"]",
+                "[text=\"末班时间已过\"]"
+              ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/25091170"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/29600340",
+                "https://i.gkd.li/i/29600413"
               ]
             },
             {
