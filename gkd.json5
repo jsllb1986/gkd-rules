@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 55,
+  "version": 56,
   "categories": [
     {
       "key": -1,
@@ -17381,6 +17381,26 @@
         },
         {
           "key": 5,
+          "name": "功能类-InstallerX自动安装",
+          "desc": "InstallerX无特权情况下自动确认",
+          "rules": [
+            {
+              "name": "点击[安装/更新]",
+              "fastQuery": true,
+              "matches": "[id=\"android:id/button1\"][text=\"更新\" || text=\"安装\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29594607",
+                "https://i.gkd.li/i/29594599"
+              ],
+              "activityIds": [
+                ".PackageInstallerActivity"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 6,
           "name": "功能类-勾选[已了解此应用未经检测，可能存在风险]",
           "fastQuery": true,
           "activityIds": [
@@ -21715,7 +21735,7 @@
             },
             {
               "key": 4,
-              "matches": "ImageView[index=parent.childCount.minus(1)] < @[vid=\"obfuscated\"][clickable=true] -n * < RelativeLayout + FrameLayout >n [text=\"广告\"]",
+              "matches": "ImageView < @[vid=\"obfuscated\"][clickable=true][childCount=1] -n * < RelativeLayout + FrameLayout >n [text=\"广告\"]",
               "exampleUrls": [
                 "https://e.gkd.li/0ac82700-02f3-40c6-bf45-b21e365ac84c",
                 "https://e.gkd.li/511c57bc-e11a-43b3-b4a3-9b49cf79d509"
@@ -21728,7 +21748,8 @@
                 "https://i.gkd.li/i/21529443",
                 "https://i.gkd.li/i/21556758",
                 "https://i.gkd.li/i/24520138",
-                "https://i.gkd.li/i/25710401"
+                "https://i.gkd.li/i/25710401",
+                "https://i.gkd.li/i/29640762"
               ]
             },
             {
@@ -21941,6 +21962,17 @@
                 "https://i.gkd.li/i/16595134",
                 "https://i.gkd.li/i/16595511",
                 "https://i.gkd.li/i/16595113"
+              ]
+            },
+            {
+              "key": 4,
+              "matches": "ImageView[index=parent.childCount.minus(1)] < @[vid=\"obfuscated\"][clickable=true] -n * < RelativeLayout + FrameLayout >n [text=\"广告\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/21524232",
+                "https://i.gkd.li/i/21529443",
+                "https://i.gkd.li/i/21556758",
+                "https://i.gkd.li/i/24520138",
+                "https://i.gkd.li/i/25710401"
               ]
             },
             {
@@ -22237,13 +22269,16 @@
                 ".tblauncher.MainTabActivity",
                 "com.baidu.tbadk.browser.TBWebContainerActivity"
               ],
-              "matches": "WebView[text!=null] > View[childCount=1] > View[childCount=3] > @[visibleToUser=true][index=2]",
+              "matches": "WebView[text!=null] > View[childCount=1] > View[childCount=3] > @[visibleToUser=true][index=2][width<150]",
               "exampleUrls": [
                 "https://e.gkd.li/ac3d88b7-31a2-441f-a4c8-8a73eaec24b9"
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/13060891",
                 "https://i.gkd.li/i/16703244"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/29640529"
               ]
             },
             {
@@ -22259,6 +22294,21 @@
                 "https://i.gkd.li/i/13168383",
                 "https://i.gkd.li/i/13322120",
                 "https://i.gkd.li/i/13328246"
+              ]
+            },
+            {
+              "key": 2,
+              "activityIds": [
+                ".tblauncher.MainTabActivity",
+                "com.baidu.tbadk.browser.TBWebContainerActivity"
+              ],
+              "matches": "WebView[text!=null] > View[childCount=1] > View[childCount=3] > @[visibleToUser=true][index=2]",
+              "exampleUrls": [
+                "https://e.gkd.li/ac3d88b7-31a2-441f-a4c8-8a73eaec24b9"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13060891",
+                "https://i.gkd.li/i/16703244"
               ]
             }
           ],
@@ -58375,11 +58425,37 @@
         {
           "key": 5,
           "name": "分段广告-悬浮广告",
+          "desc": "①点击x掉 ②点击[确定]",
           "fastQuery": true,
           "activityIds": [
             "com.yxcorp.gifshow.HomeActivity"
           ],
           "rules": [
+            {
+              "key": 0,
+              "name": "①点击x掉",
+              "matches": "[vid=\"close_icon\" || vid=\"close_pendant\"][visibleToUser=true]",
+              "exampleUrls": [
+                "https://m.gkd.li/57941037/12059549-21c2-47b7-9acf-ec221cc14f25"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/15747381",
+                "https://i.gkd.li/i/23431963"
+              ]
+            },
+            {
+              "preKeys": [
+                0
+              ],
+              "name": "②点击[确定]",
+              "matches": "[text=\"确定\"][visibleToUser=true]",
+              "exampleUrls": [
+                "https://e.gkd.li/89294dbb-4398-4561-91b7-4943ec7c98c7"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/23431964"
+              ]
+            },
             {
               "key": 0,
               "matches": "[vid=\"close_pendant\"][visibleToUser=true]",
@@ -58388,18 +58464,6 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/23431963"
-              ]
-            },
-            {
-              "preKeys": [
-                0
-              ],
-              "matches": "[text=\"确定\"][visibleToUser=true]",
-              "exampleUrls": [
-                "https://e.gkd.li/89294dbb-4398-4561-91b7-4943ec7c98c7"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/23431964"
               ]
             }
           ]
@@ -58858,9 +58922,6 @@
         {
           "key": 2,
           "name": "全屏广告-VIP弹窗",
-          "matchTime": 10000,
-          "actionMaximum": 1,
-          "resetMatch": "app",
           "rules": [
             {
               "key": 0,
@@ -58871,6 +58932,31 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/13548005"
+              ]
+            },
+            {
+              "key": 1,
+              "activityIds": [
+                ".app.MediaActivity"
+              ],
+              "matches": "@[id=null][text=\"退出页面\" || text=\"\"][width<200 && height<200] <(1,3) [childCount>3] >(1,2) [visibleToUser=true][text*=\"会员\" || text*=\"VIP\" || text*=\"支持蝰蛇\"]",
+              "exampleUrls": [
+                "https://e.gkd.li/86e4a797-5366-4579-81ee-bc5354e95568"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/17177377",
+                "https://i.gkd.li/i/18070974",
+                "https://i.gkd.li/i/22310624",
+                "https://i.gkd.li/i/29639642"
+              ]
+            },
+            {
+              "matches": "RelativeLayout[childCount=2] > View + RelativeLayout[childCount=2] > @ImageView + RelativeLayout",
+              "exampleUrls": [
+                "https://m.gkd.li/87047583/84c1379f-5eb1-4982-b27b-35e267594101"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/13548005"
               ]
             },
             {
@@ -58898,15 +58984,6 @@
               "snapshotUrls": [
                 "https://i.gkd.li/i/18070974",
                 "https://i.gkd.li/i/22310624"
-              ]
-            },
-            {
-              "matches": "RelativeLayout[childCount=2] > View + RelativeLayout[childCount=2] > @ImageView + RelativeLayout",
-              "exampleUrls": [
-                "https://m.gkd.li/87047583/84c1379f-5eb1-4982-b27b-35e267594101"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/13548005"
               ]
             },
             {
@@ -77450,6 +77527,38 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "com.rosan.installer.x",
+      "name": "InstallerX",
+      "groups": [
+        {
+          "key": 0,
+          "name": "其他-⚠️请移步软件包安装程序",
+          "desc": "请移步至软件包安装程序应用规则页",
+          "enable": false,
+          "rules": [
+            {}
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "com.rosan.installer.x.revived",
+      "name": "InstallerX Revived",
+      "groups": [
+        {
+          "key": 0,
+          "name": "其他-⚠️请移步软件包安装程序",
+          "desc": "请移步至软件包安装程序应用规则页",
+          "enable": false,
+          "rules": [
+            {}
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -100001,6 +100110,20 @@
           "name": "局部广告-卡片广告",
           "desc": "点击关闭",
           "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".root.view.RootActivity"
+              ],
+              "action": "clickCenter",
+              "matches": "@[clickable=true][text=\"关闭广告\"] <<n [vid=\"chart_wbv\"]",
+              "exampleUrls": [
+                "https://e.gkd.li/b1a372a2-f722-4d1f-ad86-32ea1cd4d83d"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29629766"
+              ]
+            },
             {
               "fastQuery": true,
               "activityIds": [
