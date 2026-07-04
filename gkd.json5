@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 56,
+  "version": 57,
   "categories": [
     {
       "key": -1,
@@ -29512,6 +29512,7 @@
           "key": 1,
           "name": "更新提示",
           "matchTime": 10000,
+          "forcedTime": 10000,
           "actionMaximum": 1,
           "resetMatch": "app",
           "rules": [
@@ -29522,7 +29523,7 @@
               ],
               "matches": "@[vid=\"tvCancel\"] + * >3 [text*=\"新版本\"][visibleToUser=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/27128807"
+                "https://i.gkd.li/i/29660021"
               ]
             }
           ],
@@ -43216,9 +43217,10 @@
               "activityIds": [
                 ".MainActivity"
               ],
-              "matches": "@Button[clickable=true][desc=null] -4 * > [desc=\"代理\"]",
+              "matches": "@Button[clickable=true] -4 * > [desc=\"代理\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/26210674"
+                "https://i.gkd.li/i/26210674",
+                "https://i.gkd.li/i/29658034"
               ]
             }
           ],
