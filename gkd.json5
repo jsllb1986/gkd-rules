@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 58,
+  "version": 59,
   "categories": [
     {
       "key": -1,
@@ -28799,6 +28799,62 @@
               "matches": "@ImageView[visibleToUser=true][width<119 && height<119] < [childCount=1] <2 ViewGroup < ViewGroup <2 [childCount=2] < ViewGroup < FrameLayout < [id=\"android:id/content\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/28448307"
+              ]
+            }
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "com.clggjv.xcjfmd.ffo",
+      "name": "Lanerc",
+      "groups": [
+        {
+          "key": 1,
+          "name": "通知提示-公告弹窗",
+          "desc": "点击[已知晓]",
+          "matchTime": 14000,
+          "forcedTime": 14000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "@Button[desc=\"已知晓\"][clickable=true] <2 View[childCount=2][desc!=null][visibleToUser=true] <<6 FrameLayout < [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29703051"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/96567525-3f64-4e6e-af40-6e41a81fac96"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 2,
+          "name": "全屏广告-弹窗广告",
+          "desc": "倒计时结束后点击[暂时跳过]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "matchRoot": true,
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "@View[desc*=\"\\n暂时跳过\\n\"][childCount=4][desc!=null][desc.length>20] <<6 FrameLayout < [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29703246"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/29703192"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/93c04052-3d24-4684-83ec-ccaf13557f22"
               ]
             }
           ],
@@ -86474,7 +86530,7 @@
               "activityIds": [
                 ".main.MainActivity"
               ],
-              "matches": "([visibleToUser=true] > [text$=\"广告\" || text$=\"（推广）\"][vid=\"desc\" || desc=\"广告\"]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"服务\" || text=\"预约\" || text=\"子薇剧场\"][text.length<6][index=1][visibleToUser=true]) || (ViewGroup[childCount=5] > ImageView +3 [text^=\"已售\" || text^=\" 已售\"][text$=\"+\"] - TextView - [text=\"讲解中 丨 \"][index=1][visibleToUser=true])",
+              "matches": "([visibleToUser=true] > [text$=\"广告\" || text$=\"（推广）\"][vid=\"desc\" || desc=\"广告\"]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"服务\" || text=\"预约\" || text=\"子薇剧场\"][text.length<6][index=1][visibleToUser=true]) || (ViewGroup[childCount=5] > ImageView +3 [text^=\"已售\" || text^=\" 已售\"] - TextView - [text=\"讲解中 丨 \"][index=1][visibleToUser=true])",
               "snapshotUrls": [
                 "https://i.gkd.li/i/21142063",
                 "https://i.gkd.li/i/29403811",
@@ -86490,7 +86546,8 @@
                 "https://i.gkd.li/i/21523849",
                 "https://i.gkd.li/i/29605884",
                 "https://i.gkd.li/i/29605791",
-                "https://i.gkd.li/i/29605901"
+                "https://i.gkd.li/i/29605901",
+                "https://i.gkd.li/i/29707532"
               ]
             }
           ],
@@ -87371,11 +87428,15 @@
                 "com.ss.android.ugc.aweme.detail.ultra.ui.UltraDetailActivity",
                 "com.ss.android.ugc.aweme.detail.ui.DetailActivity"
               ],
-              "matches": "([text*=\"广告\"][vid=\"desc\"][visibleToUser=true]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"子薇剧场\" || text=\"预约\"][text.length<6][index=1][visibleToUser=true])",
+              "matches": "([text$=\"广告 展开\" || text$=\"广告 收起\"][vid=\"desc\"][visibleToUser=true]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"子薇剧场\" || text=\"预约\"][text.length<6][index=1][visibleToUser=true])",
               "snapshotUrls": [
                 "https://i.gkd.li/i/29214101",
                 "https://i.gkd.li/i/29579093",
+                "https://i.gkd.li/i/29686900",
                 "https://i.gkd.li/i/29214002"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/29686899"
               ]
             }
           ],
@@ -91735,10 +91796,7 @@
             {
               "key": 1,
               "fastQuery": true,
-              "anyMatches": [
-                "@[desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"][visibleToUser=true] + [text=\"原图\" || text=\"原圖\" || text=\"Full Image\"]",
-                "@[desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"][visibleToUser=true]"
-              ],
+              "matches": "@[desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"][visibleToUser=true] + [text=\"原图\" || text=\"原圖\" || text=\"Full Image\"]",
               "exampleUrls": [
                 "https://e.gkd.li/32dc0943-e85f-416d-bb01-6ed610d4bdd8",
                 "https://e.gkd.li/93d41161-ab69-4c2d-83bb-637d7292f5e6"
@@ -92605,7 +92663,63 @@
         {
           "key": 26,
           "name": "功能类-付款后自动点击完成/返回商家",
+          "fastQuery": true,
           "rules": [
+            {
+              "key": 0,
+              "versionCode": {
+                "maximum": 2979
+              },
+              "activityIds": [
+                ".framework.app.UIPageFragmentActivity"
+              ],
+              "matches": "[vid=\"kinda_button_impl_wrapper\"][desc=\"完成\" || desc=\"返回商家\"]",
+              "exampleUrls": [
+                "https://m.gkd.li/57941037/a5177d9d-6745-443f-baf5-af57153430d8"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/14662147",
+                "https://i.gkd.li/i/14399355",
+                "https://i.gkd.li/i/24157874"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/14532946"
+              ]
+            },
+            {
+              "key": 1,
+              "versionCode": {
+                "minimum": 2980
+              },
+              "activityIds": [
+                ".plugin.lite.ui.WxaLiteAppTransparentLiteUI"
+              ],
+              "matches": "@Button[desc=\"完成\" || desc=\"返回商家\" || desc=\"Done\"][visibleToUser=true] -n [desc=\"支付成功\"] < * <<6 FrameLayout <<3 [id=\"android:id/content\"]",
+              "exampleUrls": [
+                "https://e.gkd.li/e7acbb38-c602-4ea4-88ec-7604c3aeae06"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/24141842",
+                "https://i.gkd.li/i/29681932"
+              ]
+            },
+            {
+              "matches": [
+                "[text=\"支付成功\"]",
+                "[text*=\"￥\"||text*=\"¥\"]",
+                "[text=\"完成\"||text=\"返回商家\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/14399355",
+                "https://i.gkd.li/i/14558398",
+                "https://i.gkd.li/i/14662147",
+                "https://i.gkd.li/i/16215946",
+                "https://i.gkd.li/i/18348017"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/14532946"
+              ]
+            },
             {
               "key": 0,
               "fastQuery": true,
@@ -92639,23 +92753,6 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/24141842"
-              ]
-            },
-            {
-              "matches": [
-                "[text=\"支付成功\"]",
-                "[text*=\"￥\"||text*=\"¥\"]",
-                "[text=\"完成\"||text=\"返回商家\"]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/14399355",
-                "https://i.gkd.li/i/14558398",
-                "https://i.gkd.li/i/14662147",
-                "https://i.gkd.li/i/16215946",
-                "https://i.gkd.li/i/18348017"
-              ],
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/14532946"
               ]
             }
           ],
@@ -93498,7 +93595,7 @@
         {
           "key": 48,
           "name": "功能类-快速切换账号",
-          "desc": "点击当前使用下面第一个账号",
+          "desc": "适合俩账号的使用再多无法确认是否可行",
           "actionMaximum": 2,
           "resetMatch": "app",
           "rules": [
@@ -93507,9 +93604,10 @@
               "activityIds": [
                 ".plugin.setting.ui.setting.SettingsSwitchAccountUI"
               ],
-              "matches": "@FrameLayout[clickable=true][visibleToUser=true] - * > * >2 [text=\"当前使用\"]",
+              "matches": "RelativeLayout[childCount=2] < @FrameLayout[clickable=true] <n LinearLayout - RelativeLayout > [text$=\"以切换账号\"][visibleToUser=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/26159956"
+                "https://i.gkd.li/i/26159956",
+                "https://i.gkd.li/i/29710717"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/0ee723f0-e6e5-4018-9cfa-7a8de22b91e1"
@@ -93649,6 +93747,35 @@
         },
         {
           "key": 55,
+          "name": "其他-支付前[取消]开通免密支付",
+          "desc": "支付前,[关掉]默认开通免密支付的开关",
+          "actionMaximum": 1,
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.tencent.mm.plugin.lite.ui.WxaLiteAppTransparentLiteUI"
+              ],
+              "matches": "@Button[desc^=\"开通\"][desc*=\"免密支付\"][desc$=\"打开\"] <2 View[childCount=8] <<7 FrameLayout <<3 [id=\"android:id/content\"]",
+              "position": {
+                "right": "width * 0.1",
+                "top": "height/2"
+              },
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29682457"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/29682465"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/59fb8537-9721-459a-992d-1d1e58d9c29f"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 56,
           "name": "全屏广告-小程序部分通用广告",
           "desc": "包括部分开屏广告，弹窗广告等",
           "enable": false,
@@ -93726,7 +93853,7 @@
           ]
         },
         {
-          "key": 56,
+          "key": 57,
           "name": "分段广告-订阅号消息页面广告",
           "desc": "自动点击“x”",
           "enable": false,
@@ -112232,6 +112359,7 @@
           "key": 12,
           "name": "全屏广告-下单后出现的弹窗",
           "desc": "点击关闭",
+          "fastQuery": true,
           "rules": [
             {
               "key": 0,
@@ -112240,12 +112368,12 @@
                 ".ui.activity.HomeActivity"
               ],
               "action": "clickCenter",
-              "matches": "Button[text=\"关闭弹窗\" || desc=\"关闭弹窗\"][clickable=true]",
+              "matches": "@Button[text=\"关闭弹窗\" || desc=\"关闭弹窗\"][clickable=true] <n View[childCount>1] <<(1,2) View[id=\"main\"] <<2 WebView[text=\"拼多多\"] <<3 FrameLayout[vid!=null] <2 ViewGroup <2 FrameLayout <<3 [id=\"android:id/content\"]",
               "snapshotUrls": [
+                "https://i.gkd.li/i/13308175",
                 "https://i.gkd.li/i/13927594",
                 "https://i.gkd.li/i/14434154",
                 "https://i.gkd.li/i/14456017",
-                "https://i.gkd.li/i/13308175",
                 "https://i.gkd.li/i/23256823"
               ]
             },
@@ -112255,7 +112383,6 @@
               ],
               "name": "二级全屏推荐",
               "matchTime": 10000,
-              "fastQuery": true,
               "activityIds": [
                 ".activity.NewPageActivity"
               ],
@@ -112272,6 +112399,22 @@
               "activityIds": [
                 "com.xunmeng.pinduoduo.activity.NewPageMaskActivity",
                 "com.xunmeng.pinduoduo.ui.activity.HomeActivity"
+              ],
+              "action": "clickCenter",
+              "matches": "Button[text=\"关闭弹窗\" || desc=\"关闭弹窗\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13927594",
+                "https://i.gkd.li/i/14434154",
+                "https://i.gkd.li/i/14456017",
+                "https://i.gkd.li/i/13308175",
+                "https://i.gkd.li/i/23256823"
+              ]
+            },
+            {
+              "key": 0,
+              "activityIds": [
+                ".activity.NewPageMaskActivity",
+                ".ui.activity.HomeActivity"
               ],
               "action": "clickCenter",
               "matches": "Button[text=\"关闭弹窗\" || desc=\"关闭弹窗\"][clickable=true]",
@@ -112810,6 +112953,27 @@
         },
         {
           "key": 31,
+          "name": "功能类-下单后一键取消收藏",
+          "desc": "一键取消收藏购刚买的商品",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".activity.NewPageMaskActivity"
+              ],
+              "matches": "@[text=\"一键取消收藏以上商品\"][visibleToUser=true] < View[childCount=2] - View[childCount=5] <<(1,2) View[id=\"main\"] <<2 WebView[text=\"拼多多\"] <<3 FrameLayout[vid!=null] <2 ViewGroup <2 FrameLayout <<3 [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29681036"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/d2a316ea-24f1-4b0b-9768-294835cbe2c7"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 32,
           "name": "功能类-多多视频-每日自动签到",
           "desc": "",
           "fastQuery": true,
@@ -112845,7 +113009,7 @@
           "enable": false
         },
         {
-          "key": 32,
+          "key": 33,
           "name": "功能类-自动点击原图",
           "fastQuery": true,
           "activityIds": [
@@ -112861,7 +113025,7 @@
           "enable": false
         },
         {
-          "key": 33,
+          "key": 34,
           "name": "全屏广告-登录提现页面点击[跳过]",
           "desc": "自动点击登录提现页面的跳过按钮",
           "enable": false,
