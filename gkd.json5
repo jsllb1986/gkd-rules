@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 60,
+  "version": 61,
   "categories": [
     {
       "key": -1,
@@ -86726,6 +86726,7 @@
           ],
           "rules": [
             {
+              "key": 0,
               "matches": "@[clickable=true] > [text^=\"展开\"][text$=\"回复\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25356027",
@@ -86738,6 +86739,14 @@
               "exampleUrls": [
                 "https://e.gkd.li/e9ca5fe1-a60c-4ed8-9974-9d79e32c71d7",
                 "https://e.gkd.li/c58e3455-2d7e-4ce2-8c0f-a971386f5ef4"
+              ]
+            },
+            {
+              "key": 1,
+              "matches": "[text^=\"展开\"][text$=\"回复\"] <2 @[clickable=true][childCount=3] <<n ViewPager <(3,4) LinearLayout + [childCount=2] > [desc$=\"评论区\"] + [vid=\"back_btn\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29811099",
+                "https://i.gkd.li/i/29811533"
               ]
             }
           ]
@@ -88832,6 +88841,21 @@
               "snapshotUrls": [
                 "https://i.gkd.li/i/29753752"
               ]
+            },
+            {
+              "key": 50,
+              "preKeys": [
+                20
+              ],
+              "name": "③仅消除preKeys=20蓄势",
+              "action": "none",
+              "actionMaximum": 1,
+              "activityIds": [
+                ".detail.DetailActivity",
+                ".maincontainer.activity.MainActivity",
+                ".search_implement.SearchResultActivity"
+              ],
+              "matches": "[parent=null]"
             },
             {
               "key": 0,
