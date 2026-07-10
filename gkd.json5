@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 63,
+  "version": 64,
   "categories": [
     {
       "key": -1,
@@ -58454,8 +58454,10 @@
               ]
             },
             {
+              "key": 1,
               "preKeys": [
-                0
+                0,
+                1
               ],
               "name": "②点击[确定]",
               "matches": "[text=\"确定\"][visibleToUser=true]",
@@ -58463,7 +58465,8 @@
                 "https://e.gkd.li/89294dbb-4398-4561-91b7-4943ec7c98c7"
               ],
               "snapshotUrls": [
-                "https://i.gkd.li/i/23431964"
+                "https://i.gkd.li/i/23431964",
+                "https://i.gkd.li/i/29888736"
               ]
             },
             {
@@ -58474,6 +58477,18 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/23431963"
+              ]
+            },
+            {
+              "preKeys": [
+                0
+              ],
+              "matches": "[text=\"确定\"][visibleToUser=true]",
+              "exampleUrls": [
+                "https://e.gkd.li/89294dbb-4398-4561-91b7-4943ec7c98c7"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/23431964"
               ]
             }
           ]
@@ -98548,6 +98563,21 @@
           "actionMaximum": 1,
           "resetMatch": "app",
           "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.tencent.zone.main.MainZoneHomeActivity",
+                "com.tencent.zone.main.notice.NoticeActivity"
+              ],
+              "matches": "[vid=\"notice_close_pic\"]",
+              "exampleUrls": [
+                "https://e.gkd.li/d1747892-c416-4877-a706-fb3c16e5b049"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/16581606",
+                "https://i.gkd.li/i/29888372"
+              ]
+            },
             {
               "fastQuery": true,
               "activityIds": [
