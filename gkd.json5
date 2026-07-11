@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 64,
+  "version": 65,
   "categories": [
     {
       "key": -1,
@@ -25893,6 +25893,24 @@
         },
         {
           "key": 12,
+          "name": "局部广告-超时享服务",
+          "desc": "x掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".homepage.view.activity.HomePageActivity"
+              ],
+              "matches": "[desc^=\"激活超时享服务\"] -2 @[clickable=true] < FrameLayout < FrameLayout < FrameLayout < FrameLayout < [vid=\"package_dx_container\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29924327"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 13,
           "name": "全屏广告-今日手气红包",
           "desc": "点击右上角X",
           "fastQuery": true,
@@ -25906,7 +25924,7 @@
           "enable": false
         },
         {
-          "key": 13,
+          "key": 14,
           "name": "局部广告",
           "desc": "关闭首页底部横幅、地图底部广告、物流页面横条广告",
           "activityIds": [
@@ -47307,6 +47325,50 @@
               "snapshotUrls": [
                 "https://i.gkd.li/import/13521059",
                 "https://i.gkd.li/i/13521059"
+              ]
+            }
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "com.hbsclj.uth",
+      "name": "栗子漫画",
+      "groups": [
+        {
+          "key": 1,
+          "name": "通知提示-公告弹窗",
+          "desc": "点击x掉",
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "rules": [
+            {
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "WebView[text=\"公告\"] >3 [text=\"✕\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29899905"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 2,
+          "name": "局部广告-阅读页底部横幅",
+          "desc": "点击x掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "@ImageView[visibleToUser=true][width<64 && height<64][left>getPrev(1).width.div(10).times(9)][top>getPrev(1).height.div(8).times(7)] < FrameLayout[childCount=1] <<n [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29899896"
               ]
             }
           ],
@@ -69550,6 +69612,39 @@
             }
           ],
           "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "com.ncatC200000V260710.T000218",
+      "name": "网飞猫",
+      "groups": [
+        {
+          "key": 1,
+          "name": "全屏广告",
+          "desc": "视频详情页广告",
+          "fastQuery": true,
+          "activityIds": [
+            "com.salmon.film.video.ui.detail.VodDetailActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "name": "暂停视频时的广告",
+              "matches": "[text=\"广告\"] - [vid=\"pause_close\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29900521"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "观看新视频时的提示",
+              "matches": "@[childCount=2] > ImageView + [vid=\"image_arrow\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29900516"
+              ]
+            }
+          ]
         }
       ]
     },
