@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 65,
+  "version": 66,
   "categories": [
     {
       "key": -1,
@@ -37186,6 +37186,48 @@
             }
           ],
           "enable": false
+        }
+      ]
+    },
+    {
+      "id": "com.dsm.secondlock",
+      "name": "德施曼智能",
+      "groups": [
+        {
+          "key": 1,
+          "name": "全屏广告",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".main.MainActivity",
+                "com.dsm.message.activity.MessageActivity"
+              ],
+              "matches": "[vid=\"ivCancel\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29934451",
+                "https://i.gkd.li/i/29934452"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 2,
+          "name": "局部广告",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".main.MainActivity"
+              ],
+              "matches": "[vid=\"ivCloseBanner\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29934453"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
