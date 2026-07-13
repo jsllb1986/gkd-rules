@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 66,
+  "version": 67,
   "categories": [
     {
       "key": -1,
@@ -34467,12 +34467,53 @@
         {
           "key": 0,
           "name": "开屏广告",
+          "fastQuery": true,
           "matchTime": 10000,
           "actionMaximum": 1,
           "resetMatch": "app",
           "actionMaximumKey": 0,
           "priorityTime": 10000,
           "rules": [
+            {
+              "key": 0,
+              "action": "clickCenter",
+              "matches": "[text*=\"跳过\"][text.length<10][width<500 && height<300][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/20218520",
+                "https://i.gkd.li/i/29968669"
+              ]
+            },
+            {
+              "key": 1,
+              "matches": "@View[clickable=true] - [text=\"互动广告\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/20262129"
+              ]
+            },
+            {
+              "key": 2,
+              "matches": "@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*=\"第三方应用\" || text*=\"扭动手机\" || text*=\"点击或上滑\" || text*=\"省钱好物\" || text*=\"扭一扭\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/20262130"
+              ]
+            },
+            {
+              "matches": "[id=\"com.byted.pangle:id/tt_splash_skip_btn\"||text^=\"跳过\"&&id=null]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12620568",
+                "https://i.gkd.li/import/12620577",
+                "https://i.gkd.li/import/12621997"
+              ]
+            },
+            {
+              "fastQuery": true,
+              "name": "另一种倒计时广告",
+              "matches": "[id=\"com.dongqiudi.news:id/ad_skip_time\"] + [id=\"com.dongqiudi.news:id/scale_iv\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12620583",
+                "https://i.gkd.li/import/12621953"
+              ]
+            },
             {
               "key": 0,
               "fastQuery": true,
@@ -34508,23 +34549,6 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/20262130"
-              ]
-            },
-            {
-              "matches": "[id=\"com.byted.pangle:id/tt_splash_skip_btn\"||text^=\"跳过\"&&id=null]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12620568",
-                "https://i.gkd.li/import/12620577",
-                "https://i.gkd.li/import/12621997"
-              ]
-            },
-            {
-              "fastQuery": true,
-              "name": "另一种倒计时广告",
-              "matches": "[id=\"com.dongqiudi.news:id/ad_skip_time\"] + [id=\"com.dongqiudi.news:id/scale_iv\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12620583",
-                "https://i.gkd.li/import/12621953"
               ]
             }
           ],
@@ -34610,36 +34634,48 @@
         {
           "key": 4,
           "name": "分段广告-首页信息流广告",
-          "desc": "点击卡片广告x关闭按钮-关闭反馈理由弹窗",
+          "desc": "①点击x掉卡片广告 ②选一个反馈理由",
+          "fastQuery": true,
           "activityIds": [
             ".MainActivity",
+            "com.dongqiudi.data.MixActivity",
+            ".NewsDetailActivity",
             "com.dongqiudi.news.MainActivity"
           ],
-          "fastQuery": true,
           "rules": [
+            {
+              "key": 1,
+              "name": "①点击x掉",
+              "matches": "[vid=\"feedback_close\" || vid=\"ads_download_close\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29957609",
+                "https://i.gkd.li/i/29957589",
+                "https://i.gkd.li/i/29958236",
+                "https://i.gkd.li/i/29961281",
+                "https://i.gkd.li/i/29965220"
+              ]
+            },
+            {
+              "key": 2,
+              "name": "①x掉",
+              "activityIds": [
+                ".NewsDetailActivity"
+              ],
+              "matches": "@ImageView < [visibleToUser=true] - LinearLayout > [text^=\"立即\" || text^=\"了解\" || text*=\"查看\" || text*=\"下载\" || text*=\"领取\" || text$=\"应用\" || text$=\"详情\" || text$=\"小程序\"][text.length<6]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29961284"
+              ]
+            },
             {
               "preKeys": [
                 1,
                 2
               ],
-              "name": "首页信息流广告-反馈理由",
-              "matches": "TextView[text=\"诱导点击\"][vid=\"text_item\"]",
+              "name": "②选一个反馈理由",
+              "matches": "[text=\"诱导点击\" || text=\"不感兴趣\"][clickable=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/12620656"
-              ]
-            },
-            {
-              "key": 1,
-              "matches": "TextView[vid=\"ads_label\"] +(n) ImageView[vid=\"feedback_close\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/12620654"
-              ]
-            },
-            {
-              "key": 2,
-              "matches": "TextView[vid=\"ads_title\"] +(2) RelativeLayout > ImageView[vid=\"feedback_close\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/12620788"
+                "https://i.gkd.li/i/29958238",
+                "https://i.gkd.li/i/29965222"
               ]
             },
             {
@@ -108640,6 +108676,9 @@
               "matches": "[text=\"你可能感兴趣的专辑\"] + [vid=\"main_iv_close\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13251713"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/8efcd568-13f2-4ac4-872a-fe6fc4affaec"
               ]
             },
             "[text=\"你可能感兴趣的专辑\"] + [id=\"com.ximalaya.ting.android:id/main_iv_close\"]",
@@ -108669,6 +108708,9 @@
               "matches": "@[vid=\"host_close_firework\"] +2 [vid=\"host_firework_ad_tag\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13263421"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/4f9a66b8-3bf5-4a8e-8ca6-db35625df270"
               ]
             },
             "@[id=\"com.ximalaya.ting.android:id/host_close_firework\"] +2 [id=\"com.ximalaya.ting.android:id/host_firework_ad_tag\"]",
@@ -108754,6 +108796,26 @@
         },
         {
           "key": 14,
+          "name": "全屏广告-会员弹窗",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".host.activity.MainActivity"
+              ],
+              "matches": "[text*=\"￥\"] -n [vid=\"main_iv_close\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29967591"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/f82ca167-35a0-42b4-b955-c5ef6e5d94dd"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 15,
           "name": "局部广告-评论区广告",
           "activityIds": [
             "com.ximalaya.ting.android.host.activity.MainActivity"
@@ -108776,7 +108838,7 @@
           "enable": false
         },
         {
-          "key": 15,
+          "key": 16,
           "enable": false,
           "name": "局部广告-卡片式广告",
           "fastQuery": true,
@@ -108819,7 +108881,7 @@
           ]
         },
         {
-          "key": 16,
+          "key": 17,
           "name": "全屏广告-推送通知",
           "desc": "取消推送通知",
           "rules": [
@@ -108841,7 +108903,7 @@
           "enable": false
         },
         {
-          "key": 17,
+          "key": 18,
           "name": "分段广告-播放页面-底部推荐列表-夹杂广告",
           "desc": "点击关闭-点击屏蔽",
           "fastQuery": true,
@@ -108877,7 +108939,7 @@
           "enable": false
         },
         {
-          "key": 18,
+          "key": 19,
           "name": "局部广告-播放页面-播放前广告",
           "rules": [
             {
@@ -108896,7 +108958,7 @@
           "enable": false
         },
         {
-          "key": 19,
+          "key": 20,
           "name": "局部广告-热播推荐广告",
           "rules": [
             {
