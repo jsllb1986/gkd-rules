@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 68,
+  "version": 69,
   "categories": [
     {
       "key": -1,
@@ -95711,6 +95711,21 @@
             {
               "fastQuery": true,
               "activityIds": [
+                ".activity.QQBrowserActivity",
+                ".filebrowser.FileBrowserActivityV2"
+              ],
+              "matches": [
+                "[text$=\"打开其他应用\"]",
+                "[text=\"允许\"][clickable=true][visibleToUser=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/25142977",
+                "https://i.gkd.li/i/30150628"
+              ]
+            },
+            {
+              "fastQuery": true,
+              "activityIds": [
                 ".activity.QQBrowserActivity"
               ],
               "matches": [
@@ -101268,9 +101283,10 @@
         },
         {
           "key": 7,
-          "name": "功能类-自动点击[显示更多帖子]",
+          "name": "功能类-自动[显示更多帖子]",
           "rules": [
             {
+              "key": 0,
               "fastQuery": true,
               "activityIds": [
                 "com.twitter.app.main.MainActivity"
@@ -101281,6 +101297,16 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/14189847"
+              ]
+            },
+            {
+              "key": 1,
+              "activityIds": [
+                "com.x.android.main.MainActivity"
+              ],
+              "matches": "@[clickable=true] > [visibleToUser=true][text=\"显示更多帖子\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30151597"
               ]
             }
           ],
@@ -114002,6 +114028,31 @@
             }
           ],
           "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "com.yadea.smartmoto",
+      "name": "雅迪智行",
+      "groups": [
+        {
+          "key": 0,
+          "name": "权限提示-通知权限",
+          "actionMaximum": 1,
+          "matchTime": 10000,
+          "resetMatch": "app",
+          "fastQuery": true,
+          "activityIds": [
+            ".main.view.MainActivity"
+          ],
+          "rules": [
+            {
+              "matches": "[vid=\"tv_cancel\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30144136"
+              ]
+            }
+          ]
         }
       ]
     },
