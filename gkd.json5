@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 69,
+  "version": 70,
   "categories": [
     {
       "key": -1,
@@ -22002,6 +22002,40 @@
         },
         {
           "key": 4,
+          "name": "局部广告-游戏类推广",
+          "desc": "首页,游戏公测/上线等推广,点击x掉",
+          "fastQuery": true,
+          "activityIds": [
+            ".tblauncher.MainTabActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "matches": "@ImageView <2 [childCount=2] <4 [index=0][childCount=4] +(1,2) FrameLayout > [text*=\"定档\" || text*=\"预约\" || text^=\"测试招募\"][text*=\"《\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30164473",
+                "https://i.gkd.li/i/30164474",
+                "https://i.gkd.li/i/30164475",
+                "https://i.gkd.li/i/30165036"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/45efc73b-e2e4-4c61-af95-607d500b8ac7"
+              ]
+            },
+            {
+              "key": 1,
+              "matches": "@ImageView <2 [childCount=2] <4 [index=0][childCount=4] +n [childCount>3] > [text=\"权限\" || text=\"隐私\" || text=\"功能\"] -(1,2,3) [text*=\"有限公司\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30164269"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/602291ca-dd06-4116-8252-65fe8d4e610d"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 5,
           "name": "全屏广告-申请消息提醒弹窗",
           "actionMaximum": 1,
           "resetMatch": "app",
@@ -22041,7 +22075,7 @@
         },
         {
           "enable": false,
-          "key": 5,
+          "key": 6,
           "name": "局部广告-信息流广告",
           "desc": "推荐帖子列表,评论区列表:像正常内容的广告,关闭时弹窗选原因",
           "activityIds": [
@@ -22125,26 +22159,6 @@
           ]
         },
         {
-          "key": 6,
-          "name": "局部广告-首页-推荐-列表顶部卡片式广告",
-          "activityIds": [
-            "com.baidu.tieba.tblauncher.MainTabActivity",
-            "com.baidu.tieba.frs.FrsActivity"
-          ],
-          "matchTime": 10000,
-          "actionMaximum": 1,
-          "rules": [
-            {
-              "key": 1,
-              "matches": "RelativeLayout[childCount=2] > @RelativeLayout[childCount=1][clickable=true] > ImageView",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/13060892"
-              ]
-            }
-          ],
-          "enable": false
-        },
-        {
           "key": 7,
           "name": "更新提示",
           "fastQuery": true,
@@ -22170,30 +22184,24 @@
           ]
         },
         {
-          "enable": false,
           "key": 8,
-          "name": "局部广告-帖子底部内容推荐卡片",
-          "desc": "关闭时弹窗选原因",
+          "name": "局部广告-首页-推荐-列表顶部卡片式广告",
           "activityIds": [
-            "com.baidu.tieba.pb.pb.main.PbActivity"
+            "com.baidu.tieba.tblauncher.MainTabActivity",
+            "com.baidu.tieba.frs.FrsActivity"
           ],
+          "matchTime": 10000,
+          "actionMaximum": 1,
           "rules": [
             {
-              "key": 0,
-              "matches": "LinearLayout > RelativeLayout[id!=null][clickable=false] > ImageView[id=null][clickable=true]",
+              "key": 1,
+              "matches": "RelativeLayout[childCount=2] > @RelativeLayout[childCount=1][clickable=true] > ImageView",
               "snapshotUrls": [
-                "https://i.gkd.li/import/12775882"
-              ]
-            },
-            {
-              "preKeys": 0,
-              "name": "关闭原因-不感兴趣",
-              "matches": "@View[text=null] - TextView[text=\"选择不喜欢理由\"][index=0]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12775914"
+                "https://i.gkd.li/import/13060892"
               ]
             }
-          ]
+          ],
+          "enable": false
         },
         {
           "key": 9,
@@ -22555,7 +22563,58 @@
           "activityIds": []
         },
         {
+          "enable": false,
           "key": 15,
+          "name": "局部广告-帖子底部内容推荐卡片",
+          "desc": "关闭时弹窗选原因",
+          "activityIds": [
+            "com.baidu.tieba.pb.pb.main.PbActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "matches": "LinearLayout > RelativeLayout[id!=null][clickable=false] > ImageView[id=null][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12775882"
+              ]
+            },
+            {
+              "preKeys": 0,
+              "name": "关闭原因-不感兴趣",
+              "matches": "@View[text=null] - TextView[text=\"选择不喜欢理由\"][index=0]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12775914"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 16,
+          "name": "局部广告-感兴趣的吧推广",
+          "desc": "关闭首页、吧内其他贴吧的推广",
+          "rules": [
+            {
+              "key": 1,
+              "fastQuery": true,
+              "activityIds": [
+                ".tblauncher.MainTabActivity",
+                ".forum.ForumActivity"
+              ],
+              "matches": "@ImageView[childCount=0][clickable=true][visibleToUser=true] - [text=\"你可能感兴趣的吧\" || text^=\"本吧的人都在逛\"]",
+              "exampleUrls": [
+                "https://e.gkd.li/bfc13aa1-579f-46f4-beff-64b3f8ec693a"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/16914357",
+                "https://i.gkd.li/i/17944680",
+                "https://i.gkd.li/i/18218517"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 17,
           "name": "全屏广告-广告弹窗",
           "matchTime": 10000,
           "actionMaximum": 1,
@@ -22623,33 +22682,8 @@
           "activityIds": []
         },
         {
-          "key": 16,
-          "name": "局部广告-感兴趣的吧推广",
-          "desc": "关闭首页、吧内其他贴吧的推广",
-          "rules": [
-            {
-              "key": 1,
-              "fastQuery": true,
-              "activityIds": [
-                ".tblauncher.MainTabActivity",
-                ".forum.ForumActivity"
-              ],
-              "matches": "@ImageView[childCount=0][clickable=true][visibleToUser=true] - [text=\"你可能感兴趣的吧\" || text^=\"本吧的人都在逛\"]",
-              "exampleUrls": [
-                "https://e.gkd.li/bfc13aa1-579f-46f4-beff-64b3f8ec693a"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/16914357",
-                "https://i.gkd.li/i/17944680",
-                "https://i.gkd.li/i/18218517"
-              ]
-            }
-          ],
-          "activityIds": []
-        },
-        {
           "enable": false,
-          "key": 17,
+          "key": 18,
           "name": "局部广告-吧内-悬浮卡通-进吧逛逛",
           "actionMaximum": 1,
           "resetMatch": "activity",
@@ -22662,7 +22696,7 @@
           ]
         },
         {
-          "key": 18,
+          "key": 19,
           "name": "通知提示-申请消息提醒弹窗",
           "desc": "关闭消息通知开启提示弹窗",
           "enable": false,
@@ -22704,7 +22738,7 @@
           ]
         },
         {
-          "key": 19,
+          "key": 20,
           "name": "局部广告-首页、推荐列表顶部卡片式广告",
           "desc": "关闭首页顶部的卡片广告和小游戏推广",
           "matchTime": 10000,
@@ -59371,7 +59405,6 @@
             {
               "key": 0,
               "fastQuery": true,
-              "action": "clickCenter",
               "matches": "[text*=\"跳过\"][text.length<10][width<500 && height<300][visibleToUser=true]",
               "exampleUrls": [
                 "https://e.gkd.li/94c7fc27-891f-4206-b933-f26661041b99"
@@ -59388,6 +59421,18 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/21750055"
+              ]
+            },
+            {
+              "key": 0,
+              "fastQuery": true,
+              "action": "clickCenter",
+              "matches": "[text*=\"跳过\"][text.length<10][width<500 && height<300][visibleToUser=true]",
+              "exampleUrls": [
+                "https://e.gkd.li/94c7fc27-891f-4206-b933-f26661041b99"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/21451911"
               ]
             }
           ],
@@ -108856,6 +108901,26 @@
         },
         {
           "key": 15,
+          "name": "全屏广告-签到弹窗",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".host.activity.MainActivity"
+              ],
+              "matches": "ImageView < @[clickable=true] < [visibleToUser=true] >3 [text=\"立即签到\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30167710"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/8b93b8fb-1d31-42d2-95a1-c76dc0186e96"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 16,
           "name": "局部广告-评论区广告",
           "activityIds": [
             "com.ximalaya.ting.android.host.activity.MainActivity"
@@ -108878,7 +108943,7 @@
           "enable": false
         },
         {
-          "key": 16,
+          "key": 17,
           "enable": false,
           "name": "局部广告-卡片式广告",
           "fastQuery": true,
@@ -108921,7 +108986,7 @@
           ]
         },
         {
-          "key": 17,
+          "key": 18,
           "name": "全屏广告-推送通知",
           "desc": "取消推送通知",
           "rules": [
@@ -108943,7 +109008,7 @@
           "enable": false
         },
         {
-          "key": 18,
+          "key": 19,
           "name": "分段广告-播放页面-底部推荐列表-夹杂广告",
           "desc": "点击关闭-点击屏蔽",
           "fastQuery": true,
@@ -108979,7 +109044,7 @@
           "enable": false
         },
         {
-          "key": 19,
+          "key": 20,
           "name": "局部广告-播放页面-播放前广告",
           "rules": [
             {
@@ -108998,7 +109063,7 @@
           "enable": false
         },
         {
-          "key": 20,
+          "key": 21,
           "name": "局部广告-热播推荐广告",
           "rules": [
             {
