@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 71,
+  "version": 72,
   "categories": [
     {
       "key": -1,
@@ -62640,9 +62640,10 @@
               "activityIds": [
                 "com.luna.biz.live.plugin.LunaDefaultLivePlayerActivity"
               ],
-              "matches": "@Button[desc=\"关闭\"] +n [visibleToUser=true] >5 [text=\"更多直播\"]",
+              "matches": "@Button[desc=\"关闭\"] -n [visibleToUser=true] >(4,5) [vid=\"name_layout\"][childCount=2]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/30159254"
+                "https://i.gkd.li/i/30159254",
+                "https://i.gkd.li/i/30266403"
               ]
             }
           ],
@@ -101359,6 +101360,7 @@
         {
           "key": 7,
           "name": "功能类-自动[显示更多帖子]",
+          "desc": "只点击居中的,不点击靠左的[显示更多帖子]",
           "rules": [
             {
               "key": 0,
@@ -101379,12 +101381,14 @@
               "activityIds": [
                 "com.x.android.main.MainActivity"
               ],
-              "matches": "@[clickable=true] > [visibleToUser=true][text=\"显示更多帖子\"][left>300]",
+              "matches": "@[clickable=true] > TextView[visibleToUser=true][text=\"显示更多帖子\"][right>parent.right.minus(parent.width.div(2))]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/30151597"
               ],
               "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/30175825"
+                "https://i.gkd.li/i/30175825",
+                "https://i.gkd.li/i/30271020",
+                "https://i.gkd.li/i/30271022"
               ]
             }
           ],
@@ -113467,6 +113471,32 @@
         },
         {
           "key": 32,
+          "name": "功能类-百亿补贴自动[打卡]",
+          "desc": "点击[打卡]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "actionMaximum": 1,
+              "resetMatch": "app",
+              "activityIds": [
+                ".activity.NewPageActivity"
+              ],
+              "matches": [
+                "[vid=\"tv_title\"][text=\"百亿补贴会员\"]",
+                "[id=null][text=\"打卡\"][visibleToUser=true]"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/0a6edc27-5a14-4963-8f2c-47419f107bd1"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30271889"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 33,
           "name": "功能类-多多视频-每日自动签到",
           "desc": "",
           "fastQuery": true,
@@ -113502,7 +113532,7 @@
           "enable": false
         },
         {
-          "key": 33,
+          "key": 34,
           "name": "功能类-自动点击原图",
           "fastQuery": true,
           "activityIds": [
@@ -113518,7 +113548,7 @@
           "enable": false
         },
         {
-          "key": 34,
+          "key": 35,
           "name": "全屏广告-登录提现页面点击[跳过]",
           "desc": "自动点击登录提现页面的跳过按钮",
           "enable": false,
