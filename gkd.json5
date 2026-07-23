@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 72,
+  "version": 73,
   "categories": [
     {
       "key": -1,
@@ -39561,10 +39561,10 @@
           "key": 13,
           "name": "全屏广告-弹窗广告",
           "desc": "点击关闭",
+          "fastQuery": true,
           "rules": [
             {
               "key": 0,
-              "fastQuery": true,
               "activityIds": [
                 ".AlipayLogin"
               ],
@@ -39576,7 +39576,7 @@
             },
             {
               "key": 1,
-              "fastQuery": true,
+              "forcedTime": 10000,
               "activityIds": [
                 "com.alipay.mobile.nebulax.integration.mpaas.activity.NebulaActivity$Main",
                 "com.alipay.mobile.nebulax.xriver.activity.XRiverActivity"
@@ -39592,6 +39592,63 @@
               ],
               "excludeSnapshotUrls": [
                 "https://i.gkd.li/i/29814461"
+              ]
+            },
+            {
+              "key": 2,
+              "activityIds": [
+                "com.alipay.mobile.nebulax.xriver.activity.XRiverActivity"
+              ],
+              "matches": "@[text*=\"跳过\"] + [visibleToUser=true][text^=\"账单分期还\"] <<n [id=\"com.alipay.mobile.nebula:id/h5_pc_container\"]",
+              "exampleUrls": [
+                "https://e.gkd.li/cc064c84-75a9-4447-b01b-9d5597515093"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18409779"
+              ]
+            },
+            {
+              "key": 3,
+              "activityIds": [
+                "com.alipay.mobile.nebulax.xriver.activity.XRiverActivity"
+              ],
+              "matches": "Image[visibleToUser=true][text=\"关闭弹屏\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/22531246"
+              ]
+            },
+            {
+              "key": 4,
+              "activityIds": [
+                ".AlipayLogin"
+              ],
+              "matches": "@[text=\"我知道了\"][clickable=true] -n [text^=\"用碰一下支付\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/24563264"
+              ]
+            },
+            {
+              "key": 0,
+              "activityIds": [
+                "com.eg.android.AlipayGphone.AlipayLogin"
+              ],
+              "matches": "RelativeLayout[childCount=2][desc=\"全屏广告\"] ImageView[desc=\"关闭\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/14034152"
+              ]
+            },
+            {
+              "key": 1,
+              "fastQuery": true,
+              "activityIds": [
+                "com.alipay.mobile.nebulax.integration.mpaas.activity.NebulaActivity$Main"
+              ],
+              "matches": "WebView > View > View > View > View > @TextView[clickable=true][visibleToUser=true][text=\"\"] <<n [id=\"com.alipay.mobile.nebula:id/h5_pc_container\"]",
+              "exampleUrls": [
+                "https://e.gkd.li/ebbd606a-0e21-4fc5-b0c3-49e4d87d065c"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/16812751"
               ]
             },
             {
@@ -39627,30 +39684,6 @@
               "matches": "@[text=\"我知道了\"][clickable=true] -n [text^=\"用碰一下支付\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/24563264"
-              ]
-            },
-            {
-              "key": 0,
-              "activityIds": [
-                "com.eg.android.AlipayGphone.AlipayLogin"
-              ],
-              "matches": "RelativeLayout[childCount=2][desc=\"全屏广告\"] ImageView[desc=\"关闭\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/14034152"
-              ]
-            },
-            {
-              "key": 1,
-              "fastQuery": true,
-              "activityIds": [
-                "com.alipay.mobile.nebulax.integration.mpaas.activity.NebulaActivity$Main"
-              ],
-              "matches": "WebView > View > View > View > View > @TextView[clickable=true][visibleToUser=true][text=\"\"] <<n [id=\"com.alipay.mobile.nebula:id/h5_pc_container\"]",
-              "exampleUrls": [
-                "https://e.gkd.li/ebbd606a-0e21-4fc5-b0c3-49e4d87d065c"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/16812751"
               ]
             },
             {
@@ -61956,28 +61989,29 @@
           "key": 8,
           "name": "功能类-全自动看广告领VIP",
           "desc": "⚠️二选一,广告一直看下去直到手动干预退出,适合需要领多天vip的用户,与单日规则互斥",
+          "fastQuery": true,
+          "activityIds": [
+            "com.ss.android.excitingvideo.ExcitingVideoActivity"
+          ],
           "rules": [
             {
-              "name": "开屏自动看视频",
               "key": 0,
-              "fastQuery": true,
+              "name": "①开屏自动看视频",
+              "actionMaximum": 1,
+              "resetMatch": "app",
+              "priorityTime": 5000,
               "activityIds": [
                 "com.luna.biz.main.main.MainActivity"
               ],
-              "actionMaximum": 1,
-              "priorityTime": 5000,
-              "resetMatch": "app",
               "anyMatches": [
                 "[vid=\"ui\"] >3 @[clickable=true] < ViewGroup +3 View > [text=\"今日畅听\"] + [text^=\"第\" || text$=\"个\"]",
                 "@[childCount=0][left!=0] < ViewGroup[childCount=1] <n FrameLayout[childCount=5] <<6 FrameLayout <<4 [id=\"android:id/content\"]"
               ],
-              "excludeMatches": "FrameLayout > ViewGroup[text=null][text.length=null][desc$=\"畅听\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/26758188",
                 "https://i.gkd.li/i/28299711"
               ],
               "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/28378061",
                 "https://i.gkd.li/i/28907374"
               ],
               "exampleUrls": [
@@ -61986,32 +62020,49 @@
               ]
             },
             {
-              "key": 1,
-              "name": "①x掉-坐标轮询点击",
-              "fastQuery": true,
-              "actionDelay": 8000,
-              "position": {
-                "left": "width * 3.28",
-                "top": "width * 0.2"
-              },
-              "activityIds": [
-                "com.ss.android.excitingvideo.ExcitingVideoActivity"
-              ],
-              "matches": "FlattenUIText[text=\"广告\"] + [text$=\"声音\"] + [text=\"反馈\"][visibleToUser=true]",
+              "key": 20,
+              "name": "②领取成功-点击关闭",
+              "matches": "UIView[text=\"领取成功，关闭，按钮\"][clickable=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/24521440",
-                "https://i.gkd.li/i/26401083",
-                "https://i.gkd.li/i/24521423",
-                "https://i.gkd.li/i/26401058",
-                "https://i.gkd.li/i/26401097"
-              ],
-              "exampleUrls": [
-                "https://e.gkd.li/87c7201a-f413-4d82-9198-2dc9455c4f23"
+                "https://i.gkd.li/i/30266434"
               ]
             },
             {
-              "key": 2,
-              "name": "①跳过",
+              "key": 21,
+              "name": "②领取成功-点击x掉",
+              "activityIds": [
+                "com.luna.biz.ad.adns.luna.LunaRewardActivity"
+              ],
+              "matches": "@TextView[clickable=true] - [text=\"领取成功\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28300641"
+              ]
+            },
+            {
+              "key": 22,
+              "name": "②领取成功-x掉",
+              "versionCode": {
+                "minimum": 100191030
+              },
+              "matchRoot": true,
+              "actionDelay": 1200,
+              "actionCd": 8000,
+              "anyMatches": [
+                "@ImageView[width<56 && height<56][visibleToUser=true] < [childCount=1] <n [childCount>6] <<(6,7) [id=\"android:id/content\"]",
+                "@[desc=\"领取成功，关闭，按钮\"] <<3 [index=parent.childCount.minus(1)] <n ViewGroup < ViewGroup <3 FrameLayout <<5 [id=\"android:id/content\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/27359402",
+                "https://i.gkd.li/i/27363266",
+                "https://i.gkd.li/i/28018493"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/27272574"
+              ]
+            },
+            {
+              "key": 23,
+              "name": "②点击[已领取]",
               "activityIds": [
                 "com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity"
               ],
@@ -62021,13 +62072,30 @@
               ]
             },
             {
-              "preKeys": [
-                1,
-                2
+              "key": 30,
+              "name": "③每8秒点击1次[x]掉",
+              "actionDelay": 8000,
+              "position": {
+                "left": "width * 3.28",
+                "top": "width * 0.2"
+              },
+              "matches": "FlattenUIText[text=\"广告\"] + [text$=\"声音\"] + [text=\"反馈\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/24521440",
+                "https://i.gkd.li/i/26401083",
+                "https://i.gkd.li/i/24521423",
+                "https://i.gkd.li/i/26401058",
+                "https://i.gkd.li/i/26401097",
+                "https://i.gkd.li/i/30266460"
               ],
-              "name": "②没结束-继续轮询",
-              "fastQuery": true,
-              "actionDelay": 500,
+              "exampleUrls": [
+                "https://e.gkd.li/87c7201a-f413-4d82-9198-2dc9455c4f23"
+              ]
+            },
+            {
+              "key": 40,
+              "name": "④弹窗-选择[继续观看]",
+              "actionDelay": 100,
               "activityIds": [
                 "com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity",
                 "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity",
@@ -62036,8 +62104,8 @@
               "matches": "[text=\"领取奖励\" || text^=\"再看一个\" || text=\"继续观看\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/15140816",
-                "https://i.gkd.li/i/24521416",
                 "https://i.gkd.li/i/24521446",
+                "https://i.gkd.li/i/24521416",
                 "https://i.gkd.li/i/24521516"
               ],
               "exampleUrls": [
@@ -62045,109 +62113,64 @@
               ]
             },
             {
-              "key": 3,
-              "name": "①x掉-领取成功",
+              "key": 41,
+              "name": "④弹窗2-选择[继续观看]",
               "versionCode": {
                 "minimum": 100191030
               },
-              "fastQuery": true,
-              "matchRoot": true,
-              "actionDelay": 1200,
-              "actionCd": 8000,
-              "activityIds": [
-                "com.ss.android.excitingvideo.ExcitingVideoActivity",
-                "com.luna.biz.ad.adns.luna.LunaRewardActivity"
-              ],
-              "anyMatches": [
-                "@ImageView[width<56 && height<56][visibleToUser=true] < [childCount=1] <n [childCount>6] <<(6,7) [id=\"android:id/content\"]",
-                "@[desc=\"领取成功，关闭，按钮\"] <<3 [index=parent.childCount.minus(1)] <n ViewGroup < ViewGroup <3 FrameLayout <<5 [id=\"android:id/content\"]",
-                "@TextView[clickable=true] - [text=\"领取成功\"][visibleToUser=true]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/27359402",
-                "https://i.gkd.li/i/27363266",
-                "https://i.gkd.li/i/28018493",
-                "https://i.gkd.li/i/28300641"
-              ],
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/27272574"
-              ]
-            },
-            {
-              "preKeys": [
-                3
-              ],
-              "name": "②领取奖励_2",
-              "versionCode": {
-                "minimum": 100191030
-              },
-              "fastQuery": true,
-              "activityIds": [
-                "com.ss.android.excitingvideo.ExcitingVideoActivity"
-              ],
-              "matches": "[desc=\"领取奖励\" || desc^=\"再看一个\" || desc=\"继续观看\"][visibleToUser=true]",
+              "matches": "[visibleToUser=true][desc=\"领取奖励\" || desc^=\"再看一个\" || desc=\"继续观看\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/28021222"
               ]
             },
             {
+              "key": 42,
               "preKeys": [
-                3
+                22
               ],
-              "name": "②领取奖励",
+              "name": "④弹窗-坐标点击[领取奖励]",
               "versionCode": {
                 "minimum": 100191030
               },
-              "fastQuery": true,
-              "activityIds": [
-                "com.ss.android.excitingvideo.ExcitingVideoActivity"
-              ],
               "actionMaximum": 13,
-              "order": 0,
-              "matches": "@[childCount=2] + ImageView[index=parent.childCount.minus(1)] <n [childCount=5] <<5 [id=\"android:id/content\"]",
               "position": {
                 "left": "width * 0.50",
                 "top": "width * 0.85"
               },
+              "matches": "@[childCount=2] + ImageView[index=parent.childCount.minus(1)] <n [childCount=5] <<5 [id=\"android:id/content\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/27359717"
               ]
             },
             {
+              "key": 43,
               "preKeys": [
-                3
+                22
               ],
-              "name": "③结束^_^",
+              "name": "④弹窗-坐标点击[退出]",
               "versionCode": {
                 "minimum": 100191030
               },
               "order": 1,
-              "fastQuery": true,
-              "activityIds": [
-                "com.ss.android.excitingvideo.ExcitingVideoActivity"
-              ],
-              "matches": "@[childCount=2] + ImageView[index=parent.childCount.minus(1)] <n [childCount=5] <<5 [id=\"android:id/content\"]",
               "position": {
                 "left": "width * 0.50",
                 "top": "width * 1.00"
               },
+              "matches": "@[childCount=2] + ImageView[index=parent.childCount.minus(1)] <n [childCount=5] <<5 [id=\"android:id/content\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/27359717"
               ]
             },
             {
               "key": 98,
-              "name": "视频内二级全屏Ad",
-              "activityIds": [
-                "com.ss.android.excitingvideo.ExcitingVideoActivity"
-              ],
+              "name": "⑤视频中的弹窗-x掉",
+              "excludeMatches": "[desc$=\"日免费听\" || desc=\"领取奖励\" || desc^=\"再看一个\" || desc=\"继续观看\"][visibleToUser=true]",
               "matches": "ViewGroup[index=parent.childCount.minus(1)][width<60 && height<60][text=null][id=null][desc=null][visibleToUser=true][childCount=0]",
-              "excludeMatches": [
-                "[desc$=\"日免费听\"][visibleToUser=true]",
-                "[desc=\"领取奖励\" || desc^=\"再看一个\" || desc=\"继续观看\"][visibleToUser=true]"
-              ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/28302996"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/28021222"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/e55793b3-e443-4cd1-80b5-aaa6cd7f88aa"
@@ -62155,18 +62178,13 @@
             },
             {
               "key": 99,
-              "name": "无视频",
-              "fastQuery": true,
-              "activityIds": [
-                "com.ss.android.excitingvideo.ExcitingVideoActivity"
-              ],
+              "name": "⑤当前无新视频-退出",
               "matches": "@[clickable=true][width<120 && height<120] + LinearLayout > [text=\"当前无新视频\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/24522244"
               ]
             }
-          ],
-          "activityIds": []
+          ]
         },
         {
           "key": 9,
@@ -87068,14 +87086,15 @@
         },
         {
           "key": 31,
-          "name": "其他-直播间-小黄车",
-          "desc": "关闭定时弹出的商品卡片",
+          "name": "局部广告-直播间右下角浮窗",
+          "desc": "点击x掉",
+          "fastQuery": true,
+          "activityIds": [
+            ".live.LivePlayActivity"
+          ],
           "rules": [
             {
-              "fastQuery": true,
-              "activityIds": [
-                ".live.LivePlayActivity"
-              ],
+              "key": 0,
               "matches": "[desc=\"购买\"][visibleToUser=true] <n LiveMeasureOnceRelativeLayout < * -2 FrameLayout > [vid=\"iv_close\"][clickable=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/26754062",
@@ -87084,9 +87103,15 @@
               "exampleUrls": [
                 "https://e.gkd.li/8c5e6526-83e5-4ec6-b532-367ff6045bfc"
               ]
+            },
+            {
+              "key": 1,
+              "matches": "@[visibleToUser=true] <3 [childCount=5] >5 [text=\"打开游戏\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30297510"
+              ]
             }
-          ],
-          "activityIds": []
+          ]
         },
         {
           "key": 32,
@@ -108630,6 +108655,7 @@
               ]
             },
             {
+              "key": 10,
               "preKeys": [
                 0
               ],
@@ -108640,6 +108666,16 @@
                 "https://i.gkd.li/i/17111444",
                 "https://i.gkd.li/i/17111452",
                 "https://i.gkd.li/i/24589005"
+              ]
+            },
+            {
+              "key": 11,
+              "preKeys": [
+                0
+              ],
+              "matches": "[text=\"直接关闭\" || text=\"不喜欢此内容\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30309831"
               ]
             },
             {
@@ -108817,11 +108853,14 @@
           "rules": [
             {
               "key": 0,
-              "matches": "[vid=\"main_iv_close\"]",
+              "matches": "[!(text=\"定时\")] + [vid=\"main_iv_close\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13251713",
                 "https://i.gkd.li/i/29967591",
                 "https://i.gkd.li/i/30176023"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/30299404"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/8efcd568-13f2-4ac4-872a-fe6fc4affaec",
@@ -113497,6 +113536,26 @@
         },
         {
           "key": 33,
+          "name": "功能类-自动加入抽福袋",
+          "desc": "点击[立即加入抽福袋]",
+          "rules": [
+            {
+              "activityIds": [
+                ".activity.NewPageActivity"
+              ],
+              "matches": "[id=null][text=\"立即加入抽福袋\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30295232"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/a057d535-db79-4faa-9c8f-69069dee91f6"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 34,
           "name": "功能类-多多视频-每日自动签到",
           "desc": "",
           "fastQuery": true,
@@ -113532,7 +113591,7 @@
           "enable": false
         },
         {
-          "key": 34,
+          "key": 35,
           "name": "功能类-自动点击原图",
           "fastQuery": true,
           "activityIds": [
@@ -113548,7 +113607,7 @@
           "enable": false
         },
         {
-          "key": 35,
+          "key": 36,
           "name": "全屏广告-登录提现页面点击[跳过]",
           "desc": "自动点击登录提现页面的跳过按钮",
           "enable": false,
@@ -125182,6 +125241,33 @@
             }
           ],
           "enable": false
+        }
+      ]
+    },
+    {
+      "id": "net.quetta.browser",
+      "name": "Quetta",
+      "groups": [
+        {
+          "key": 1,
+          "name": "功能类-自动跳转第三方应用",
+          "desc": "点击[前往应用打开]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "org.chromium.chrome.browser.ChromeTabbedActivity"
+              ],
+              "matches": "[text=\"前往应用打开\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30294905"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/fe296c51-cf5c-4a6f-a7b8-00a4dc194d5d"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
