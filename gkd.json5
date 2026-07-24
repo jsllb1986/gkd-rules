@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 73,
+  "version": 74,
   "categories": [
     {
       "key": -1,
@@ -22011,12 +22011,13 @@
           "rules": [
             {
               "key": 0,
-              "matches": "@ImageView <2 [childCount=2] <4 [index=0][childCount=4] +(1,2) FrameLayout > [text*=\"定档\" || text*=\"预约\" || text^=\"测试招募\"][text*=\"《\"]",
+              "matches": "@ImageView <2 [childCount=2] <4 [index=0][childCount=4] +(1,2) FrameLayout > [text*=\"定档\" || text*=\"预约\" || text*=\"测试\"][text*=\"《\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/30164473",
                 "https://i.gkd.li/i/30164474",
                 "https://i.gkd.li/i/30164475",
-                "https://i.gkd.li/i/30165036"
+                "https://i.gkd.li/i/30165036",
+                "https://i.gkd.li/i/30346796"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/45efc73b-e2e4-4c61-af95-607d500b8ac7"
@@ -29587,6 +29588,7 @@
           "name": "全屏广告-弹窗广告",
           "fastQuery": true,
           "matchTime": 10000,
+          "forcedTime": 10000,
           "rules": [
             {
               "activityIds": [
@@ -29595,7 +29597,7 @@
               ],
               "matches": "[vid=\"ivCancelDlg\"][visibleToUser=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/17872852",
+                "https://i.gkd.li/i/30352091",
                 "https://i.gkd.li/i/28761589"
               ]
             },
@@ -58731,7 +58733,7 @@
         {
           "key": 7,
           "name": "功能类-刷到推广视频时[上滑]",
-          "desc": "广告/购物/游戏/汽车/咨询/一键出片/品牌活动 等推广视频",
+          "desc": "广告/购物/游戏/汽车/咨询/一键出片/品牌活动/测一测 等推广视频",
           "rules": [
             {
               "fastQuery": true,
@@ -58751,7 +58753,7 @@
               "activityIds": [
                 "com.yxcorp.gifshow.HomeActivity"
               ],
-              "matches": "[vid=\"ad_detail_content_layout\" || vid=\"plc_tv_biz_text\" && (text=\"游戏\" || text=\"购物\" || text=\"购买\" || text=\"汽车\" || text=\"咨询\" || text=\"品牌活动\" || text=\"一键出片\")][visibleToUser=true]",
+              "matches": "[vid=\"ad_detail_content_layout\" || vid=\"plc_tv_biz_text\" && (text=\"游戏\" || text=\"购物\" || text=\"购买\" || text=\"汽车\" || text=\"咨询\" || text=\"品牌活动\" || text=\"一键出片\" || text=\"测一测\")][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/29213590",
                 "https://i.gkd.li/i/29029850",
@@ -58760,7 +58762,8 @@
                 "https://i.gkd.li/i/29030087",
                 "https://i.gkd.li/i/29031982",
                 "https://i.gkd.li/i/29031736",
-                "https://i.gkd.li/i/29031815"
+                "https://i.gkd.li/i/29031815",
+                "https://i.gkd.li/i/30347040"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/629b0f6b-49e7-4ca9-8487-5df7d530756f"
@@ -60101,6 +60104,32 @@
           "activityIds": [
             "com.ky.medical.reference.promotion.AdDialogActivity"
           ]
+        }
+      ]
+    },
+    {
+      "id": "com.kylindev.totalk",
+      "name": "滔滔对讲",
+      "groups": [
+        {
+          "key": 0,
+          "name": "开屏广告",
+          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "priorityTime": 10000,
+          "rules": [
+            {
+              "key": 0,
+              "matches": "@[clickable=true] > [text*=\"跳过\"][text.length<10][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30350919"
+              ]
+            }
+          ],
+          "order": -10,
+          "activityIds": []
         }
       ]
     },
@@ -87765,6 +87794,27 @@
             }
           ],
           "activityIds": []
+        },
+        {
+          "key": 14,
+          "name": "局部广告-商品卡片",
+          "desc": "点击x掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.ss.android.ugc.aweme.main.MainActivity"
+              ],
+              "matches": "@ImageView[clickable=true] + [focusable=true] >4 [text=\"购买\"][index=1][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30344666"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/b7f062ff-1bff-4990-bb67-72bd0818e5d8"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -109439,7 +109489,6 @@
           "key": 2,
           "name": "更新提示",
           "fastQuery": true,
-          "matchTime": 10000,
           "actionMaximum": 1,
           "resetMatch": "app",
           "actionMaximumKey": 0,
@@ -109465,6 +109514,7 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/15283162",
+                "https://i.gkd.li/i/30352967",
                 "https://i.gkd.li/i/18289347"
               ]
             },
