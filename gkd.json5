@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 75,
+  "version": 76,
   "categories": [
     {
       "key": -1,
@@ -31619,6 +31619,26 @@
       "id": "com.cs_credit_bank",
       "name": "发现精彩",
       "groups": [
+        {
+          "key": 0,
+          "name": "开屏广告",
+          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "priorityTime": 10000,
+          "rules": [
+            {
+              "key": 0,
+              "matches": "@TextView[text*=\"跳过\"] <3 ViewGroup < [vid=\"main_layout\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30388152"
+              ]
+            }
+          ],
+          "order": -10,
+          "activityIds": []
+        },
         {
           "key": 1,
           "name": "全屏广告",
