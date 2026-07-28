@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 76,
+  "version": 77,
   "categories": [
     {
       "key": -1,
@@ -22163,8 +22163,6 @@
           "key": 7,
           "name": "更新提示",
           "fastQuery": true,
-          "matchTime": 10000,
-          "forcedTime": 10000,
           "actionMaximum": 1,
           "resetMatch": "app",
           "priorityTime": 10000,
@@ -45267,6 +45265,27 @@
             }
           ],
           "activityIds": []
+        },
+        {
+          "key": 3,
+          "name": "局部广告-首页卡片",
+          "desc": "邮件页顶部[试用Google Woekspace]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.google.android.gm.ui.MailActivityGmail"
+              ],
+              "matches": "Button - View[desc=\"\"] < @View[childCount=2][clickable=true][width=102 && height=102][visibleToUser=true] - TextView <n View[childCount>5 && childCount<10] <<3 ComposeView - LinearLayout <<2 [vid=\"thread_list_view\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30378474"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/357dc3c9-cf98-40b3-a01d-35bb8219dae8"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -56828,6 +56847,28 @@
               ]
             }
           ]
+        },
+        {
+          "key": 3,
+          "name": "全屏广告-获取设备",
+          "desc": "获取AI体脂秤-> 暂不",
+          "matchTime": 14000,
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.jk.fitness.MainActivity"
+              ],
+              "matches": "@View[desc=\"暂不\"][clickable=true][visibleToUser=true] -2 ImageView < View[childCount=3][left=0 && top=0] <<(6-n) FrameLayout <<(4-n) [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30460157"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/82711399-cc15-4cab-acc2-f6d359b9d349"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -58753,7 +58794,7 @@
         {
           "key": 7,
           "name": "功能类-刷到推广视频时[上滑]",
-          "desc": "广告/购物/游戏/汽车/咨询/一键出片/品牌活动/测一测 等推广视频",
+          "desc": "广告/购物/游戏/汽车/咨询/应用/一键出片/品牌活动/测一测 等推广视频",
           "rules": [
             {
               "fastQuery": true,
@@ -58773,7 +58814,7 @@
               "activityIds": [
                 "com.yxcorp.gifshow.HomeActivity"
               ],
-              "matches": "[vid=\"ad_detail_content_layout\" || vid=\"plc_tv_biz_text\" && (text=\"游戏\" || text=\"购物\" || text=\"购买\" || text=\"汽车\" || text=\"咨询\" || text=\"品牌活动\" || text=\"一键出片\" || text=\"测一测\")][visibleToUser=true]",
+              "matches": "[vid=\"ad_detail_content_layout\" || vid=\"plc_tv_biz_text\" && (text=\"游戏\" || text=\"购物\" || text=\"购买\" || text=\"汽车\" || text=\"咨询\" || text=\"应用\" || text=\"品牌活动\" || text=\"一键出片\" || text=\"测一测\")][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/29213590",
                 "https://i.gkd.li/i/29029850",
@@ -58781,6 +58822,7 @@
                 "https://i.gkd.li/i/29029853",
                 "https://i.gkd.li/i/29030087",
                 "https://i.gkd.li/i/29031982",
+                "https://i.gkd.li/i/30466714",
                 "https://i.gkd.li/i/29031736",
                 "https://i.gkd.li/i/29031815",
                 "https://i.gkd.li/i/30347040"
@@ -72775,6 +72817,37 @@
         },
         {
           "key": 7,
+          "name": "功能类-自动保存图片",
+          "desc": "建议使用[分享]方式来保存",
+          "fastQuery": true,
+          "activityIds": [
+            "com.openai.chatgpt.MainActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "name": "分享页",
+              "matches": "Button - TextView[text=\"下载\"] <2 @View[childCount=3] <(5-n) View[childCount=3] <3 View[childCount>=3] <<(18-n) [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30373387"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/2a8e43ed-d457-4f60-818e-b74b2148da5d"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "图片预览页",
+              "actionMaximum": 1,
+              "matches": "[desc=\"保存\"] < @View[childCount=2][clickable=true] <<3 View <3 View[childCount>=3] <<(18-n) [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30373379"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 8,
           "name": "通知提示-套餐限额提示",
           "rules": [
             {
