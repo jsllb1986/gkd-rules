@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 78,
+  "version": 79,
   "categories": [
     {
       "key": -1,
@@ -23889,17 +23889,25 @@
     },
     {
       "id": "com.bbk.theme",
-      "name": "i 主题",
+      "name": "(vivo)主题",
       "groups": [
         {
           "key": 0,
           "name": "开屏广告",
           "fastQuery": true,
           "matchTime": 10000,
+          "forcedTime": 10000,
           "actionMaximum": 1,
           "resetMatch": "app",
           "priorityTime": 10000,
           "rules": [
+            {
+              "key": 0,
+              "matches": "[text*=\"跳过\"][text.length<10][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30565834"
+              ]
+            },
             {
               "matches": "[text*=\"跳过\"][text.length<10][visibleToUser=true]",
               "exampleUrls": [
@@ -23910,7 +23918,8 @@
               ]
             }
           ],
-          "order": -10
+          "order": -10,
+          "activityIds": []
         },
         {
           "key": 1,
