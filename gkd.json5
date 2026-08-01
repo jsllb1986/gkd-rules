@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 79,
+  "version": 80,
   "categories": [
     {
       "key": -1,
@@ -30859,19 +30859,15 @@
         {
           "key": 1,
           "name": "全屏广告-弹窗广告",
-          "actionDelay": 400,
+          "fastQuery": true,
           "rules": [
             {
               "key": 0,
               "name": "快手广告-1",
-              "fastQuery": true,
               "activityIds": [
-                ".MainActivity"
+                "com.miui.home.launcher.Launcher"
               ],
-              "matches": [
-                "[text=\"广告\"]",
-                "@ImageView[clickable=true] - [text=\"|\"] - [text$=\"s\"]"
-              ],
+              "matches": "@ImageView[clickable=true][width<78] <n [visibleToUser=true] -2 * >2 [text=\"广告\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13259085"
               ]
@@ -30879,7 +30875,6 @@
             {
               "key": 1,
               "name": "快手广告-2",
-              "fastQuery": true,
               "activityIds": [
                 ".MainActivity",
                 "com.kwad.components.ad.interstitial"
@@ -30894,7 +30889,6 @@
             {
               "key": 2,
               "name": "快手广告-3",
-              "fastQuery": true,
               "activityIds": [
                 ".MainActivity"
               ],
@@ -30909,7 +30903,7 @@
             {
               "key": 3,
               "name": "腾讯广告-1",
-              "fastQuery": true,
+              "actionDelay": 400,
               "activityIds": [
                 ".MainActivity"
               ],
@@ -30926,7 +30920,7 @@
             {
               "key": 4,
               "name": "腾讯广告-2",
-              "fastQuery": true,
+              "actionDelay": 400,
               "matches": "@ImageView[childCount=0][text=null][desc=null][id=null][visibleToUser=true][width<90 && height<90] < FrameLayout[childCount=1][text=null][desc=null][id=null] - FrameLayout[childCount>2] >3 [text^=\"立即\" || text$=\"应用\" || text=\"了解更多\" || text=\"查看详情\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13246786"
@@ -30935,7 +30929,6 @@
             {
               "key": 5,
               "name": "腾讯广告-3",
-              "fastQuery": true,
               "activityIds": [
                 ".MainActivity"
               ],
@@ -30948,7 +30941,7 @@
             {
               "key": 6,
               "name": "腾讯广告-4",
-              "fastQuery": true,
+              "actionDelay": 400,
               "matches": "@ImageView[childCount=0][text=null][visibleToUser=true] < FrameLayout[childCount=1] <2 FrameLayout[childCount=2] <2 FrameLayout[childCount=2] <2 FrameLayout[childCount=2] - FrameLayout > [text^=\"扭动或点击\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13233178"
@@ -30957,7 +30950,6 @@
             {
               "key": 7,
               "name": "字节广告-1",
-              "fastQuery": true,
               "activityIds": [
                 "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
               ],
@@ -30968,7 +30960,6 @@
             },
             {
               "key": 8,
-              "fastQuery": true,
               "activityIds": [
                 "com.beizi.ad.v2.activity.BeiZiNewInterstitialActivity"
               ],
@@ -30980,6 +30971,7 @@
             {
               "key": 9,
               "name": "字节广告-3",
+              "actionDelay": 400,
               "activityIds": [
                 "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
               ],
@@ -30992,13 +30984,19 @@
             {
               "key": 10,
               "name": "百度广告-1",
-              "fastQuery": true,
               "activityIds": [
                 "com.baidu.mobads.sdk.api.MobRewardVideoActivity"
               ],
               "matches": "@ImageView[clickable=true] - RelativeLayout >2 [text=\"反馈\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25189723"
+              ]
+            },
+            {
+              "key": 11,
+              "matches": "[vid=\"ad_close\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30617190"
               ]
             },
             {
@@ -31184,6 +31182,15 @@
               ]
             },
             {
+              "key": 4,
+              "name": "腾讯广告-2",
+              "fastQuery": true,
+              "matches": "@ImageView[childCount=0][text=null][desc=null][id=null][visibleToUser=true][width<90 && height<90] < FrameLayout[childCount=1][text=null][desc=null][id=null] - FrameLayout[childCount>2] >3 [text^=\"立即\" || text$=\"应用\" || text=\"了解更多\" || text=\"查看详情\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13246786"
+              ]
+            },
+            {
               "key": 5,
               "name": "腾讯广告-3",
               "fastQuery": true,
@@ -31194,6 +31201,62 @@
               "snapshotUrls": [
                 "https://i.gkd.li/i/13521801",
                 "https://i.gkd.li/i/13332719"
+              ]
+            },
+            {
+              "key": 6,
+              "name": "腾讯广告-4",
+              "fastQuery": true,
+              "matches": "@ImageView[childCount=0][text=null][visibleToUser=true] < FrameLayout[childCount=1] <2 FrameLayout[childCount=2] <2 FrameLayout[childCount=2] <2 FrameLayout[childCount=2] - FrameLayout > [text^=\"扭动或点击\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13233178"
+              ]
+            },
+            {
+              "key": 7,
+              "name": "字节广告-1",
+              "fastQuery": true,
+              "activityIds": [
+                "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
+              ],
+              "matches": "@View[clickable=true] < FrameLayout[desc*=\"close\"] +4 FrameLayout[desc!=null] >2 [text=\"反馈\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13372542"
+              ]
+            },
+            {
+              "key": 8,
+              "fastQuery": true,
+              "activityIds": [
+                "com.beizi.ad.v2.activity.BeiZiNewInterstitialActivity"
+              ],
+              "matches": "@[clickable=true] > ImageView[vid=\"beizi_interstitial_ad_close_iv\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/25049918"
+              ]
+            },
+            {
+              "key": 9,
+              "name": "字节广告-3",
+              "activityIds": [
+                "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
+              ],
+              "matches": "@Image[childCount=0][text=\"\"][width<60 && height<60] < View[childCount=1] + View +n View > View[childCount=1] > TextView[text$=\"广告\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/12925052",
+                "https://i.gkd.li/i/12925095"
+              ]
+            },
+            {
+              "key": 10,
+              "name": "百度广告-1",
+              "fastQuery": true,
+              "activityIds": [
+                "com.baidu.mobads.sdk.api.MobRewardVideoActivity"
+              ],
+              "matches": "@ImageView[clickable=true] - RelativeLayout >2 [text=\"反馈\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/25189723"
               ]
             },
             {
@@ -87751,6 +87814,50 @@
       "groups": [
         {
           "key": 1,
+          "name": "更新提示",
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.ss.android.ugc.aweme.main.MainActivity"
+              ],
+              "matches": [
+                "[text*=\"更新\" || text*=\"下载\" || text*=\"安装\" || text*=\"升级\"][visibleToUser=true]",
+                "[text$=\"再说\" || text^=\"忽略\" || text^=\"取消\"][clickable=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30620547"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 2,
+          "name": "功能类-功能体验邀请弹窗",
+          "rules": [
+            {
+              "key": 0,
+              "name": "[首页商城]体验邀请弹窗",
+              "fastQuery": true,
+              "activityIds": [
+                "com.ss.android.ugc.aweme.commerce.sdk.MallContainerActivity"
+              ],
+              "matches": [
+                "UIText[text^=\"立即体验\"]",
+                "FlattenUIText[text=\"不再提示\"][visibleToUser=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13684791"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 3,
           "name": "青少年模式",
           "desc": "点击【我知道了】（旧版本）【关闭】（新版本）",
           "fastQuery": true,
@@ -87777,29 +87884,7 @@
           "enable": false
         },
         {
-          "key": 2,
-          "name": "功能类-功能体验邀请弹窗",
-          "rules": [
-            {
-              "key": 0,
-              "name": "[首页商城]体验邀请弹窗",
-              "fastQuery": true,
-              "activityIds": [
-                "com.ss.android.ugc.aweme.commerce.sdk.MallContainerActivity"
-              ],
-              "matches": [
-                "UIText[text^=\"立即体验\"]",
-                "FlattenUIText[text=\"不再提示\"][visibleToUser=true]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/13684791"
-              ]
-            }
-          ],
-          "activityIds": []
-        },
-        {
-          "key": 3,
+          "key": 4,
           "name": "全屏广告-功能体验邀请弹窗",
           "rules": [
             {
@@ -87817,7 +87902,7 @@
           "enable": false
         },
         {
-          "key": 4,
+          "key": 5,
           "fastQuery": true,
           "name": "权限提示-消息提醒弹窗",
           "desc": "点击暂不开启",
@@ -88062,6 +88147,35 @@
               ]
             }
           ]
+        },
+        {
+          "key": 16,
+          "name": "功能类-自动切换到[作品]列表",
+          "desc": "在用户主页时,若存在[橱窗/商品/服务],则点击[作品]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "actionCd": 10000,
+              "activityIds": [
+                "com.ss.android.ugc.aweme.main.MainActivity"
+              ],
+              "matches": "[visibleToUser=false] < ViewPager[childCount>1] - ViewGroup >3 @[desc^=\"作品\"][clickable=true] +n [name$=\"ActionBar$Tab\"] >3 [text=\"橱窗\" || text=\"商品\" || text=\"服务\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30619207",
+                "https://i.gkd.li/i/30619569",
+                "https://i.gkd.li/i/30621467",
+                "https://i.gkd.li/i/30621712"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/30619208",
+                "https://i.gkd.li/i/30619506"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/966b01bd-3c89-4f19-83af-7e9429ab25ed"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
