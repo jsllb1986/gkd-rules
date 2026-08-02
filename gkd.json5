@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 80,
+  "version": 81,
   "categories": [
     {
       "key": -1,
@@ -62275,6 +62275,17 @@
               ]
             },
             {
+              "key": 1,
+              "activityIds": [
+                "com.luna.biz.main.main.MainActivity"
+              ],
+              "matches": "@UIView[clickable=true][width>=prev.width] +(4,5) [text*=\"解锁\"][text$=\"天畅听\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30630741",
+                "https://i.gkd.li/i/30631201"
+              ]
+            },
+            {
               "key": 20,
               "name": "②领取成功-点击关闭",
               "matches": "UIView[text=\"领取成功，关闭，按钮\"][clickable=true]",
@@ -62317,13 +62328,28 @@
             },
             {
               "key": 23,
-              "name": "②点击[已领取]",
               "activityIds": [
-                "com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity"
+                "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
               ],
-              "matches": "[visibleToUser=true][text=\"奖励已领取\"]",
+              "matches": "ImageView[width<76] < @[clickable=true] < LinearLayout <2 [childCount=2] >2 TextView[text=\"反馈\"][visibleToUser=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/24522627"
+                "https://i.gkd.li/i/30631357"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/30631469"
+              ]
+            },
+            {
+              "key": 24,
+              "name": "②点击[跳过]",
+              "activityIds": [
+                "com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity",
+                "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
+              ],
+              "matches": "@[text*=\"跳过\"] - [visibleToUser=true][text=\"奖励已领取\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/24522627",
+                "https://i.gkd.li/i/30630678"
               ]
             },
             {
@@ -62484,6 +62510,29 @@
             },
             {
               "key": 3,
+              "actionMaximum": 1,
+              "activityIds": [
+                "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
+              ],
+              "matches": "@Image[width<90 && height<90][visibleToUser=true][parent.parent.childCount>2][bottom<prev.height.div(10)] <<n [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30631469",
+                "https://i.gkd.li/i/30632784"
+              ]
+            },
+            {
+              "key": 4,
+              "actionMaximum": 1,
+              "activityIds": [
+                "com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity"
+              ],
+              "matches": "@Image[width<90 && height<90][visibleToUser=true][bottom<prev.height.div(8)] <<n [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/24522627"
+              ]
+            },
+            {
+              "key": 5,
               "name": "坐标点击[静音]",
               "actionMaximum": 1,
               "actionMaximumKey": 1,
@@ -89180,10 +89229,24 @@
         {
           "key": 10,
           "name": "权限提示-通知权限",
-          "desc": "点击关闭",
-          "actionMaximum": 1,
+          "desc": "点击x掉",
+          "actionMaximum": 3,
           "resetMatch": "app",
           "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.taobao.sns.app.message.MessageActivity",
+                ".mine.MetaXMineActivity",
+                ".app.homev4.HomeV4Activity"
+              ],
+              "matches": "@[text=null][clickable=true][width<150][childCount=0] -(1,2) [text*=\"开\"][text*=\"通知\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/12684278",
+                "https://i.gkd.li/i/12684351",
+                "https://i.gkd.li/i/30634250"
+              ]
+            },
             {
               "key": 0,
               "activityIds": [
