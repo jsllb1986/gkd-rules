@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 85,
+  "version": 86,
   "categories": [
     {
       "key": -1,
@@ -47977,6 +47977,55 @@
       ]
     },
     {
+      "id": "com.hellobike.hitch",
+      "name": "哈啰顺风车",
+      "groups": [
+        {
+          "key": 1,
+          "name": "全屏广告-弹窗广告",
+          "desc": "点击x掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.hellobike.atlas.business.portal.PortalActivity"
+              ],
+              "matches": "View[width>prev.width.times(5)] + @Image[text.length>0][visibleToUser=true][width<150 && height<150] <<n [vid=\"phWebLayout\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30825123",
+                "https://i.gkd.li/i/30825109"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/c816f503-5740-4e50-a5c8-6da03bb04af5"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 2,
+          "name": "权限提示-通知权限",
+          "desc": "点击[取消]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.hellobike.atlas.business.portal.PortalActivity"
+              ],
+              "matches": [
+                "[text*=\"开启\"][text*=\"通知\"]",
+                "[text=\"取消\"][clickable=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30825131"
+              ]
+            }
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
       "id": "com.henzanapp.miaomiaozhe",
       "name": "喵喵折",
       "groups": [
@@ -56629,6 +56678,21 @@
         },
         {
           "key": 5,
+          "name": "全屏广告-哈啰智能电动车-广告弹窗",
+          "fastQuery": true,
+          "activityIds": [
+            "com.hellobike.evehicle.business.main.EVehicleHomeManagerActivity"
+          ],
+          "rules": [
+            "[id=\"com.jingyao.easybike:id/lottie_view\"] < ViewGroup + [id=\"com.jingyao.easybike:id/btn_close\"]"
+          ],
+          "snapshotUrls": [
+            "https://i.gkd.li/import/12650163"
+          ],
+          "enable": false
+        },
+        {
+          "key": 6,
           "fastQuery": true,
           "name": "功能类-新人教学弹窗",
           "desc": "点击跳过",
@@ -56818,18 +56882,23 @@
         },
         {
           "key": 11,
-          "name": "全屏广告-哈啰智能电动车-广告弹窗",
-          "fastQuery": true,
-          "activityIds": [
-            "com.hellobike.evehicle.business.main.EVehicleHomeManagerActivity"
-          ],
+          "name": "全屏广告-关闭公众号提醒",
           "rules": [
-            "[id=\"com.jingyao.easybike:id/lottie_view\"] < ViewGroup + [id=\"com.jingyao.easybike:id/btn_close\"]"
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.hellobike.hitch.business.match.temp.HitchDriverTempMatchActivity"
+              ],
+              "matches": "[text*=\"公众号\"] - [vid=\"ivClose\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30827751"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/84f6f033-7686-439a-b50e-87a2c8409ddf"
+              ]
+            }
           ],
-          "snapshotUrls": [
-            "https://i.gkd.li/import/12650163"
-          ],
-          "enable": false
+          "activityIds": []
         },
         {
           "key": 12,
