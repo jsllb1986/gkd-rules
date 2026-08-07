@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 84,
+  "version": 85,
   "categories": [
     {
       "key": -1,
@@ -38327,17 +38327,35 @@
       "groups": [
         {
           "key": 1,
-          "name": "青少年模式",
-          "activityIds": [
-            "com.duowan.kiwi.homepage.Homepage",
-            "com.duowan.kiwi.immersepage.impl.ImmersePageActivity"
-          ],
+          "name": "开屏广告",
+          "desc": "广告画面先出现,但节点最后才加载,故触发慢实属正常",
           "fastQuery": true,
+          "forcedTime": 10000,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "actionMaximumKey": 0,
+          "resetMatch": "app",
+          "priorityTime": 10000,
           "rules": [
-            "[id=\"com.duowan.kiwi:id/hyui_dialog_button_positive\"][text=\"我知道了\"]"
+            {
+              "key": 0,
+              "matches": "[text*=\"跳过\"][text.length<10][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30792623",
+                "https://i.gkd.li/i/30792625"
+              ]
+            },
+            {
+              "key": 1,
+              "matches": "[visibleToUser=true][text*=\"跳过\"][text.length<10]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30793734",
+                "https://i.gkd.li/i/30794399"
+              ]
+            }
           ],
-          "snapshotUrls": "https://i.gkd.li/import/12908790",
-          "enable": false
+          "order": -10,
+          "activityIds": []
         },
         {
           "key": 2,
@@ -38535,8 +38553,22 @@
           "activityIds": []
         },
         {
-          "enable": false,
           "key": 6,
+          "name": "青少年模式",
+          "activityIds": [
+            "com.duowan.kiwi.homepage.Homepage",
+            "com.duowan.kiwi.immersepage.impl.ImmersePageActivity"
+          ],
+          "fastQuery": true,
+          "rules": [
+            "[id=\"com.duowan.kiwi:id/hyui_dialog_button_positive\"][text=\"我知道了\"]"
+          ],
+          "snapshotUrls": "https://i.gkd.li/import/12908790",
+          "enable": false
+        },
+        {
+          "enable": false,
+          "key": 7,
           "name": "全屏广告-root提示",
           "desc": "您的设备已经被ROOT",
           "fastQuery": true,
@@ -38549,7 +38581,7 @@
           "snapshotUrls": "https://i.gkd.li/import/13536744"
         },
         {
-          "key": 7,
+          "key": 8,
           "name": "通知提示-root提示",
           "desc": "点击确认",
           "enable": false,
@@ -90045,6 +90077,29 @@
         },
         {
           "key": 11,
+          "name": "功能类-自动[勾选]原图",
+          "desc": "选择发送图片时,点击1次[原图]",
+          "rules": [
+            {
+              "actionMaximum": 1,
+              "resetMatch": "match",
+              "activityIds": [
+                "com.idlefish.flutterbridge.flutterboost.boost.FishFlutterBoostActivity"
+              ],
+              "matches": "[clickable=true][desc=\"原图\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30770701",
+                "https://i.gkd.li/i/30770836"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/45d7ad2e-b436-4d30-be4b-a90584c3d2a0"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 12,
           "name": "全屏广告-通知提示",
           "actionMaximum": 1,
           "activityIds": [
@@ -90057,7 +90112,7 @@
           "enable": false
         },
         {
-          "key": 12,
+          "key": 13,
           "name": "权限提示",
           "actionMaximum": 1,
           "activityIds": [
@@ -90070,7 +90125,7 @@
           "enable": false
         },
         {
-          "key": 13,
+          "key": 14,
           "name": "通知提示",
           "desc": "关闭消息推送开启提示",
           "ignoreGlobalGroupMatch": true,
@@ -90087,7 +90142,7 @@
           "snapshotUrls": "https://i.gkd.li/import/13538351"
         },
         {
-          "key": 14,
+          "key": 15,
           "name": "通知提示-开启个性化",
           "desc": "关闭开启个性化提示",
           "ignoreGlobalGroupMatch": true,
@@ -90102,7 +90157,7 @@
           "snapshotUrls": "https://i.gkd.li/i/22319225"
         },
         {
-          "key": 15,
+          "key": 16,
           "name": "功能类-自动查看原图",
           "desc": "浏览图片时自动切换至原图模式",
           "enable": false,
@@ -90121,7 +90176,7 @@
           ]
         },
         {
-          "key": 16,
+          "key": 17,
           "name": "功能类-自动选中发送原图",
           "desc": "图片和视频选择器-自动选中底部中间的发送原图",
           "actionMaximum": 1,
@@ -90139,7 +90194,7 @@
           "enable": false
         },
         {
-          "key": 17,
+          "key": 18,
           "name": "功能类-登录授权",
           "desc": "点击确认授权按钮",
           "enable": false,
