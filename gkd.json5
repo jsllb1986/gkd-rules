@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 86,
+  "version": 87,
   "categories": [
     {
       "key": -1,
@@ -39861,6 +39861,21 @@
               ]
             },
             {
+              "key": 5,
+              "name": "⑤坐标点击x掉",
+              "activityIds": [
+                ".AlipayLogin"
+              ],
+              "position": {
+                "left": "width * 0.5",
+                "top": "width * 1.3792"
+              },
+              "matches": "View[width=getPrev(2).width][height=getPrev(2).height] < ViewGroup - * ->2 @ImageView < [visibleToUser=true] < FrameLayout - View < ViewGroup[childCount=3] < * < * < * < FrameLayout - [vid=\"alipaylogin_layout\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/26526026"
+              ]
+            },
+            {
               "key": 0,
               "activityIds": [
                 "com.eg.android.AlipayGphone.AlipayLogin"
@@ -70611,6 +70626,24 @@
               "key": 0,
               "excludeActivityIds": [
                 ".music.biz.setting.activity.SettingActivity",
+                ".music.biz.search.activity.SearchActivity",
+                ".music.biz.rn.activity.BgMainProcessRNActivity"
+              ],
+              "matches": "[text*=\"跳过\" || text*=\"Skip\"][text.length<10][width<500 && height<200][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30857148",
+                "https://i.gkd.li/i/30857149"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/15092814",
+                "https://i.gkd.li/i/16318423",
+                "https://i.gkd.li/i/30857162"
+              ]
+            },
+            {
+              "key": 0,
+              "excludeActivityIds": [
+                ".music.biz.setting.activity.SettingActivity",
                 ".music.biz.search.activity.SearchActivity"
               ],
               "matches": "[text*=\"跳过\" || text*=\"Skip\"][text.length<10][width<500 && height<200][visibleToUser=true]",
@@ -89469,33 +89502,40 @@
         {
           "key": 2,
           "name": "全屏广告-弹窗广告",
-          "matchTime": 10000,
-          "actionMaximum": 1,
-          "resetMatch": "app",
+          "fastQuery": true,
+          "activityIds": [
+            ".app.homev4.HomeV4Activity"
+          ],
           "rules": [
             {
               "key": 0,
-              "activityIds": [
-                ".app.home.view.NewHomeActivity",
-                ".app.homev4.HomeV4Activity"
-              ],
-              "matches": "LinearLayout[childCount=2] > @RelativeLayout[clickable=true][childCount=1] > ImageView[childCount=0]",
+              "matches": "@ImageView[width<150 && height<150] <2 FrameLayout < [vid=\"dialog_container\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/12739581",
-                "https://i.gkd.li/i/13670025"
+                "https://i.gkd.li/i/30859236"
               ]
             },
             {
               "key": 1,
-              "activityIds": [
-                ".app.homev4.HomeV4Activity"
-              ],
-              "matches": "[text=\"一淘-首页红包升级-2312wf\"] >5 View[childCount=3] > View[index=0][visibleToUser=true]",
-              "exampleUrls": [
-                "https://m.gkd.li/57941037/db5c7761-3a8b-4bc6-a61c-65dd30f61b9f"
-              ],
+              "matches": "ImageView[width<150 && height<150] < @[clickable=true] + [vid=\"dialog_container\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/14622468"
+                "https://i.gkd.li/i/30859577"
+              ]
+            },
+            {
+              "key": 2,
+              "matches": "@View[id=null][visibleToUser=true][width<150 && height<150][parent.childCount=3] <<n [vid=\"dialog_container\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30859628"
+              ]
+            },
+            {
+              "key": 3,
+              "activityIds": [
+                ".app.home.view.NewHomeActivity"
+              ],
+              "matches": "ImageView[width<150 && height<150] < @RelativeLayout[clickable=true][childCount=1] <2 [childCount=2] < [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30859526"
               ]
             },
             {
@@ -89525,8 +89565,7 @@
                 "https://i.gkd.li/i/14622468"
               ]
             }
-          ],
-          "activityIds": []
+          ]
         },
         {
           "enable": false,
@@ -90409,14 +90448,16 @@
                 "com.taobao.tao.welcome.Welcome",
                 "com.taobao.tao.TBMainActivity",
                 "com.taobao.android.tbabilitykit.pop.StdPopContainerActivity",
-                "com.taobao.android.detail.wrapper.activity.DetailActivity"
+                "com.taobao.android.detail.wrapper.activity.DetailActivity",
+                "com.alibaba.android.ultron.vfw.weex2.highPerformance.widget.UltronTradeHybridActivity"
               ],
               "matches": "@[desc=\"关闭按钮\"] - [vid=\"poplayer_native_state_id\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/12648734",
                 "https://i.gkd.li/i/12648746",
                 "https://i.gkd.li/i/14060521",
-                "https://i.gkd.li/i/14905372"
+                "https://i.gkd.li/i/14905372",
+                "https://i.gkd.li/i/30856922"
               ]
             },
             {
@@ -90492,6 +90533,23 @@
               "matches": "Image[text*=\".jpg\"][width<150 && height<150] < [visibleToUser=true] < @View[clickable=true][childCount=1] <<n FrameLayout[id=null] - [vid=\"layermanager_penetrate_webview_container_id\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/30710740"
+              ]
+            },
+            {
+              "key": 0,
+              "fastQuery": true,
+              "activityIds": [
+                "com.taobao.tao.welcome.Welcome",
+                "com.taobao.tao.TBMainActivity",
+                "com.taobao.android.tbabilitykit.pop.StdPopContainerActivity",
+                "com.taobao.android.detail.wrapper.activity.DetailActivity"
+              ],
+              "matches": "@[desc=\"关闭按钮\"] - [vid=\"poplayer_native_state_id\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/12648734",
+                "https://i.gkd.li/i/12648746",
+                "https://i.gkd.li/i/14060521",
+                "https://i.gkd.li/i/14905372"
               ]
             },
             {
@@ -117097,19 +117155,45 @@
       "groups": [
         {
           "key": 1,
-          "name": "局部广告-翻译界面-结果下方广告",
-          "desc": "点击关闭",
+          "name": "分段广告-翻译结果下方广告",
+          "desc": "①点击[x]掉 ②点击[不再展示]",
+          "fastQuery": true,
+          "activityIds": [
+            ".activity.trans.TransResultActivity"
+          ],
           "rules": [
             {
-              "fastQuery": true,
-              "activityIds": [
-                ".activity.trans.TransResultActivity"
-              ],
+              "key": 0,
+              "name": "①点击[x]掉",
               "matches": "@ImageView[vid=\"close_iv\"] + [vid=\"native_ad_flag_tv\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13259910"
               ]
             },
+            {
+              "preKeys": [
+                0
+              ],
+              "name": "②点击[不再展示]",
+              "matches": "[text*=\"不再展示\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30857016"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/7975274a-aa0b-4021-9624-5c1c3477cb9a"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 2,
+          "name": "局部广告-翻译界面-结果下方广告",
+          "desc": "点击广告卡片右上角x",
+          "fastQuery": true,
+          "activityIds": [
+            "com.youdao.translator.activity.trans.TransResultActivity"
+          ],
+          "rules": [
             {
               "matches": "@ImageView[id=`com.youdao.translator:id/close_iv`] + [id=\"com.youdao.translator:id/native_ad_flag_tv\"]",
               "snapshotUrls": [
@@ -117127,9 +117211,7 @@
               ]
             }
           ],
-          "activityIds": [
-            "com.youdao.translator.activity.trans.TransResultActivity"
-          ]
+          "enable": false
         }
       ]
     },
