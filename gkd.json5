@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 87,
+  "version": 88,
   "categories": [
     {
       "key": -1,
@@ -66329,6 +66329,24 @@
             }
           ],
           "activityIds": []
+        },
+        {
+          "key": 9,
+          "name": "功能类-自动确认下载",
+          "desc": "自动点击下载弹窗中的[下载]按钮",
+          "fastQuery": true,
+          "rules": [
+            {
+              "matches": "[text*=\"下载\" || text*=\"下載\" || text*=\"download\"][visibleToUser=true] +2 [childCount=3] > [vid=\"button1\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30865007"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/df8b81cd-1bfa-402a-a317-610f9d713674"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -95542,23 +95560,29 @@
         {
           "key": 2,
           "name": "分段广告",
+          "desc": "①点击[广告] ②点击[关闭这条] ③点击[直接关闭]",
           "fastQuery": true,
           "activityIds": [
             "com.qzone.reborn.feedpro.activity.QzoneFriendFeedProActivity",
-            ".activity.SplashActivity",
-            ".guild.base.QPublicFragmentActivityForMainWebActivity"
+            "com.qzone.reborn.layer.part.QzoneFeedProGalleryActivity",
+            ".guild.base.QPublicFragmentActivityForMainWebActivity",
+            "com.qzone.reborn.base.QZoneShellActivity",
+            ".activity.SplashActivity"
           ],
           "rules": [
             {
               "key": 0,
+              "name": "①点击[广告]",
               "activityIds": [
                 "com.qzone.reborn.feedpro.activity.QzoneFriendFeedProActivity",
-                ".guild.base.QPublicFragmentActivityForMainWebActivity"
+                ".guild.base.QPublicFragmentActivityForMainWebActivity",
+                "com.qzone.reborn.base.QZoneShellActivity"
               ],
               "matches": "@[clickable=true] > [text=\"广告\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/21947672",
-                "https://i.gkd.li/i/24404962"
+                "https://i.gkd.li/i/24404962",
+                "https://i.gkd.li/i/28888622"
               ]
             },
             {
@@ -95572,10 +95596,21 @@
               ]
             },
             {
+              "key": 2,
+              "activityIds": [
+                "com.qzone.reborn.layer.part.QzoneFeedProGalleryActivity"
+              ],
+              "matches": "[text=\"广告\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30876372"
+              ]
+            },
+            {
               "key": 50,
               "preKeys": [
                 0,
-                1
+                1,
+                2
               ],
               "name": "②点击[关闭]此条广告",
               "matches": "@[clickable=true] >(1,2) [text^=\"关闭\"][text*=\"条\"][text.length<10]",
@@ -95583,7 +95618,10 @@
                 "https://i.gkd.li/i/21947698",
                 "https://i.gkd.li/i/24381598",
                 "https://i.gkd.li/i/24406932",
-                "https://i.gkd.li/i/26997293"
+                "https://i.gkd.li/i/26997293",
+                "https://i.gkd.li/i/28888643",
+                "https://i.gkd.li/i/28942736",
+                "https://i.gkd.li/i/30876374"
               ]
             },
             {
@@ -95594,7 +95632,21 @@
               "name": "③点击[直接关闭]",
               "matches": "[text=\"直接关闭\"][clickable=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/26997174"
+                "https://i.gkd.li/i/26997174",
+                "https://i.gkd.li/i/28942737",
+                "https://i.gkd.li/i/30876376"
+              ]
+            },
+            {
+              "key": 0,
+              "activityIds": [
+                "com.qzone.reborn.feedpro.activity.QzoneFriendFeedProActivity",
+                ".guild.base.QPublicFragmentActivityForMainWebActivity"
+              ],
+              "matches": "@[clickable=true] > [text=\"广告\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/21947672",
+                "https://i.gkd.li/i/24404962"
               ]
             },
             {
@@ -96883,48 +96935,6 @@
         },
         {
           "key": 38,
-          "name": "分段广告-空友爱看内的广告",
-          "desc": "①点击[广告] ②点击[关闭这条] ③点击[直接关闭]",
-          "fastQuery": true,
-          "activityIds": [
-            "com.qzone.reborn.base.QZoneShellActivity"
-          ],
-          "rules": [
-            {
-              "key": 0,
-              "name": "①点击[广告]",
-              "matches": "@[desc=\"更多\"][clickable=true] > [text=\"广告\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/28888622"
-              ]
-            },
-            {
-              "key": 20,
-              "preKeys": [
-                0
-              ],
-              "name": "②点击[关闭这条]",
-              "matches": "@[clickable=true] > [text=\"关闭此条广告\" || text=\"关闭这条\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/28888643",
-                "https://i.gkd.li/i/28942736"
-              ]
-            },
-            {
-              "key": 50,
-              "preKeys": [
-                20
-              ],
-              "name": "③点击[直接关闭]",
-              "matches": "[text=\"直接关闭\"][clickable=true]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/28942737"
-              ]
-            }
-          ]
-        },
-        {
-          "key": 39,
           "name": "通知提示",
           "desc": "关闭消息推送开启提示",
           "enable": false,
@@ -96941,6 +96951,23 @@
               ]
             }
           ]
+        },
+        {
+          "key": 39,
+          "name": "局部广告-空间相册内广告",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.qzone.reborn.base.QZoneShellActivity"
+              ],
+              "matches": "@ImageView[clickable=true][width<87] <2 [visibleToUser=true] - [childCount=3] >2 [text=\"广告\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30869035"
+              ]
+            }
+          ],
+          "activityIds": []
         },
         {
           "key": 40,
@@ -97180,6 +97207,49 @@
               ],
               "excludeSnapshotUrls": [
                 "https://i.gkd.li/i/21792204"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 46,
+          "name": "分段广告-空友爱看内的广告",
+          "desc": "点击[广告],点击[关闭这条],点击[直接关闭]",
+          "enable": false,
+          "fastQuery": true,
+          "activityIds": [
+            "com.qzone.reborn.base.QZoneShellActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "name": "点击[广告]",
+              "matches": "@[desc=\"更多\"][clickable=true] > [text=\"广告\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28888622"
+              ]
+            },
+            {
+              "key": 20,
+              "preKeys": [
+                0
+              ],
+              "name": "点击[关闭这条]",
+              "matches": "@[clickable=true] > [text=\"关闭此条广告\" || text=\"关闭这条\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28888643",
+                "https://i.gkd.li/i/28942736"
+              ]
+            },
+            {
+              "key": 50,
+              "preKeys": [
+                20
+              ],
+              "name": "点击[直接关闭]",
+              "matches": "[text=\"直接关闭\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/28942737"
               ]
             }
           ]
@@ -124955,6 +125025,36 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/import/13608563"
+              ]
+            }
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "mark.via",
+      "name": "Via",
+      "groups": [
+        {
+          "key": 1,
+          "name": "功能类-自动[确认]下载",
+          "desc": "自动点击下载弹窗中的[确定]按钮",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".Shell"
+              ],
+              "matches": "@[text=\"确定\" || text=\"確定\" || text=\"OK\"] -n [text*=\"下载\" || text*=\"下載\" || text*=\"download\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30865110",
+                "https://i.gkd.li/i/30867153",
+                "https://i.gkd.li/i/30867205",
+                "https://i.gkd.li/i/30867206"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/2f2ef3bf-019d-4936-bbd8-51ba4cbe698c"
               ]
             }
           ],
