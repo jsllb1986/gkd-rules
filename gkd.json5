@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 89,
+  "version": 90,
   "categories": [
     {
       "key": -1,
@@ -38327,6 +38327,33 @@
             "https://i.gkd.li/import/13497990"
           ],
           "enable": false
+        }
+      ]
+    },
+    {
+      "id": "com.duolingo",
+      "name": "Duolingo",
+      "groups": [
+        {
+          "key": 1,
+          "name": "全屏广告-试用会员",
+          "desc": "点击[算了吧]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".splash.LaunchActivity"
+              ],
+              "matches": "[text=\"算了吧\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30885277"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/366f8f0e-fbfe-4892-8fc6-84ab44e4230a"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -81611,37 +81638,36 @@
         {
           "key": 1,
           "name": "开屏广告",
-          "desc": "⚠左上角[跳过按钮]有报告假的/误触",
+          "fastQuery": true,
           "matchRoot": true,
           "matchTime": 10000,
           "actionMaximum": 1,
-          "resetMatch": "app",
           "actionMaximumKey": 0,
+          "resetMatch": "app",
           "priorityTime": 10000,
           "rules": [
             {
               "key": 0,
-              "fastQuery": true,
-              "matches": "[vid=\"tobid_splash_skip_ll\"]",
-              "exampleUrls": [
-                "https://e.gkd.li/b10db699-ed34-4619-b3ca-5821321f4b58"
-              ],
+              "matches": "[vid=\"tobid_splash_skip_ll\"][clickable=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/22136545"
-              ],
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/25509864"
               ]
             },
             {
               "key": 1,
-              "fastQuery": true,
               "matches": "[vid=\"ms_skipView\"][visibleToUser=true]",
-              "exampleUrls": [
-                "https://e.gkd.li/64be8cde-d60d-4c71-ba13-4bcb78842931"
-              ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/23925246"
+              ]
+            },
+            {
+              "key": 2,
+              "matches": "[text*=\"跳过\"][text.length<10][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/30903944"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/30905793"
               ]
             },
             {
@@ -81653,6 +81679,17 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/22136545"
+              ]
+            },
+            {
+              "key": 1,
+              "fastQuery": true,
+              "matches": "[vid=\"ms_skipView\"][visibleToUser=true]",
+              "exampleUrls": [
+                "https://e.gkd.li/64be8cde-d60d-4c71-ba13-4bcb78842931"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/23925246"
               ]
             }
           ],
@@ -128865,7 +128902,7 @@
                 1
               ],
               "name": "②点击[不感兴趣]",
-              "matches": "@[clickable=true] > [text*=\"不感兴趣\" || text=\"相似内容过多\" || text*=\"不想看\" || text$=\"质量差\"]",
+              "matches": "@[clickable=true] > [text*=\"不感兴趣\" || text=\"相似内容过多\" || text*=\"不想看\" || text$=\"质量差\" || text=\"减少直播推荐\" || text=\"和当前视频无关\"]",
               "exampleUrls": [
                 "https://e.gkd.li/23937c2d-379c-4fb5-aaee-7295bcf0afca"
               ],
@@ -128878,7 +128915,8 @@
                 "https://i.gkd.li/i/20739391",
                 "https://i.gkd.li/i/24015691",
                 "https://i.gkd.li/i/24336415",
-                "https://i.gkd.li/i/28659010"
+                "https://i.gkd.li/i/28659010",
+                "https://i.gkd.li/i/30885647"
               ]
             },
             {
