@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 91,
+  "version": 92,
   "categories": [
     {
       "key": -1,
@@ -88733,11 +88733,13 @@
           "rules": [
             {
               "activityIds": [
-                "com.ss.android.ugc.aweme.main.MainActivity"
+                "com.ss.android.ugc.aweme.main.MainActivity",
+                "com.bytedance.locallife.page.pdp.LifePdpActivity"
               ],
               "matches": "[visibleToUser=true][desc^=\"放弃支付\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/30941609"
+                "https://i.gkd.li/i/30941609",
+                "https://i.gkd.li/i/31027911"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/f93e7986-a67c-4f9f-a553-82d683a0d42e"
@@ -94200,128 +94202,27 @@
         },
         {
           "key": 27,
-          "name": "功能类-登录自动授权",
-          "desc": "微信相关平台扫码登录自动授权",
-          "enable": false,
-          "matchTime": 10000,
-          "actionMaximum": 2,
-          "activityIds": [
-            ".plugin.webwx.ui.ExtDeviceWXLoginUI",
-            "com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI",
-            "com.tencent.mm.plugin.webview.ui.tools.MMWebViewUI",
-            "com.tencent.mm.ui.LauncherUI",
-            "com.tencent.mm.plugin.base.stub.UIEntryStub"
-          ],
+          "name": "功能类-收款后自动[返回]",
+          "desc": "已收款,点击左上角退出该界面",
           "rules": [
             {
-              "key": 0,
-              "name": "PC 微信扫码登录",
-              "matches": [
-                "[text^=\"登录 Win\" || text^=\"登录 Mac\" || text^=\"登录桌面\" || text^=\"登入 WeChat\" || text^=\"登入 微信\" || text^=\"Log in to Weixin for\"][visibleToUser=true]",
-                "[text=\"登录\" || text=\"登入\" || text=\"Log In\"][visibleToUser=true]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/13522625",
-                "https://i.gkd.li/import/13522577",
-                "https://i.gkd.li/i/19399694",
-                "https://i.gkd.li/i/22356438",
-                "https://i.gkd.li/i/25315046",
-                "https://i.gkd.li/i/25815630",
-                "https://i.gkd.li/i/26865671"
-              ]
-            },
-            {
-              "key": 1,
-              "name": "浏览器扫码登录",
-              "matches": [
-                "[text^=\"获取你的\"||text^=\"取得你的\"||text^=\"申请使用\"||text^=\"請求使用\"]",
-                "[text=\"允许\"||text=\"允許\"]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/13065462",
-                "https://i.gkd.li/import/12663602",
-                "https://i.gkd.li/import/14164920",
-                "https://i.gkd.li/i/15271716",
-                "https://i.gkd.li/i/18809991",
-                "https://i.gkd.li/i/19496823",
-                "https://i.gkd.li/i/21792855",
-                "https://i.gkd.li/i/16972565"
-              ]
-            },
-            {
-              "key": 2,
-              "name": "网页版文件传输助手扫码登录",
-              "matches": "[text=\"打开网页版文件传输助手\"||text=\"開啟網頁版檔案傳輸助手\"] + * > Button[text=\"打开\"||text=\"開啟\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12793745",
-                "https://i.gkd.li/i/20532303"
-              ]
-            },
-            {
-              "key": 3,
-              "name": "微信表情开发平台扫码登录",
-              "matches": "View[desc=\"取消登录\"||desc=\"取消登入\"] - Button[text=\"登录\"||text=\"登入\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/14164954"
-              ]
-            },
-            {
-              "key": 4,
-              "name": "微信红包封面开放平台扫码登录",
-              "matches": "Button[text=\"取消\"] - Button[text=\"确定\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/14164990"
-              ]
-            },
-            {
-              "key": 5,
-              "name": "微信开发者工具扫码登录",
-              "matches": "[desc=\"取消\"] - [desc=\"确认登录\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/14472990"
-              ]
-            },
-            {
-              "key": 6,
-              "name": "微信读书网页版扫码登录",
-              "matches": "[text=\"微信读书网页版\"] +3 Button[text=\"登 录\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12506197"
-              ]
-            },
-            {
-              "preKeys": [
-                4,
-                6
-              ],
-              "key": 10,
-              "name": "点击[X]返回",
-              "matches": [
-                "[text=\"登录成功\"||text=\"已确定\"]",
-                "ImageView[desc=\"返回\"]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/14193413",
-                "https://i.gkd.li/import/12506201"
-              ]
-            },
-            {
-              "preKeys": [
-                1
-              ],
-              "key": 20,
+              "fastQuery": true,
               "activityIds": [
-                ".plugin.webview.ui.tools.SDKOAuthOtherUI"
+                ".plugin.remittance.ui.RemittanceDetailUI"
               ],
               "matches": [
-                "[text=\"申请获得\"][visibleToUser=true]",
-                "[text=\"允许\"][visibleToUser=true]"
+                "[text*=\"已收款\"] + [text^=\"¥\"]",
+                "[vid=\"actionbar_up_indicator\"][clickable=true]"
               ],
               "snapshotUrls": [
-                "https://i.gkd.li/i/24560465"
+                "https://i.gkd.li/i/31040687"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/49b2d5ee-74a4-48e2-818a-8d3ef4c98930"
               ]
             }
-          ]
+          ],
+          "activityIds": []
         },
         {
           "key": 28,
@@ -94500,28 +94401,125 @@
         },
         {
           "key": 33,
-          "name": "功能类-自动查看原图/原视频",
-          "desc": "浏览图片时自动切换至原图模式",
+          "name": "功能类-登录自动授权",
+          "desc": "微信相关平台扫码登录自动授权",
           "enable": false,
-          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 2,
           "activityIds": [
-            ".ui.chatting.gallery.ImageGalleryUI",
-            ".ui.LauncherUI"
+            ".plugin.webwx.ui.ExtDeviceWXLoginUI",
+            "com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI",
+            "com.tencent.mm.plugin.webview.ui.tools.MMWebViewUI",
+            "com.tencent.mm.ui.LauncherUI",
+            "com.tencent.mm.plugin.base.stub.UIEntryStub"
           ],
           "rules": [
             {
               "key": 0,
+              "name": "PC 微信扫码登录",
               "matches": [
-                "Button[text~=\".*原.*\\\\d+(\\\\.\\\\d+)?\\\\s*[KMG]B?\\\\)?$\"]"
+                "[text^=\"登录 Win\" || text^=\"登录 Mac\" || text^=\"登录桌面\" || text^=\"登入 WeChat\" || text^=\"登入 微信\" || text^=\"Log in to Weixin for\"][visibleToUser=true]",
+                "[text=\"登录\" || text=\"登入\" || text=\"Log In\"][visibleToUser=true]"
               ],
               "snapshotUrls": [
-                "https://i.gkd.li/import/13523031",
-                "https://i.gkd.li/i/14661736",
-                "https://i.gkd.li/i/16833732",
-                "https://i.gkd.li/i/17698956",
-                "https://i.gkd.li/i/19515095",
-                "https://i.gkd.li/i/19645122",
-                "https://i.gkd.li/i/25009442"
+                "https://i.gkd.li/import/13522625",
+                "https://i.gkd.li/import/13522577",
+                "https://i.gkd.li/i/19399694",
+                "https://i.gkd.li/i/22356438",
+                "https://i.gkd.li/i/25315046",
+                "https://i.gkd.li/i/25815630",
+                "https://i.gkd.li/i/26865671"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "浏览器扫码登录",
+              "matches": [
+                "[text^=\"获取你的\"||text^=\"取得你的\"||text^=\"申请使用\"||text^=\"請求使用\"]",
+                "[text=\"允许\"||text=\"允許\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/13065462",
+                "https://i.gkd.li/import/12663602",
+                "https://i.gkd.li/import/14164920",
+                "https://i.gkd.li/i/15271716",
+                "https://i.gkd.li/i/18809991",
+                "https://i.gkd.li/i/19496823",
+                "https://i.gkd.li/i/21792855",
+                "https://i.gkd.li/i/16972565"
+              ]
+            },
+            {
+              "key": 2,
+              "name": "网页版文件传输助手扫码登录",
+              "matches": "[text=\"打开网页版文件传输助手\"||text=\"開啟網頁版檔案傳輸助手\"] + * > Button[text=\"打开\"||text=\"開啟\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12793745",
+                "https://i.gkd.li/i/20532303"
+              ]
+            },
+            {
+              "key": 3,
+              "name": "微信表情开发平台扫码登录",
+              "matches": "View[desc=\"取消登录\"||desc=\"取消登入\"] - Button[text=\"登录\"||text=\"登入\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/14164954"
+              ]
+            },
+            {
+              "key": 4,
+              "name": "微信红包封面开放平台扫码登录",
+              "matches": "Button[text=\"取消\"] - Button[text=\"确定\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/14164990"
+              ]
+            },
+            {
+              "key": 5,
+              "name": "微信开发者工具扫码登录",
+              "matches": "[desc=\"取消\"] - [desc=\"确认登录\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/14472990"
+              ]
+            },
+            {
+              "key": 6,
+              "name": "微信读书网页版扫码登录",
+              "matches": "[text=\"微信读书网页版\"] +3 Button[text=\"登 录\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12506197"
+              ]
+            },
+            {
+              "preKeys": [
+                4,
+                6
+              ],
+              "key": 10,
+              "name": "点击[X]返回",
+              "matches": [
+                "[text=\"登录成功\"||text=\"已确定\"]",
+                "ImageView[desc=\"返回\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/14193413",
+                "https://i.gkd.li/import/12506201"
+              ]
+            },
+            {
+              "preKeys": [
+                1
+              ],
+              "key": 20,
+              "activityIds": [
+                ".plugin.webview.ui.tools.SDKOAuthOtherUI"
+              ],
+              "matches": [
+                "[text=\"申请获得\"][visibleToUser=true]",
+                "[text=\"允许\"][visibleToUser=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/24560465"
               ]
             }
           ]
@@ -95237,6 +95235,34 @@
         },
         {
           "key": 57,
+          "name": "功能类-自动查看原图/原视频",
+          "desc": "浏览图片时自动切换至原图模式",
+          "enable": false,
+          "fastQuery": true,
+          "activityIds": [
+            ".ui.chatting.gallery.ImageGalleryUI",
+            ".ui.LauncherUI"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "matches": [
+                "Button[text~=\".*原.*\\\\d+(\\\\.\\\\d+)?\\\\s*[KMG]B?\\\\)?$\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/13523031",
+                "https://i.gkd.li/i/14661736",
+                "https://i.gkd.li/i/16833732",
+                "https://i.gkd.li/i/17698956",
+                "https://i.gkd.li/i/19515095",
+                "https://i.gkd.li/i/19645122",
+                "https://i.gkd.li/i/25009442"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 58,
           "name": "全屏广告-小程序部分通用广告",
           "desc": "包括部分开屏广告，弹窗广告等",
           "enable": false,
@@ -95314,7 +95340,7 @@
           ]
         },
         {
-          "key": 58,
+          "key": 59,
           "name": "分段广告-订阅号消息页面广告",
           "desc": "自动点击“x”",
           "enable": false,
@@ -128401,6 +128427,9 @@
           "name": "局部广告-视频页广告",
           "desc": "领取大会员月卡,B站免流星卡",
           "fastQuery": true,
+          "activityIds": [
+            "com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity"
+          ],
           "rules": [
             {
               "key": 1,
@@ -128419,15 +128448,22 @@
             },
             {
               "key": 2,
-              "activityIds": [
-                "com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity"
-              ],
               "matches": "@[vid=\"close\"][visibleToUser=true] - [text$=\"免费领B站大会员\"]",
               "exampleUrls": [
                 "https://e.gkd.li/cd934dfc-666e-4562-8b77-aac95f73694e"
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/18165189"
+              ]
+            },
+            {
+              "key": 3,
+              "matches": "[desc=\"close\"] < @[clickable=true] <3 View <2 [childCount=4] < View <2 View < ComposeView < FrameLayout < [vid=\"fl_tab_pager_container\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31067294"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/696de68a-489f-4d42-b652-afbdf7351145"
               ]
             },
             {
@@ -128459,8 +128495,7 @@
                 "https://i.gkd.li/i/18165189"
               ]
             }
-          ],
-          "activityIds": []
+          ]
         },
         {
           "key": 8,
