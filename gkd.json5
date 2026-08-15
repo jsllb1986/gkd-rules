@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 92,
+  "version": 93,
   "categories": [
     {
       "key": -1,
@@ -49755,6 +49755,48 @@
           ],
           "snapshotUrls": "https://i.gkd.li/import/13060881",
           "enable": false
+        }
+      ]
+    },
+    {
+      "id": "com.hihonor.wallet",
+      "name": "荣耀钱包",
+      "groups": [
+        {
+          "key": 1,
+          "name": "功能类-奖励后自动退广告",
+          "desc": "获得奖励后自动退出视频",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.hihonor.adsdk.reward.RewardActivity"
+              ],
+              "matches": "[text=\"已获得奖励\"][visibleToUser=true] <n [vid=\"ad_label_count\"] + [childCount=3] > [vid=\"ad_video_close\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31094041"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 2,
+          "name": "功能类-进广告视频自动关声",
+          "actionMaximum": 1,
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.hihonor.adsdk.reward.RewardActivity"
+              ],
+              "matches": "[vid=\"ad_volume_close\"] > [vid=\"ad_video_volume\"][clickable=true][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31094038"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
