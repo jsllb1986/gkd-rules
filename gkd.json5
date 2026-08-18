@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 94,
+  "version": 95,
   "categories": [
     {
       "key": -1,
@@ -35418,6 +35418,17 @@
               "activityIds": [
                 ".group.activity.GroupTopicActivity"
               ],
+              "matches": "[vid=\"ad_not_interest\" || vid=\"group_ad_not_interest\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31183170",
+                "https://i.gkd.li/i/31183359"
+              ]
+            },
+            {
+              "key": 5,
+              "activityIds": [
+                ".group.activity.GroupTopicActivity"
+              ],
               "matches": "@View[clickable=true][childCount=0][visibleToUser=true] < FrameLayout[desc^=\"dislike\"] -2 FrameLayout >2 [text=\"广告\"]",
               "exampleUrls": [
                 "https://e.gkd.li/11d3ea75-c640-4b91-942e-3bf83b2e5f5e"
@@ -35427,13 +35438,27 @@
               ]
             },
             {
-              "key": 5,
+              "key": 6,
               "activityIds": [
                 ".group.activity.GroupTopicActivity"
               ],
-              "matches": "@Image[childCount=0][visibleToUser=true][text=\"\"] < View[childCount=1] -2 View >2 [childCount=0][text=\"广告\"] <<n [vid=\"structure_header_container\"]",
+              "matches": "@Image[childCount=0][visibleToUser=true][text=\"\"] < View[childCount=1] -2 View >2 [childCount=0][text=\"广告\"] <<n [vid=\"structure_header_container\" || vid=\"llHeaderContainer\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/18424747"
+                "https://i.gkd.li/i/18424747",
+                "https://i.gkd.li/i/31182864"
+              ]
+            },
+            {
+              "key": 7,
+              "activityIds": [
+                ".group.activity.GroupTopicActivity"
+              ],
+              "matches": "@ImageView[visibleToUser=true][width<63 && height<63] <<n [childCount=2] >2 [text^=\"应​用​名​称​：\"][text.length>30]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31183730"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/31183914"
               ]
             },
             {
@@ -35442,17 +35467,21 @@
                 1,
                 2,
                 3,
-                4
+                4,
+                5,
+                6,
+                7
               ],
               "name": "②点击[不感兴趣]",
-              "matches": "@[clickable=true] > [text=\"不感兴趣\"]",
+              "matches": "@[clickable=true] >(1,2) [text=\"不感兴趣\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/18424404",
                 "https://i.gkd.li/i/18424419",
                 "https://i.gkd.li/i/18424574",
                 "https://i.gkd.li/i/18424711",
                 "https://i.gkd.li/i/19615333",
-                "https://i.gkd.li/i/29295746"
+                "https://i.gkd.li/i/29295746",
+                "https://i.gkd.li/i/31182735"
               ],
               "activityIds": [
                 ".activity.SplashActivity",
@@ -35580,6 +35609,30 @@
         },
         {
           "key": 6,
+          "name": "功能类-长按图片后[保存]",
+          "desc": "点击[保存]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".group.activity.GroupTopicActivity",
+                ".baseproject.image.ImageActivity"
+              ],
+              "matches": "[text=\"保存\" || text=\"保存图片到相册\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31184441",
+                "https://i.gkd.li/i/31184665",
+                "https://i.gkd.li/i/31184797"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/f6c2dab4-e87e-4ae5-a778-b97d6cc2b760"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 7,
           "name": "全屏广告-关闭评分反馈弹窗",
           "fastQuery": true,
           "activityIds": [
@@ -35590,60 +35643,6 @@
               "matches": "[text=\"下次再说\"][id=\"com.douban.frodo:id/neutral\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/import/12548314"
-              ]
-            }
-          ],
-          "enable": false
-        },
-        {
-          "key": 7,
-          "name": "局部广告-搜索页/帖子内容与评论区中间的卡片式广告",
-          "desc": "部分有二次弹窗",
-          "actionMaximum": 1,
-          "resetMatch": "activity",
-          "rules": [
-            {
-              "key": 0,
-              "name": "点击【x】关闭型",
-              "activityIds": [
-                "com.douban.frodo.group.activity.GroupTopicActivity"
-              ],
-              "matches": "ImageView[id=null] +(n) LinearLayout[childCount<=2] + FrameLayout[childCount=1] > ImageView[id=null][visibleToUser=true][top>250]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12674798",
-                "https://i.gkd.li/import/12674842",
-                "https://i.gkd.li/import/12723462",
-                "https://i.gkd.li/import/12723800",
-                "https://i.gkd.li/import/13402399",
-                "https://i.gkd.li/import/12548476"
-              ]
-            },
-            {
-              "key": 1,
-              "name": "点击【广告】选原因型",
-              "matches": "[text=\"广告\"][id$=\"ad_not_interest\"]",
-              "activityIds": [
-                "com.douban.frodo.subject.structure.activity.MovieActivity",
-                "com.douban.frodo.subject.activity.ForumTopicActivity",
-                "com.douban.frodo.group.activity.GroupTopicActivity",
-                "com.douban.frodo.activity.SplashActivity",
-                "com.douban.frodo.search.activity.NewSearchActivity"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12548064",
-                "https://i.gkd.li/import/12548450",
-                "https://i.gkd.li/import/12723751",
-                "https://i.gkd.li/import/13062693",
-                "https://i.gkd.li/import/13692895"
-              ]
-            },
-            {
-              "name": "点击【不感兴趣】",
-              "preKeys": 1,
-              "matches": "@LinearLayout[clickable=true] > [id=\"com.douban.frodo:id/mainText\"][text=\"不感兴趣\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12548016",
-                "https://i.gkd.li/import/12723422"
               ]
             }
           ],
@@ -35756,16 +35755,53 @@
         },
         {
           "key": 9,
-          "name": "局部广告-个性化内容推荐弹窗",
-          "desc": "首页底部-个性化内容推荐弹窗-点击卡片右上角x直接关闭",
+          "name": "局部广告-搜索页/帖子内容与评论区中间的卡片式广告",
+          "desc": "部分有二次弹窗",
+          "actionMaximum": 1,
+          "resetMatch": "activity",
           "rules": [
             {
+              "key": 0,
+              "name": "点击【x】关闭型",
               "activityIds": [
-                "com.douban.frodo.activity.SplashActivity"
+                "com.douban.frodo.group.activity.GroupTopicActivity"
               ],
-              "matches": "[id=\"com.douban.frodo:id/info\"][text^=\"开启个性化推荐\"] - [id=\"com.douban.frodo:id/close\"]",
+              "matches": "ImageView[id=null] +(n) LinearLayout[childCount<=2] + FrameLayout[childCount=1] > ImageView[id=null][visibleToUser=true][top>250]",
               "snapshotUrls": [
-                "https://i.gkd.li/import/12836798"
+                "https://i.gkd.li/import/12674798",
+                "https://i.gkd.li/import/12674842",
+                "https://i.gkd.li/import/12723462",
+                "https://i.gkd.li/import/12723800",
+                "https://i.gkd.li/import/13402399",
+                "https://i.gkd.li/import/12548476"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "点击【广告】选原因型",
+              "matches": "[text=\"广告\"][id$=\"ad_not_interest\"]",
+              "activityIds": [
+                "com.douban.frodo.subject.structure.activity.MovieActivity",
+                "com.douban.frodo.subject.activity.ForumTopicActivity",
+                "com.douban.frodo.group.activity.GroupTopicActivity",
+                "com.douban.frodo.activity.SplashActivity",
+                "com.douban.frodo.search.activity.NewSearchActivity"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12548064",
+                "https://i.gkd.li/import/12548450",
+                "https://i.gkd.li/import/12723751",
+                "https://i.gkd.li/import/13062693",
+                "https://i.gkd.li/import/13692895"
+              ]
+            },
+            {
+              "name": "点击【不感兴趣】",
+              "preKeys": 1,
+              "matches": "@LinearLayout[clickable=true] > [id=\"com.douban.frodo:id/mainText\"][text=\"不感兴趣\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12548016",
+                "https://i.gkd.li/import/12723422"
               ]
             }
           ],
@@ -35917,6 +35953,47 @@
         },
         {
           "key": 12,
+          "name": "局部广告-个性化内容推荐弹窗",
+          "desc": "首页底部-个性化内容推荐弹窗-点击卡片右上角x直接关闭",
+          "rules": [
+            {
+              "activityIds": [
+                "com.douban.frodo.activity.SplashActivity"
+              ],
+              "matches": "[id=\"com.douban.frodo:id/info\"][text^=\"开启个性化推荐\"] - [id=\"com.douban.frodo:id/close\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12836798"
+              ]
+            }
+          ],
+          "enable": false
+        },
+        {
+          "key": 13,
+          "name": "其他-标记看过的影视弹窗",
+          "desc": "点击[取消]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".subject.structure.activity.MovieActivity"
+              ],
+              "matches": [
+                "[text=\"标记看过的影视\"][visibleToUser=true]",
+                "[vid=\"cancelLayout\"][visibleToUser=true]"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/8067419c-a902-4750-9e1e-655bfc5c7342"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18717798"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 14,
           "name": "分段广告-信息流广告",
           "desc": "点击关闭-点击不感兴趣",
           "fastQuery": true,
@@ -36006,30 +36083,6 @@
               ]
             }
           ]
-        },
-        {
-          "key": 13,
-          "name": "其他-标记看过的影视弹窗",
-          "desc": "点击[取消]",
-          "rules": [
-            {
-              "fastQuery": true,
-              "activityIds": [
-                ".subject.structure.activity.MovieActivity"
-              ],
-              "matches": [
-                "[text=\"标记看过的影视\"][visibleToUser=true]",
-                "[vid=\"cancelLayout\"][visibleToUser=true]"
-              ],
-              "exampleUrls": [
-                "https://e.gkd.li/8067419c-a902-4750-9e1e-655bfc5c7342"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/18717798"
-              ]
-            }
-          ],
-          "activityIds": []
         }
       ]
     },
@@ -61483,6 +61536,37 @@
       ]
     },
     {
+      "id": "com.liuguang.down",
+      "name": "流光助手",
+      "groups": [
+        {
+          "key": 1,
+          "name": "开屏广告",
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "actionMaximumKey": 0,
+          "resetMatch": "app",
+          "priorityTime": 10000,
+          "rules": [
+            {
+              "key": 0,
+              "fastQuery": true,
+              "matches": "[text*=\"跳过\"][clickable=true][desc.length<10]"
+            },
+            {
+              "key": 1,
+              "matches": "[clickable=true][desc*=\"跳过\"][desc.length<10]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31147124"
+              ]
+            }
+          ],
+          "order": -10,
+          "activityIds": []
+        }
+      ]
+    },
+    {
       "id": "com.liuzh.deviceinfo",
       "name": "设备信息",
       "groups": [
@@ -69621,6 +69705,29 @@
             }
           ],
           "enable": false
+        }
+      ]
+    },
+    {
+      "id": "com.mszmapp.detective",
+      "name": "百变大侦探",
+      "groups": [
+        {
+          "key": 1,
+          "name": "全屏广告-弹窗广告",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".module.home.HomeActivity"
+              ],
+              "matches": "[vid=\"rvActivityPopups\"] + [vid=\"iv_close\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31164272"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -90548,6 +90655,32 @@
             "https://i.gkd.li/import/12843614"
           ],
           "enable": false
+        }
+      ]
+    },
+    {
+      "id": "com.taobao.movie.android",
+      "name": "淘票票",
+      "groups": [
+        {
+          "key": 1,
+          "name": "全屏广告-弹窗广告",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".common.minuscampaign.MinusDialogActivity"
+              ],
+              "matches": "@[clickable=true][width<151] - [vid=\"minus_dialog\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31164402"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/05265ff0-580f-4e4c-8432-9f45626beb5c"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -129683,6 +129816,28 @@
         },
         {
           "key": 33,
+          "name": "其他-完善信息弹窗",
+          "desc": "按[返回键]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "action": "back",
+              "activityIds": [
+                ".MainActivityV2"
+              ],
+              "matches": "[vid=\"design_bottom_sheet\"] >2 [vid=\"title\"][text=\"完善信息，获取精准推荐\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31165755"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/d7565e98-d424-49e1-a137-6b7b46c48cc7"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 34,
           "name": "局部广告-直播间卡片广告",
           "desc": "直播间底部售卖卡片-点击右上角x",
           "fastQuery": true,
@@ -129699,7 +129854,7 @@
         },
         {
           "enable": false,
-          "key": 34,
+          "key": 35,
           "name": "权限提示-请求通知权限弹窗",
           "fastQuery": true,
           "matchTime": 10000,
@@ -129719,7 +129874,7 @@
         },
         {
           "enable": false,
-          "key": 35,
+          "key": 36,
           "name": "局部广告-首页-推荐视频卡片广告",
           "fastQuery": true,
           "activityIds": [
@@ -129748,7 +129903,7 @@
           ]
         },
         {
-          "key": 36,
+          "key": 37,
           "name": "通知提示-订阅感兴趣的通知",
           "fastQuery": true,
           "actionMaximum": 1,
@@ -129770,7 +129925,7 @@
           "enable": false
         },
         {
-          "key": 37,
+          "key": 38,
           "name": "分段广告-动态推荐广告卡片",
           "desc": "关闭动态页面的广告卡片",
           "enable": false,
@@ -129799,7 +129954,7 @@
           ]
         },
         {
-          "key": 38,
+          "key": 39,
           "name": "分段广告-视频卡片广告",
           "desc": "关闭视频流中的广告卡片，包括视频底部、评论区中间、详情页下方等位置",
           "enable": false,
@@ -129932,7 +130087,7 @@
           ]
         },
         {
-          "key": 39,
+          "key": 40,
           "name": "功能类-登录授权",
           "desc": "点击确认授权按钮",
           "enable": false,
