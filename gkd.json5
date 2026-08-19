@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 95,
+  "version": 96,
   "categories": [
     {
       "key": -1,
@@ -69728,6 +69728,28 @@
             }
           ],
           "activityIds": []
+        },
+        {
+          "key": 2,
+          "name": "全屏广告-签到弹窗",
+          "desc": "按[返回键]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "action": "back",
+              "activityIds": [
+                ".module.home.HomeActivity"
+              ],
+              "matches": "[vid=\"vpFragments\"] >3 [vid=\"ivAdCover\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31215860"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/e07ecaa8-d175-418d-963a-c4796bb7ab81"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -74895,9 +74917,11 @@
         {
           "key": 1,
           "name": "功能类-自动[上滑]继续看短剧",
-          "desc": "读秒结束后[上滑]广告页面跳过广告",
+          "desc": "①读秒结束后[上滑] ②4.5秒[上滑]1次",
           "rules": [
             {
+              "key": 1,
+              "name": "①读秒结束后[上滑]",
               "fastQuery": true,
               "swipeArg": {
                 "start": {
@@ -74922,6 +74946,29 @@
               ],
               "exampleUrls": [
                 "https://e.gkd.li/36e57d51-d134-4507-9aca-ada9e71b9b14"
+              ]
+            },
+            {
+              "key": 2,
+              "name": "②4.5秒[上滑]1次",
+              "actionCd": 4500,
+              "swipeArg": {
+                "start": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.7"
+                },
+                "end": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.3"
+                },
+                "duration": 200
+              },
+              "activityIds": [
+                "com.dragon.read.component.shortvideo.impl.fullscreen.ShortSeriesLandActivity"
+              ],
+              "matches": "[visibleToUser=true][desc=\"广告\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29092652"
               ]
             }
           ],
