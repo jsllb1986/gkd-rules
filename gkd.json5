@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 100,
+  "version": 101,
   "categories": [
     {
       "key": -1,
@@ -36299,9 +36299,10 @@
               "activityIds": [
                 ".pages.main.MainFragmentActivity"
               ],
-              "matches": "@ImageView[clickable=true] + ViewGroup[vid=\"root_view\"] > [text=\"立即领取\"]",
+              "matches": "@ImageView[clickable=true][visibleToUser=true] + ViewGroup[vid=\"root_view\"] >n [text$=\"领取\"][visibleToUser=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/31327606"
+                "https://i.gkd.li/i/31327606",
+                "https://i.gkd.li/i/31410963"
               ]
             },
             {
