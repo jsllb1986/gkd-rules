@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 101,
+  "version": 102,
   "categories": [
     {
       "key": -1,
@@ -40881,28 +40881,6 @@
         },
         {
           "key": 35,
-          "name": "功能类-进入阿宝AI助手自动点击退出",
-          "rules": [
-            {
-              "fastQuery": true,
-              "activityIds": [
-                ".AlipayLogin"
-              ],
-              "actionDelay": 200,
-              "actionCd": 200,
-              "matches": "[id=\"com.alipay.android.phone.product_jinni_assistant:id/fl_close\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/30699639"
-              ],
-              "exampleUrls": [
-                "https://github.com/user-attachments/assets/ef38deb5-dd80-4194-8206-38ffc06b9bbe"
-              ]
-            }
-          ],
-          "activityIds": []
-        },
-        {
-          "key": 36,
           "name": "分段广告-出行扫码广告",
           "desc": "关闭扫码出行页面的推广广告",
           "enable": false,
@@ -40934,7 +40912,7 @@
           ]
         },
         {
-          "key": 37,
+          "key": 36,
           "name": "功能类-关闭免密支付开关",
           "desc": "关闭免密支付功能开关",
           "enable": false,
@@ -69485,6 +69463,44 @@
             }
           ],
           "enable": false
+        }
+      ]
+    },
+    {
+      "id": "com.moonshot.kimichat",
+      "name": "Kimi",
+      "groups": [
+        {
+          "key": 1,
+          "name": "评价提示",
+          "rules": [
+            {
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "[text=\"残忍拒绝\"] < @View[clickable=true] -n [text^=\"感谢喜欢 Kimi\"][text*=\"打个分吧\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31449987"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 2,
+          "name": "权限提示-通知权限",
+          "rules": [
+            {
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "[text=\"稍后再说\"] < @View[clickable=true] -n [text=\"开启通知\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31450087"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -106046,7 +106062,8 @@
           "name": "开屏广告",
           "fastQuery": true,
           "matchTime": 10000,
-          "actionMaximum": 1,
+          "actionCd": 500,
+          "actionMaximum": 3,
           "resetMatch": "app",
           "actionMaximumKey": 0,
           "priorityTime": 10000,
