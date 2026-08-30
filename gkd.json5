@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 104,
+  "version": 105,
   "categories": [
     {
       "key": -1,
@@ -17377,6 +17377,7 @@
           "rules": [
             {
               "fastQuery": true,
+              "forcedTime": 10000,
               "activityIds": [
                 ".PackageInstallerActivity",
                 ".PackageInterceptActivity",
@@ -40125,13 +40126,13 @@
           "key": 14,
           "name": "全屏广告-支付后的推荐弹窗",
           "desc": "点击关闭",
+          "fastQuery": true,
+          "activityIds": [
+            "com.alipay.android.msp.ui.views.MspContainerActivity"
+          ],
           "rules": [
             {
               "key": 0,
-              "fastQuery": true,
-              "activityIds": [
-                "com.alipay.android.msp.ui.views.MspContainerActivity"
-              ],
               "matches": [
                 "[text$=\"推荐你\"][visibleToUser=true]",
                 "@[clickable=true] > [text=\"关闭\"]"
@@ -40149,20 +40150,35 @@
             {
               "key": 1,
               "name": "花呗开通提示",
+              "matches": [
+                "[text*=\"花呗\"][text^=\"开通\" || text^=\"下次支付\"]",
+                "@[clickable=true] > [text=\"关闭\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/27007114",
+                "https://i.gkd.li/i/31612291"
+              ]
+            },
+            {
               "fastQuery": true,
               "activityIds": [
                 "com.alipay.android.msp.ui.views.MspContainerActivity"
               ],
               "matches": [
-                "[text^=\"开通\"][text*=\"花呗\"]",
+                "[text$=\"推荐你\"][visibleToUser=true]",
                 "@[clickable=true] > [text=\"关闭\"]"
               ],
+              "exampleUrls": [
+                "https://m.gkd.li/57941037/8daecaeb-35f0-4f3a-8d5a-a19098a992d5"
+              ],
               "snapshotUrls": [
-                "https://i.gkd.li/i/27007114"
+                "https://i.gkd.li/i/14060628",
+                "https://i.gkd.li/i/14893122",
+                "https://i.gkd.li/i/15050300",
+                "https://i.gkd.li/i/20684144"
               ]
             }
-          ],
-          "activityIds": []
+          ]
         },
         {
           "key": 15,
@@ -46828,12 +46844,14 @@
           "resetMatch": "app",
           "rules": [
             {
+              "fastQuery": true,
               "activityIds": [
                 "com.mc10086.cmcc.view.tabs.AppTabFragment"
               ],
-              "matches": "[vid=\"ad_image\"] < RelativeLayout + [vid=\"close_btn\"]",
+              "matches": "@[vid=\"close_btn\" || vid=\"iv_close_top\"] <n LinearLayout >2 [vid=\"ad_image\" || vid=\"ll_ad_logo\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/12662361"
+                "https://i.gkd.li/i/12662361",
+                "https://i.gkd.li/i/31612036"
               ]
             },
             {
@@ -106636,10 +106654,11 @@
             },
             {
               "key": 1,
-              "matches": "@[name$=\"View\"][clickable=true][width<500 && height<300] <3 FrameLayout[childCount=4] <<(2,4) [vid=\"adsFl\"]",
+              "matches": "@[name$=\"View\"][clickable=true][width<500 && height<300] <3 FrameLayout[childCount=4] <<(2,3,4) [vid=\"adsFl\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/26332230",
-                "https://i.gkd.li/i/26462322"
+                "https://i.gkd.li/i/26462322",
+                "https://i.gkd.li/i/31610751"
               ]
             }
           ],
