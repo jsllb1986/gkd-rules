@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 105,
+  "version": 106,
   "categories": [
     {
       "key": -1,
@@ -78635,6 +78635,18 @@
           "rules": [
             {
               "key": 0,
+              "fastQuery": true,
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "[vid=\"box_custom\"] >2 [vid=\"ivClose\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31689742",
+                "https://i.gkd.li/i/31689746"
+              ]
+            },
+            {
+              "key": 1,
               "activityIds": [
                 ".MainActivity"
               ],
@@ -78680,6 +78692,46 @@
               "matches": "[id=\"android:id/content\"] >5 View[childCount=6] > ImageView[index=5][clickable=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/14290847"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 3,
+          "name": "权限提示-定位权限",
+          "desc": "底部横幅, 点击x掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "[vid=\"location_layout\"] > [vid=\"iv_close\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31689754"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 4,
+          "name": "其他-点击1次[只看可抢]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "actionMaximum": 1,
+              "resetMatch": "app",
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "@[vid=\"switchBtn\"] - [text=\"只看可抢\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31689754"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/d856c10c-b772-423a-a740-73be7cc7e091"
               ]
             }
           ],
@@ -94695,7 +94747,8 @@
                 "minimum": 2980
               },
               "activityIds": [
-                ".plugin.lite.ui.WxaLiteAppTransparentLiteUI"
+                ".plugin.lite.ui.WxaLiteAppTransparentLiteUI",
+                ".plugin.lite.ui.WxaLiteAppLiteUI"
               ],
               "matches": "@Button[desc=\"完成\" || desc=\"返回商家\" || desc=\"Done\"][visibleToUser=true] -n [desc=\"支付成功\"] < * <<6 FrameLayout <<3 [id=\"android:id/content\"]",
               "exampleUrls": [
@@ -94703,7 +94756,8 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/24141842",
-                "https://i.gkd.li/i/29681932"
+                "https://i.gkd.li/i/29681932",
+                "https://i.gkd.li/i/31693084"
               ]
             },
             {
@@ -128884,27 +128938,27 @@
         },
         {
           "key": 3,
-          "name": "局部广告-视频悬浮广告",
-          "desc": "领取大会员月卡,B站免流星卡",
-          "fastQuery": true,
-          "matchTime": 10000,
-          "actionMaximum": 1,
-          "activityIds": [
-            "com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity",
-            "com.bilibili.video.videodetail.VideoDetailsActivity"
-          ],
+          "name": "功能类-自动[展开]视频简介",
+          "desc": "点击横版视频标题右侧",
           "rules": [
-            "[id=\"tv.danmaku.bili:id/toast_x\"]"
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity"
+              ],
+              "matches": "@[vid=\"arrow\"] <2 [childCount=2] + [visibleToUser=true] > [vid=\"desc\"][visibleToUser=false]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31691020"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/31691968"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/977a9ad8-63d6-4b7d-a5f8-78ba5632b91a"
+              ]
+            }
           ],
-          "snapshotUrls": [
-            "https://i.gkd.li/import/12892611",
-            "https://i.gkd.li/import/13308344",
-            "https://i.gkd.li/import/13538048"
-          ],
-          "exampleUrls": [
-            "https://github.com/gkd-kit/inspect/assets/38517192/110db806-3f8b-4cd2-a445-06c5f5eb21eb"
-          ],
-          "enable": false
+          "activityIds": []
         },
         {
           "key": 4,
@@ -130242,6 +130296,30 @@
         },
         {
           "key": 34,
+          "name": "局部广告-视频悬浮广告",
+          "desc": "领取大会员月卡,B站免流星卡",
+          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "activityIds": [
+            "com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity",
+            "com.bilibili.video.videodetail.VideoDetailsActivity"
+          ],
+          "rules": [
+            "[id=\"tv.danmaku.bili:id/toast_x\"]"
+          ],
+          "snapshotUrls": [
+            "https://i.gkd.li/import/12892611",
+            "https://i.gkd.li/import/13308344",
+            "https://i.gkd.li/import/13538048"
+          ],
+          "exampleUrls": [
+            "https://github.com/gkd-kit/inspect/assets/38517192/110db806-3f8b-4cd2-a445-06c5f5eb21eb"
+          ],
+          "enable": false
+        },
+        {
+          "key": 35,
           "name": "局部广告-直播间卡片广告",
           "desc": "直播间底部售卖卡片-点击右上角x",
           "fastQuery": true,
@@ -130258,7 +130336,7 @@
         },
         {
           "enable": false,
-          "key": 35,
+          "key": 36,
           "name": "权限提示-请求通知权限弹窗",
           "fastQuery": true,
           "matchTime": 10000,
@@ -130278,7 +130356,7 @@
         },
         {
           "enable": false,
-          "key": 36,
+          "key": 37,
           "name": "局部广告-首页-推荐视频卡片广告",
           "fastQuery": true,
           "activityIds": [
@@ -130307,7 +130385,7 @@
           ]
         },
         {
-          "key": 37,
+          "key": 38,
           "name": "通知提示-订阅感兴趣的通知",
           "fastQuery": true,
           "actionMaximum": 1,
@@ -130329,7 +130407,7 @@
           "enable": false
         },
         {
-          "key": 38,
+          "key": 39,
           "name": "分段广告-动态推荐广告卡片",
           "desc": "关闭动态页面的广告卡片",
           "enable": false,
@@ -130358,7 +130436,7 @@
           ]
         },
         {
-          "key": 39,
+          "key": 40,
           "name": "分段广告-视频卡片广告",
           "desc": "关闭视频流中的广告卡片，包括视频底部、评论区中间、详情页下方等位置",
           "enable": false,
@@ -130491,7 +130569,7 @@
           ]
         },
         {
-          "key": 40,
+          "key": 41,
           "name": "功能类-登录授权",
           "desc": "点击确认授权按钮",
           "enable": false,
