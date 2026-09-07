@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 108,
+  "version": 109,
   "categories": [
     {
       "key": -1,
@@ -11969,14 +11969,25 @@
         {
           "key": 1,
           "name": "全屏广告",
-          "desc": "点击[x]掉",
+          "desc": "点击x掉",
+          "fastQuery": true,
+          "activityIds": [
+            "com.example.anxiaojia.MainActivity"
+          ],
           "rules": [
             {
-              "key": 1,
-              "fastQuery": true,
-              "activityIds": [
-                "com.example.anxiaojia.MainActivity"
+              "key": 0,
+              "matches": "ImageView - @FrameLayout[childCount=1] - LinearLayout[index=0] >3 [text*=\"跳转至\"][text*=\"或\"][text.length>10]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31909890",
+                "https://i.gkd.li/i/31909892"
               ],
+              "exampleUrls": [
+                "https://e.gkd.li/3e1be68a-42b7-4b76-8f37-5e1686131c07"
+              ]
+            },
+            {
+              "key": 1,
               "matches": "@View[id=\"\"][text=null][clickable=true][width<107][height<107] - ImageView[width>540] < [childCount=2] < View < View < View < FrameLayout < [id=\"android:id/content\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/27126440"
@@ -11992,8 +12003,7 @@
                 "https://i.gkd.li/i/30507034"
               ]
             }
-          ],
-          "activityIds": []
+          ]
         },
         {
           "key": 2,
@@ -12010,6 +12020,28 @@
               "matches": "@[desc=\"下次再说\"] <n View < View < View < View < FrameLayout < [id=\"android:id/content\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/28833151"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 3,
+          "name": "局部广告",
+          "desc": "点击x掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.example.anxiaojia.MainActivity"
+              ],
+              "matches": "@ImageView[clickable=true][width<91] - [text$=\"详情\"][text.length<10]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31909604",
+                "https://i.gkd.li/i/31909610"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/48938d69-52df-4da8-b387-715fd5ee03a3"
               ]
             }
           ],
@@ -43039,6 +43071,33 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/16759322"
+              ]
+            }
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "com.fenbi.android.zhaojiao",
+      "name": "粉笔教师",
+      "groups": [
+        {
+          "key": 1,
+          "name": "全屏广告-弹窗广告",
+          "desc": "点击x掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.fenbi.android.module.home.HomeActivity"
+              ],
+              "matches": "[text=\"广告\"] + [vid=\"close\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/31909044"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/0071fce0-92a4-45a3-84fe-973351facf6e"
               ]
             }
           ],
@@ -76705,6 +76764,10 @@
           "rules": [
             {
               "fastQuery": true,
+              "actionDelay": 300,
+              "forcedTime": 10000,
+              "actionMaximum": 1,
+              "resetMatch": "match",
               "activityIds": [
                 ".ui.activity.CircleHomePageActivity"
               ],
@@ -90722,11 +90785,12 @@
                 ".maincontainer.activity.MainActivity",
                 ".detail.DetailActivity"
               ],
-              "matches": "@[longClickable=true][childCount=0][height>width] < [childCount>1] >(1,4) [text=\"广告\"][visibleToUser=true]",
+              "matches": "@[longClickable=true][childCount=0][height>width] < [childCount>1] >(1,3,4) [text=\"广告\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/19604324",
                 "https://i.gkd.li/i/29751786",
-                "https://i.gkd.li/i/29753749"
+                "https://i.gkd.li/i/29753749",
+                "https://i.gkd.li/i/31875408"
               ],
               "excludeSnapshotUrls": [
                 "https://i.gkd.li/i/29753324"
@@ -90800,6 +90864,26 @@
                 ".search_implement.SearchResultActivity"
               ],
               "matches": "[parent=null]"
+            },
+            {
+              "key": 2,
+              "action": "longClick",
+              "activityIds": [
+                ".maincontainer.activity.MainActivity",
+                ".detail.DetailActivity"
+              ],
+              "matches": "@[longClickable=true][childCount=0][height>width] < [childCount>1] >(1,4) [text=\"广告\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/19604324",
+                "https://i.gkd.li/i/29751786",
+                "https://i.gkd.li/i/29753749"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/29753324"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/738c623e-58fe-45a1-9a28-957f0f812c72"
+              ]
             }
           ],
           "activityIds": []
