@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 109,
+  "version": 110,
   "categories": [
     {
       "key": -1,
@@ -11968,7 +11968,7 @@
       "groups": [
         {
           "key": 1,
-          "name": "全屏广告",
+          "name": "全屏广告-弹窗广告",
           "desc": "点击x掉",
           "fastQuery": true,
           "activityIds": [
@@ -11976,7 +11976,14 @@
           ],
           "rules": [
             {
-              "key": 0,
+              "key": 1,
+              "matches": "@[vid=\"leyou_tv_close\"] - [vid=\"leyou_iv_ad\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32037567"
+              ]
+            },
+            {
+              "key": 2,
               "matches": "ImageView - @FrameLayout[childCount=1] - LinearLayout[index=0] >3 [text*=\"跳转至\"][text*=\"或\"][text.length>10]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/31909890",
@@ -11987,20 +11994,40 @@
               ]
             },
             {
-              "key": 1,
+              "key": 3,
               "matches": "@View[id=\"\"][text=null][clickable=true][width<107][height<107] - ImageView[width>540] < [childCount=2] < View < View < View < FrameLayout < [id=\"android:id/content\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/27126440"
               ]
             },
             {
-              "key": 2,
+              "key": 4,
               "activityIds": [
                 "com.byazt.x.Stub_Standard_Portrait_Activity"
               ],
               "matches": "@Image[width<72] < View < View - View > [visibleToUser=true][text=\"反馈\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/30507034"
+              ]
+            },
+            {
+              "key": 5,
+              "activityIds": [
+                "cj.mobile.fw.activity.PtgInteractionPortraitActivity"
+              ],
+              "matches": "[vid=\"closeAdvertLayout\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32036987"
+              ]
+            },
+            {
+              "key": 6,
+              "activityIds": [
+                "com.beizi.ad.v2.activity.BeiZiNewInterstitialActivity"
+              ],
+              "matches": "[vid=\"beizi_interstitial_ad_close_container_rl\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32038130"
               ]
             }
           ]
@@ -12029,23 +12056,33 @@
           "key": 3,
           "name": "局部广告",
           "desc": "点击x掉",
+          "fastQuery": true,
+          "activityIds": [
+            "com.example.anxiaojia.MainActivity"
+          ],
           "rules": [
             {
-              "fastQuery": true,
-              "activityIds": [
-                "com.example.anxiaojia.MainActivity"
-              ],
-              "matches": "@ImageView[clickable=true][width<91] - [text$=\"详情\"][text.length<10]",
+              "key": 1,
+              "matches": "@ImageView[clickable=true][width<91] <3 FrameLayout[childCount>4] > [text$=\"详情\" || text=\"AD\" || text*=\"了解\"][text.length<10]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/31909604",
-                "https://i.gkd.li/i/31909610"
+                "https://i.gkd.li/i/31909610",
+                "https://i.gkd.li/i/32036980",
+                "https://i.gkd.li/i/32037808"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/48938d69-52df-4da8-b387-715fd5ee03a3"
               ]
+            },
+            {
+              "key": 2,
+              "matches": "@ImageView[clickable=true][width<91] -(1,2) TextView[text*=\"快手\" || text*=\"红果\" || text*=\"淘宝\" || text*=\"京东\" || text*=\"拼多多\" || text*=\"美团\" || text*=\"饿了么\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32036977",
+                "https://i.gkd.li/i/32037625"
+              ]
             }
-          ],
-          "activityIds": []
+          ]
         }
       ]
     },
@@ -82005,6 +82042,27 @@
             }
           ],
           "order": -10,
+          "activityIds": []
+        },
+        {
+          "key": 1,
+          "name": "全屏广告-弹窗广告",
+          "desc": "点击x掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".ui.main.MainFragmentActivity"
+              ],
+              "matches": "[vid=\"iv_ad\"] + [vid=\"ivClose\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32035807"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/284033d3-fd1b-4e24-92ab-d807c7ddbde7"
+              ]
+            }
+          ],
           "activityIds": []
         }
       ]
