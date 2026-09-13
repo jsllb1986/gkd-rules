@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 112,
+  "version": 113,
   "categories": [
     {
       "key": -1,
@@ -1997,6 +1997,11 @@
         },
         {
           "id": "com.coloros.weather2",
+          "enable": false,
+          "groups": []
+        },
+        {
+          "id": "com.yingyonghui.market",
           "enable": false,
           "groups": []
         },
@@ -117004,6 +117009,26 @@
       "id": "com.yingyonghui.market",
       "name": "应用汇",
       "groups": [
+        {
+          "key": 0,
+          "name": "开屏广告",
+          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "priorityTime": 10000,
+          "rules": [
+            {
+              "key": 0,
+              "matches": "[vid=\"splashAdvert_skipLayout\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32155585"
+              ]
+            }
+          ],
+          "order": -10,
+          "activityIds": []
+        },
         {
           "key": 1,
           "name": "全屏广告-弹窗广告",
