@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 119,
+  "version": 120,
   "categories": [
     {
       "key": -1,
@@ -118922,6 +118922,33 @@
               "matches": "TextView[id=\"com.yujian.ResideMenuDemo:id/btn_selectOther\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13224234"
+              ]
+            }
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "com.yunx.app",
+      "name": "云析",
+      "groups": [
+        {
+          "key": 1,
+          "name": "权限提示-忽略电池优化",
+          "desc": "点击[暂不]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".MainActivity"
+              ],
+              "matches": "[text=\"暂不\"] < @View[clickable=true] <3 View[getChild(0).text=\"保持后台下载\"] < View < View < View < ViewGroup < [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32522962"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/6fc05152-c83a-488b-b74d-2a4fe247ee58"
               ]
             }
           ],
