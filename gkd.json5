@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 120,
+  "version": 121,
   "categories": [
     {
       "key": -1,
@@ -124022,15 +124022,20 @@
           "key": 1,
           "name": "全屏广告-我的",
           "fastQuery": true,
-          "actionMaximum": 1,
+          "activityIds": [
+            "com.zzw.october.MainActivity"
+          ],
           "rules": [
             {
-              "activityIds": [
-                "com.zzw.october.MainActivity"
-              ],
               "matches": "FrameLayout[childCount=5] > FrameLayout > ImageView[text=null]",
               "snapshotUrls": [
                 "https://i.gkd.li/import/14661569"
+              ]
+            },
+            {
+              "matches": "@ImageView < FrameLayout[id=\"com.zzw.october:id/fl_close\"] < [id=\"com.zzw.october:id/dialog_root\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32597470"
               ]
             }
           ],
@@ -124203,14 +124208,20 @@
           "activityIds": [
             "com.zzw.october.MainActivity"
           ],
+          "fastQuery": true,
           "rules": [
             {
               "key": 1,
-              "fastQuery": true,
               "matches": "[id=\"com.zzw.october:id/interact_ad_root\"] >n ImageView[id=\"com.zzw.october:id/iv_close\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/import/12842675",
                 "https://i.gkd.li/import/12869369"
+              ]
+            },
+            {
+              "matches": "@ImageView < FrameLayout - FrameLayout > TextView[text=\"进入小程序\"] - FrameLayout > [text=\"上滑或点击按钮查看详情\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32597173"
               ]
             }
           ],
