@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 121,
+  "version": 122,
   "categories": [
     {
       "key": -1,
@@ -59790,6 +59790,40 @@
         },
         {
           "key": 9,
+          "name": "功能类-刷到直播时[上滑]",
+          "desc": "不想看直播,划掉",
+          "rules": [
+            {
+              "fastQuery": true,
+              "matchRoot": true,
+              "actionCd": 300,
+              "actionDelay": 200,
+              "swipeArg": {
+                "start": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.6"
+                },
+                "end": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.3"
+                },
+                "duration": 200
+              },
+              "activityIds": [
+                "com.yxcorp.gifshow.HomeActivity"
+              ],
+              "matches": "[vid=\"layout_root_hot_live_play\" || text=\"直播中\" || text=\"直播卖货\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29029433",
+                "https://i.gkd.li/i/29211656",
+                "https://i.gkd.li/i/30167631"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 10,
           "name": "局部广告-悬浮广告",
           "desc": "点击关闭",
           "rules": [
@@ -88641,7 +88675,7 @@
         {
           "key": 24,
           "name": "功能类-刷到推广视频时[上滑]",
-          "desc": "广告/应用/购物/游戏/咨询/服务/预约/子薇剧场 等推广视频",
+          "desc": "广告/应用/购物/咨询/服务/预约/子薇剧场 等推广视频",
           "rules": [
             {
               "fastQuery": true,
@@ -88661,7 +88695,7 @@
               "activityIds": [
                 ".main.MainActivity"
               ],
-              "matches": "([visibleToUser=true] > [text$=\"广告\" || text$=\"（推广）\"][vid=\"desc\" || desc=\"广告\"]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"服务\" || text=\"预约\" || text=\"子薇剧场\"][text.length<6][index=1][visibleToUser=true]) || (ViewGroup[childCount=5] > ImageView +3 [text^=\"已售\" || text^=\" 已售\"] - TextView - [text=\"讲解中 丨 \"][index=1][visibleToUser=true])",
+              "matches": "([visibleToUser=true] > [text$=\"广告\" || text$=\"（推广）\"][vid=\"desc\" || desc=\"广告\"]) || ([text=\"应用\" || text=\"购物\" || text=\"咨询\" || text=\"服务\" || text=\"预约\" || text=\"子薇剧场\"][text.length<6][index=1][visibleToUser=true]) || (ViewGroup[childCount=5] > ImageView +3 [text^=\"已售\" || text^=\" 已售\"] - TextView - [text=\"讲解中 丨 \"][index=1][visibleToUser=true])",
               "snapshotUrls": [
                 "https://i.gkd.li/i/21142063",
                 "https://i.gkd.li/i/29403811",
@@ -88669,8 +88703,6 @@
                 "https://i.gkd.li/i/29403301",
                 "https://i.gkd.li/i/21142589",
                 "https://i.gkd.li/i/21142249",
-                "https://i.gkd.li/i/21142871",
-                "https://i.gkd.li/i/21725628",
                 "https://i.gkd.li/i/25355868",
                 "https://i.gkd.li/i/29403479",
                 "https://i.gkd.li/i/21765934",
@@ -88686,25 +88718,37 @@
         },
         {
           "key": 25,
-          "name": "全屏广告-视频播放中途插入的打招呼界面",
-          "activityIds": [
-            "com.ss.android.ugc.aweme.main.MainActivity"
-          ],
+          "name": "功能类-刷到直播时[上滑]",
+          "desc": "不想看直播,划掉",
           "rules": [
-            "FrameLayout > @[desc=\"关闭\"] + ViewGroup > [text$=\"打个招呼\"]",
             {
               "fastQuery": true,
+              "actionCd": 300,
+              "actionDelay": 200,
+              "swipeArg": {
+                "start": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.6"
+                },
+                "end": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.3"
+                },
+                "duration": 200
+              },
               "activityIds": [
-                "com.ss.android.ugc.aweme.main.MainActivity"
+                ".main.MainActivity"
               ],
-              "matches": "@[desc=\"关闭\"] + ViewGroup > [text$=\"打个招呼\"][visibleToUser=true]",
+              "matches": "[desc*=\"点击进入直播间\"] < [childCount>1] < FrameLayout < [childCount=1] < [visibleToUser=true] < [vid=\"root_view\"] <2 [vid=\"viewpager\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/13379307"
+                "https://i.gkd.li/i/32612015"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/9f3f9eb2-4e56-4744-874c-223e28f5ddfe"
               ]
             }
           ],
-          "snapshotUrls": "https://i.gkd.li/import/13379307",
-          "enable": false
+          "activityIds": []
         },
         {
           "key": 26,
@@ -89037,24 +89081,25 @@
         },
         {
           "key": 35,
-          "name": "全屏广告-关闭商城推荐",
-          "desc": "点击【不感兴趣】",
+          "name": "全屏广告-视频播放中途插入的打招呼界面",
+          "activityIds": [
+            "com.ss.android.ugc.aweme.main.MainActivity"
+          ],
           "rules": [
-            "@[text=\"不感兴趣\"][clickable=true] + [text=\"去商城搜索更多\"]",
+            "FrameLayout > @[desc=\"关闭\"] + ViewGroup > [text$=\"打个招呼\"]",
             {
               "fastQuery": true,
               "activityIds": [
                 "com.ss.android.ugc.aweme.main.MainActivity"
               ],
-              "matches": "@[text=\"不感兴趣\"][clickable=true] + [text=\"去商城搜索更多\"]",
+              "matches": "@[desc=\"关闭\"] + ViewGroup > [text$=\"打个招呼\"][visibleToUser=true]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/13800207"
+                "https://i.gkd.li/i/13379307"
               ]
             }
           ],
-          "snapshotUrls": "https://i.gkd.li/import/13800207",
-          "enable": false,
-          "activityIds": []
+          "snapshotUrls": "https://i.gkd.li/import/13379307",
+          "enable": false
         },
         {
           "key": 36,
@@ -89157,6 +89202,27 @@
         },
         {
           "key": 40,
+          "name": "全屏广告-关闭商城推荐",
+          "desc": "点击【不感兴趣】",
+          "rules": [
+            "@[text=\"不感兴趣\"][clickable=true] + [text=\"去商城搜索更多\"]",
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.ss.android.ugc.aweme.main.MainActivity"
+              ],
+              "matches": "@[text=\"不感兴趣\"][clickable=true] + [text=\"去商城搜索更多\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13800207"
+              ]
+            }
+          ],
+          "snapshotUrls": "https://i.gkd.li/import/13800207",
+          "enable": false,
+          "activityIds": []
+        },
+        {
+          "key": 41,
           "name": "全屏广告-视频推荐广告",
           "desc": "通过返回操作跳过广告",
           "rules": [
@@ -89192,7 +89258,7 @@
           ]
         },
         {
-          "key": 41,
+          "key": 42,
           "name": "局部广告-关闭用户推荐",
           "rules": [
             {
@@ -89210,7 +89276,7 @@
           "enable": false
         },
         {
-          "key": 42,
+          "key": 43,
           "name": "功能类-设置无声进入抖音弹窗",
           "desc": "点击[拒绝]",
           "rules": [
@@ -89228,7 +89294,7 @@
           "enable": false
         },
         {
-          "key": 43,
+          "key": 44,
           "name": "功能类-[添加快捷方式到桌面]弹窗",
           "desc": "关闭弹窗",
           "actionMaximum": 1,
@@ -89280,7 +89346,7 @@
           "enable": false
         },
         {
-          "key": 44,
+          "key": 45,
           "name": "局部广告-拍同款弹窗",
           "desc": "点击不感兴趣",
           "rules": [
@@ -89298,7 +89364,7 @@
           "enable": false
         },
         {
-          "key": 45,
+          "key": 46,
           "name": "全屏广告-[去首页商城]弹窗",
           "desc": "点击[知道了]",
           "rules": [
@@ -89324,7 +89390,7 @@
           "enable": false
         },
         {
-          "key": 46,
+          "key": 47,
           "name": "全屏广告-低价秒杀券弹窗",
           "desc": "点击关闭",
           "rules": [
@@ -89349,7 +89415,7 @@
           "enable": false
         },
         {
-          "key": 47,
+          "key": 48,
           "name": "权限提示-请求访问通讯录弹窗",
           "desc": "点击[拒绝]",
           "actionMaximum": 1,
@@ -89374,6 +89440,38 @@
             }
           ],
           "enable": false
+        },
+        {
+          "key": 2401,
+          "name": "功能类-刷到游戏视频时[上滑]",
+          "desc": "游戏类推广视频",
+          "rules": [
+            {
+              "fastQuery": true,
+              "actionCd": 300,
+              "actionDelay": 200,
+              "swipeArg": {
+                "start": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.6"
+                },
+                "end": {
+                  "x": "screenWidth/2",
+                  "y": "screenHeight * 0.3"
+                },
+                "duration": 200
+              },
+              "activityIds": [
+                ".main.MainActivity"
+              ],
+              "matches": "[text$=\"游戏\"][text.length<6][index=1][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/21142871",
+                "https://i.gkd.li/i/21725628"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
@@ -89663,11 +89761,12 @@
                 "com.ss.android.ugc.aweme.detail.ultra.ui.UltraDetailActivity",
                 "com.ss.android.ugc.aweme.detail.ui.DetailActivity"
               ],
-              "matches": "([text$=\"广告 展开\" || text$=\"广告 收起\"][vid=\"desc\"][visibleToUser=true]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"子薇剧场\" || text=\"预约\"][text.length<6][index=1][visibleToUser=true])",
+              "matches": "([text$=\"广告 展开\" || text$=\"广告 收起\" || text$=\"广告 \"][vid=\"desc\"][visibleToUser=true]) || ([text=\"应用\" || text=\"购物\" || text$=\"游戏\" || text=\"咨询\" || text=\"子薇剧场\" || text=\"预约\"][text.length<6][index=1][visibleToUser=true])",
               "snapshotUrls": [
                 "https://i.gkd.li/i/29214101",
                 "https://i.gkd.li/i/29579093",
                 "https://i.gkd.li/i/29686900",
+                "https://i.gkd.li/i/32619091",
                 "https://i.gkd.li/i/29214002"
               ],
               "excludeSnapshotUrls": [
@@ -89729,9 +89828,10 @@
                 "left": "width * 0.2646",
                 "top": "width * 0.1972"
               },
-              "matches": "ImageView[childCount=0] < @ViewGroup <<8 [id=\"android:id/content\"]",
+              "matches": "ImageView[childCount=0] < @ViewGroup <<(7,8) [id=\"android:id/content\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/30505023"
+                "https://i.gkd.li/i/30505023",
+                "https://i.gkd.li/i/32619430"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/c1314e68-d89a-42e3-af74-c50303f5546a"
