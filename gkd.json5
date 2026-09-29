@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 125,
+  "version": 126,
   "categories": [
     {
       "key": -1,
@@ -44903,14 +44903,16 @@
               "preKeys": [
                 0
               ],
-              "matches": "[text=\"无法批准\" || text=\"登录已批准\"] +n @[clickable=true] > [text=\"关闭\"][visibleToUser=true]",
+              "matches": "[text=\"登录已批准\" || text=\"无法批准\" || text=\"未找到登录请求\"] +n @[clickable=true] > [text=\"关闭\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25366553",
-                "https://i.gkd.li/i/25366549"
+                "https://i.gkd.li/i/25366549",
+                "https://i.gkd.li/i/32758660"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/e18eed95-993a-4148-b486-27e64e709188",
-                "https://e.gkd.li/c165be1d-f0d4-47d0-8a39-3aac562885b1"
+                "https://e.gkd.li/c165be1d-f0d4-47d0-8a39-3aac562885b1",
+                "https://e.gkd.li/4bb620ca-a35a-40c1-ad80-8c777bf86d02"
               ]
             }
           ]
@@ -49658,6 +49660,32 @@
             }
           ],
           "enable": false
+        }
+      ]
+    },
+    {
+      "id": "com.hihonor.baidu.browser",
+      "name": "(荣耀)浏览器",
+      "groups": [
+        {
+          "key": 1,
+          "name": "开屏广告",
+          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "priorityTime": 10000,
+          "rules": [
+            {
+              "key": 0,
+              "matches": "@[text*=\"跳过\"][clickable=true] <3 LinearLayout[childCount=3] +2 [text=\"广告\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32739487"
+              ]
+            }
+          ],
+          "order": -10,
+          "activityIds": []
         }
       ]
     },
@@ -89687,10 +89715,30 @@
           "name": "权限提示-通知权限",
           "desc": "点击暂不开启",
           "fastQuery": true,
-          "matchTime": 10000,
           "actionMaximum": 1,
           "resetMatch": "app",
+          "activityIds": [
+            ".main.MainActivity",
+            ".detail.ui.DetailActivity",
+            ".profile.ui.UserProfileActivity",
+            "com.ss.android.ugc.aweme.main.MainActivity",
+            ".setting.serverpush.ui.PushSettingManagerActivity"
+          ],
           "rules": [
+            {
+              "matches": [
+                "TextView[text$=\"提醒\" || text$=\"通知\"][text.length>5][visibleToUser=true]",
+                "[text=\"以后再说\" || text=\"暂不开启\" || text=\"禁止\" || text=\"取消\" || text=\"保持现状\"][clickable=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13888485",
+                "https://i.gkd.li/i/32760384",
+                "https://i.gkd.li/i/32754778"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/3916c33e-f0dc-45c3-8d81-db4bddf761ed"
+              ]
+            },
             {
               "activityIds": [
                 "com.ss.android.ugc.aweme.main.MainActivity"
@@ -89700,8 +89748,7 @@
                 "https://i.gkd.li/i/13888485"
               ]
             }
-          ],
-          "activityIds": []
+          ]
         },
         {
           "key": 10,
@@ -89911,6 +89958,64 @@
             }
           ],
           "activityIds": []
+        },
+        {
+          "key": 17,
+          "name": "功能类-评论区-自动展开评论",
+          "desc": "只展开一级评论，不点击展示更多",
+          "fastQuery": true,
+          "activityIds": [
+            ".detail.ui.DetailActivity",
+            ".main.MainActivity",
+            "com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity",
+            ".searcharticle.detail.ArticleDetailActivity",
+            ".search.activity.SearchResultActivity",
+            ".detail.ultra.ui.UltraDetailActivity",
+            ".playlet.videodetail.PlayletVideoPlayActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "matches": "@[clickable=true] > [text^=\"展开\"][text$=\"回复\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32755488"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/32755811"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/a2be5c9e-afe9-4992-8c83-bbe191d68d76",
+                "https://e.gkd.li/1609405d-5a20-445d-bb2f-5de5a9b1237d"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 18,
+          "name": "功能类-评论区-自动展开评论_全部",
+          "desc": "基于上面追加点击展开更多",
+          "fastQuery": true,
+          "activityIds": [
+            ".detail.ui.DetailActivity",
+            ".main.MainActivity",
+            "com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity",
+            ".searcharticle.detail.ArticleDetailActivity",
+            ".search.activity.SearchResultActivity",
+            ".detail.ultra.ui.UltraDetailActivity",
+            ".playlet.videodetail.PlayletVideoPlayActivity"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "matches": "@[clickable=true] > [text^=\"展开更多\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32755811"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/1609405d-5a20-445d-bb2f-5de5a9b1237d"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -94266,8 +94371,8 @@
         },
         {
           "key": 1,
-          "name": "功能类-电脑微信快捷自动登录",
-          "desc": "点击[登录]",
+          "name": "功能类-微信设备快捷登录",
+          "desc": "自动点击[登录]Win/Mac/平板/手表等客户端",
           "fastQuery": true,
           "matchTime": 10000,
           "actionMaximum": 1,
@@ -94277,42 +94382,21 @@
                 ".plugin.webwx.ui.ExtDeviceWXLoginUI",
                 ".ui.LauncherUI"
               ],
-              "matches": [
-                "[text^=\"登录 Win\" || text^=\"登录 Mac\" || text^=\"登录桌面\" || text^=\"登入 WeChat\" || text^=\"Log in to Weixin for\"][visibleToUser=true]",
-                "[text=\"登录\" || text=\"登入\" || text=\"Log In\"][visibleToUser=true]"
-              ],
+              "matches": "RelativeLayout[vid!=null][left!=0] > ImageView[width = height] + TextView[text^=\"登录\" || text^=\"登入\" || text^=\"Log in to Weixin for\"][visibleToUser=true] +n * > Button[text=\"登录\" || text=\"登入\" || text=\"Log In\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13522625",
                 "https://i.gkd.li/i/13522577",
                 "https://i.gkd.li/i/22356438",
                 "https://i.gkd.li/i/25315046",
-                "https://i.gkd.li/i/25815630"
+                "https://i.gkd.li/i/25815630",
+                "https://i.gkd.li/i/32761015"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/4434dd75-1c9c-4c4a-a6fb-47490b751ec4"
               ]
-            },
-            "TextView[text=\"取消登录\"] - Button[text=\"登录\"]",
-            {
-              "activityIds": [
-                ".plugin.webwx.ui.ExtDeviceWXLoginUI",
-                ".ui.LauncherUI"
-              ],
-              "matches": [
-                "[text=\"登录 Windows 微信\" || text^=\"Log in to Weixin for\"][visibleToUser=true]",
-                "[text=\"登录\" || text=\"Log In\"][visibleToUser=true]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/13522625",
-                "https://i.gkd.li/i/13522577",
-                "https://i.gkd.li/i/22356438"
-              ]
             }
           ],
-          "activityIds": [
-            ".plugin.webwx.ui.ExtDeviceWXLoginUI",
-            "com.tencent.mm.ui.LauncherUI"
-          ]
+          "activityIds": []
         },
         {
           "key": 2,
@@ -94362,20 +94446,37 @@
         {
           "enable": false,
           "key": 3,
-          "name": "功能类-浏览器扫码微信登录自动授权",
-          "desc": "自动允许使用头像昵称等",
+          "name": "功能类-电脑微信快捷自动登录",
           "fastQuery": true,
           "matchTime": 10000,
           "actionMaximum": 1,
           "resetMatch": "activity",
           "activityIds": [
-            "com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI",
+            ".plugin.webwx.ui.ExtDeviceWXLoginUI",
             "com.tencent.mm.ui.LauncherUI"
           ],
           "rules": [
-            "Button[text=\"拒绝\"] - Button[text=\"允许\"]"
+            "TextView[text=\"取消登录\"] - Button[text=\"登录\"]",
+            {
+              "activityIds": [
+                ".plugin.webwx.ui.ExtDeviceWXLoginUI",
+                ".ui.LauncherUI"
+              ],
+              "matches": [
+                "[text=\"登录 Windows 微信\" || text^=\"Log in to Weixin for\"][visibleToUser=true]",
+                "[text=\"登录\" || text=\"Log In\"][visibleToUser=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13522625",
+                "https://i.gkd.li/i/13522577",
+                "https://i.gkd.li/i/22356438"
+              ]
+            }
           ],
-          "snapshotUrls": "https://i.gkd.li/import/13065462"
+          "snapshotUrls": [
+            "https://i.gkd.li/import/13522625",
+            "https://i.gkd.li/import/13522577"
+          ]
         },
         {
           "key": 4,
@@ -94527,19 +94628,20 @@
         {
           "enable": false,
           "key": 6,
-          "name": "功能类-第三方APP申请使用授权弹窗",
-          "desc": "自动点击允许,但由于此界面可以额外新建昵称头像,默认不启用",
+          "name": "功能类-浏览器扫码微信登录自动授权",
+          "desc": "自动允许使用头像昵称等",
           "fastQuery": true,
           "matchTime": 10000,
           "actionMaximum": 1,
           "resetMatch": "activity",
           "activityIds": [
-            "com.tencent.mm.plugin.base.stub.UIEntryStub"
+            "com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI",
+            "com.tencent.mm.ui.LauncherUI"
           ],
           "rules": [
             "Button[text=\"拒绝\"] - Button[text=\"允许\"]"
           ],
-          "snapshotUrls": "https://i.gkd.li/import/12663602"
+          "snapshotUrls": "https://i.gkd.li/import/13065462"
         },
         {
           "key": 7,
@@ -94633,48 +94735,19 @@
         {
           "enable": false,
           "key": 8,
-          "name": "功能类-微信红包自动领取",
-          "desc": "自动领取私聊红包,群聊红包",
-          "exampleUrls": "https://github.com/gkd-kit/subscription/assets/38517192/32cfda78-b2e1-456c-8d85-bfb2bc4683aa",
+          "name": "功能类-第三方APP申请使用授权弹窗",
+          "desc": "自动点击允许,但由于此界面可以额外新建昵称头像,默认不启用",
+          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "resetMatch": "activity",
+          "activityIds": [
+            "com.tencent.mm.plugin.base.stub.UIEntryStub"
+          ],
           "rules": [
-            {
-              "name": "从红包结算界面返回",
-              "preKeys": [
-                1,
-                2
-              ],
-              "activityIds": [
-                "com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyBeforeDetailUI"
-              ],
-              "matches": "ImageView[desc=\"返回\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12567696"
-              ]
-            },
-            {
-              "key": 1,
-              "name": "点击红包-开",
-              "activityIds": [
-                "com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyNotHookReceiveUI"
-              ],
-              "matches": "ImageButton[desc=\"开\"] + Button[desc=\"开\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12567697",
-                "https://i.gkd.li/import/12567698"
-              ]
-            },
-            {
-              "key": 2,
-              "name": "点击别人发的红包",
-              "activityIds": [
-                "com.tencent.mm.ui.LauncherUI"
-              ],
-              "matches": "LinearLayout[childCount=1] >5 LinearLayout[childCount=1] - ImageView < LinearLayout + View + RelativeLayout > TextView[text=\"微信红包\"][id!=null]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12567637"
-              ]
-            }
-          ]
+            "Button[text=\"拒绝\"] - Button[text=\"允许\"]"
+          ],
+          "snapshotUrls": "https://i.gkd.li/import/12663602"
         },
         {
           "key": 9,
@@ -94831,6 +94904,52 @@
         {
           "enable": false,
           "key": 13,
+          "name": "功能类-微信红包自动领取",
+          "desc": "自动领取私聊红包,群聊红包",
+          "exampleUrls": "https://github.com/gkd-kit/subscription/assets/38517192/32cfda78-b2e1-456c-8d85-bfb2bc4683aa",
+          "rules": [
+            {
+              "name": "从红包结算界面返回",
+              "preKeys": [
+                1,
+                2
+              ],
+              "activityIds": [
+                "com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyBeforeDetailUI"
+              ],
+              "matches": "ImageView[desc=\"返回\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12567696"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "点击红包-开",
+              "activityIds": [
+                "com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyNotHookReceiveUI"
+              ],
+              "matches": "ImageButton[desc=\"开\"] + Button[desc=\"开\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12567697",
+                "https://i.gkd.li/import/12567698"
+              ]
+            },
+            {
+              "key": 2,
+              "name": "点击别人发的红包",
+              "activityIds": [
+                "com.tencent.mm.ui.LauncherUI"
+              ],
+              "matches": "LinearLayout[childCount=1] >5 LinearLayout[childCount=1] - ImageView < LinearLayout + View + RelativeLayout > TextView[text=\"微信红包\"][id!=null]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12567637"
+              ]
+            }
+          ]
+        },
+        {
+          "enable": false,
+          "key": 14,
           "name": "分段广告-订阅号文章广告",
           "desc": "⚠ 此规则有概率误触。自动点击关闭按钮，必须同时启用【订阅号文章广告反馈】规则",
           "activityIds": [
@@ -94965,7 +95084,7 @@
         },
         {
           "enable": false,
-          "key": 14,
+          "key": 15,
           "name": "分段广告-订阅号文章广告反馈",
           "desc": "⚠ 此规则有概率误触。自动点击反馈理由，配合【订阅号文章广告】规则使用",
           "activityIds": [
@@ -95002,7 +95121,7 @@
           ]
         },
         {
-          "key": 15,
+          "key": 16,
           "name": "全屏广告-微信小程序-开屏广告",
           "fastQuery": true,
           "matchTime": 10000,
@@ -95029,36 +95148,6 @@
             }
           ],
           "enable": false
-        },
-        {
-          "enable": false,
-          "key": 16,
-          "name": "全屏广告-提瓦特助手小程序-弹窗广告",
-          "activityIds": [
-            "com.tencent.mm.plugin.appbrand.ui.AppBrandUI"
-          ],
-          "rules": [
-            {
-              "key": 0,
-              "matches": [
-                "RelativeLayout[childCount=1][clickable=true] > [text=\"提瓦特小助手\"]",
-                "FrameLayout[childCount=5] + FrameLayout[childCount=2] >2 FrameLayout[childCount=1]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12926021"
-              ]
-            },
-            {
-              "key": 1,
-              "matches": [
-                "FrameLayout > FrameLayout > FrameLayout > TextView[text=\"广告\"]",
-                "FrameLayout[childCount=6] + FrameLayout[childCount=2] > FrameLayout > FrameLayout > ImageView"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/13459614"
-              ]
-            }
-          ]
         },
         {
           "key": 17,
@@ -95244,6 +95333,63 @@
         {
           "enable": false,
           "key": 21,
+          "name": "全屏广告-提瓦特助手小程序-弹窗广告",
+          "activityIds": [
+            "com.tencent.mm.plugin.appbrand.ui.AppBrandUI"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "matches": [
+                "RelativeLayout[childCount=1][clickable=true] > [text=\"提瓦特小助手\"]",
+                "FrameLayout[childCount=5] + FrameLayout[childCount=2] >2 FrameLayout[childCount=1]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12926021"
+              ]
+            },
+            {
+              "key": 1,
+              "matches": [
+                "FrameLayout > FrameLayout > FrameLayout > TextView[text=\"广告\"]",
+                "FrameLayout[childCount=6] + FrameLayout[childCount=2] > FrameLayout > FrameLayout > ImageView"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/13459614"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 22,
+          "name": "功能类-开启青少年模式后的每日验证",
+          "desc": "点击\"验证密码\"",
+          "rules": [
+            {
+              "action": "clickCenter",
+              "activityIds": [
+                ".plugin.webview.ui.tools.MMWebViewUI"
+              ],
+              "matches": "WebView[childCount=6] View[index=4] > [text=\"验证密码\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/14050004"
+              ]
+            },
+            {
+              "activityIds": [
+                ".plugin.webview.ui.tools.MMWebViewUI"
+              ],
+              "matches": "WebView[childCount=6] View[index=4] > [text=\"验证密码\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/14050004"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "enable": false,
+          "key": 23,
           "name": "分段广告-小程序-内部广告",
           "activityIds": [
             "com.tencent.mm.plugin.appbrand.ui.AppBrandUI"
@@ -95292,35 +95438,8 @@
           ]
         },
         {
-          "key": 22,
-          "name": "功能类-开启青少年模式后的每日验证",
-          "desc": "点击\"验证密码\"",
-          "rules": [
-            {
-              "action": "clickCenter",
-              "activityIds": [
-                ".plugin.webview.ui.tools.MMWebViewUI"
-              ],
-              "matches": "WebView[childCount=6] View[index=4] > [text=\"验证密码\"][clickable=true]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/14050004"
-              ]
-            },
-            {
-              "activityIds": [
-                ".plugin.webview.ui.tools.MMWebViewUI"
-              ],
-              "matches": "WebView[childCount=6] View[index=4] > [text=\"验证密码\"][clickable=true]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/14050004"
-              ]
-            }
-          ],
-          "activityIds": []
-        },
-        {
           "enable": false,
-          "key": 23,
+          "key": 24,
           "name": "全屏广告-小程序-京东购物",
           "desc": "低价包邮广告",
           "actionDelay": 500,
@@ -95334,67 +95453,6 @@
               "action": "clickCenter",
               "snapshotUrls": [
                 "https://i.gkd.li/import/13298294"
-              ]
-            }
-          ]
-        },
-        {
-          "key": 24,
-          "name": "功能类-自动领取微信红包",
-          "desc": "自动领取私聊红包,群聊红包",
-          "fastQuery": true,
-          "rules": [
-            {
-              "key": 1,
-              "name": "点击别人发的红包",
-              "activityIds": [
-                ".ui.LauncherUI",
-                ".ui.chatting.variants.ChattingMainUI"
-              ],
-              "matches": "LinearLayout[childCount=1] >2 @FrameLayout[clickable=true] >2 LinearLayout[getChild(1).childCount=1] +2 RelativeLayout > [text=\"微信红包\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/18134826",
-                "https://i.gkd.li/i/24347101"
-              ],
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/18134823",
-                "https://i.gkd.li/i/18134833"
-              ]
-            },
-            {
-              "preKeys": [
-                1
-              ],
-              "key": 2,
-              "name": "点击红包-开",
-              "matchRoot": true,
-              "activityIds": [
-                ".plugin.luckymoney.ui.LuckyMoney"
-              ],
-              "matches": "@Button[desc=\"开\"] -3 LinearLayout >2 [text$=\"红包\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/18134828",
-                "https://i.gkd.li/i/21177180"
-              ],
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/12567698"
-              ]
-            },
-            {
-              "preKeys": [
-                1,
-                2
-              ],
-              "name": "从红包结算界面返回",
-              "activityIds": [
-                ".plugin.luckymoney.ui.LuckyMoney"
-              ],
-              "matches": "@ImageView[desc=\"返回\"] +n LinearLayout >8 [text$=\"红包\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/18134829",
-                "https://i.gkd.li/i/18135031",
-                "https://i.gkd.li/i/23825631",
-                "https://i.gkd.li/i/24414957"
               ]
             }
           ]
@@ -95729,125 +95787,61 @@
         },
         {
           "key": 33,
-          "name": "功能类-登录自动授权",
-          "desc": "微信相关平台扫码登录自动授权",
-          "enable": false,
-          "matchTime": 10000,
-          "actionMaximum": 2,
-          "activityIds": [
-            ".plugin.webwx.ui.ExtDeviceWXLoginUI",
-            "com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI",
-            "com.tencent.mm.plugin.webview.ui.tools.MMWebViewUI",
-            "com.tencent.mm.ui.LauncherUI",
-            "com.tencent.mm.plugin.base.stub.UIEntryStub"
-          ],
+          "name": "功能类-自动领取微信红包",
+          "desc": "自动领取私聊红包,群聊红包",
+          "fastQuery": true,
           "rules": [
             {
-              "key": 0,
-              "name": "PC 微信扫码登录",
-              "matches": [
-                "[text^=\"登录 Win\" || text^=\"登录 Mac\" || text^=\"登录桌面\" || text^=\"登入 WeChat\" || text^=\"登入 微信\" || text^=\"Log in to Weixin for\"][visibleToUser=true]",
-                "[text=\"登录\" || text=\"登入\" || text=\"Log In\"][visibleToUser=true]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/13522625",
-                "https://i.gkd.li/import/13522577",
-                "https://i.gkd.li/i/19399694",
-                "https://i.gkd.li/i/22356438",
-                "https://i.gkd.li/i/25315046",
-                "https://i.gkd.li/i/25815630",
-                "https://i.gkd.li/i/26865671"
-              ]
-            },
-            {
               "key": 1,
-              "name": "浏览器扫码登录",
-              "matches": [
-                "[text^=\"获取你的\"||text^=\"取得你的\"||text^=\"申请使用\"||text^=\"請求使用\"]",
-                "[text=\"允许\"||text=\"允許\"]"
+              "name": "点击别人发的红包",
+              "activityIds": [
+                ".ui.LauncherUI",
+                ".ui.chatting.variants.ChattingMainUI"
               ],
+              "matches": "LinearLayout[childCount=1] >2 @FrameLayout[clickable=true] >2 LinearLayout[getChild(1).childCount=1] +2 RelativeLayout > [text=\"微信红包\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/import/13065462",
-                "https://i.gkd.li/import/12663602",
-                "https://i.gkd.li/import/14164920",
-                "https://i.gkd.li/i/15271716",
-                "https://i.gkd.li/i/18809991",
-                "https://i.gkd.li/i/19496823",
-                "https://i.gkd.li/i/21792855",
-                "https://i.gkd.li/i/16972565"
-              ]
-            },
-            {
-              "key": 2,
-              "name": "网页版文件传输助手扫码登录",
-              "matches": "[text=\"打开网页版文件传输助手\"||text=\"開啟網頁版檔案傳輸助手\"] + * > Button[text=\"打开\"||text=\"開啟\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12793745",
-                "https://i.gkd.li/i/20532303"
-              ]
-            },
-            {
-              "key": 3,
-              "name": "微信表情开发平台扫码登录",
-              "matches": "View[desc=\"取消登录\"||desc=\"取消登入\"] - Button[text=\"登录\"||text=\"登入\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/14164954"
-              ]
-            },
-            {
-              "key": 4,
-              "name": "微信红包封面开放平台扫码登录",
-              "matches": "Button[text=\"取消\"] - Button[text=\"确定\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/14164990"
-              ]
-            },
-            {
-              "key": 5,
-              "name": "微信开发者工具扫码登录",
-              "matches": "[desc=\"取消\"] - [desc=\"确认登录\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/14472990"
-              ]
-            },
-            {
-              "key": 6,
-              "name": "微信读书网页版扫码登录",
-              "matches": "[text=\"微信读书网页版\"] +3 Button[text=\"登 录\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12506197"
-              ]
-            },
-            {
-              "preKeys": [
-                4,
-                6
+                "https://i.gkd.li/i/18134826",
+                "https://i.gkd.li/i/24347101"
               ],
-              "key": 10,
-              "name": "点击[X]返回",
-              "matches": [
-                "[text=\"登录成功\"||text=\"已确定\"]",
-                "ImageView[desc=\"返回\"]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/14193413",
-                "https://i.gkd.li/import/12506201"
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/18134823",
+                "https://i.gkd.li/i/18134833"
               ]
             },
             {
               "preKeys": [
                 1
               ],
-              "key": 20,
+              "key": 2,
+              "name": "点击红包-开",
+              "matchRoot": true,
               "activityIds": [
-                ".plugin.webview.ui.tools.SDKOAuthOtherUI"
+                ".plugin.luckymoney.ui.LuckyMoney"
               ],
-              "matches": [
-                "[text=\"申请获得\"][visibleToUser=true]",
-                "[text=\"允许\"][visibleToUser=true]"
-              ],
+              "matches": "@Button[desc=\"开\"] -3 LinearLayout >2 [text$=\"红包\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/24560465"
+                "https://i.gkd.li/i/18134828",
+                "https://i.gkd.li/i/21177180"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/12567698"
+              ]
+            },
+            {
+              "preKeys": [
+                1,
+                2
+              ],
+              "name": "从红包结算界面返回",
+              "activityIds": [
+                ".plugin.luckymoney.ui.LuckyMoney"
+              ],
+              "matches": "@ImageView[desc=\"返回\"] +n LinearLayout >8 [text$=\"红包\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18134829",
+                "https://i.gkd.li/i/18135031",
+                "https://i.gkd.li/i/23825631",
+                "https://i.gkd.li/i/24414957"
               ]
             }
           ]
@@ -96563,6 +96557,154 @@
         },
         {
           "key": 57,
+          "name": "功能类-登录-平板同时登",
+          "desc": "自动点击[平板和手机同时登录]",
+          "fastQuery": true,
+          "actionMaximum": 1,
+          "resetMatch": "app",
+          "matchTime": 10000,
+          "activityIds": [
+            ".plugin.account.ui.LoginPasswordUI"
+          ],
+          "rules": [
+            {
+              "matches": "@Button[text=\"平板和手机同时登录\"] - LinearLayout >3 [text=\"登录\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32757828"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/c3ca6901-9b7d-47d3-b879-69b615f8d09b"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 58,
+          "name": "功能类-登录自动授权",
+          "desc": "微信相关平台扫码登录自动授权",
+          "enable": false,
+          "matchTime": 10000,
+          "actionMaximum": 2,
+          "activityIds": [
+            ".plugin.webwx.ui.ExtDeviceWXLoginUI",
+            "com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI",
+            "com.tencent.mm.plugin.webview.ui.tools.MMWebViewUI",
+            "com.tencent.mm.ui.LauncherUI",
+            "com.tencent.mm.plugin.base.stub.UIEntryStub"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "name": "PC 微信扫码登录",
+              "matches": [
+                "[text^=\"登录 Win\" || text^=\"登录 Mac\" || text^=\"登录桌面\" || text^=\"登入 WeChat\" || text^=\"登入 微信\" || text^=\"Log in to Weixin for\"][visibleToUser=true]",
+                "[text=\"登录\" || text=\"登入\" || text=\"Log In\"][visibleToUser=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/13522625",
+                "https://i.gkd.li/import/13522577",
+                "https://i.gkd.li/i/19399694",
+                "https://i.gkd.li/i/22356438",
+                "https://i.gkd.li/i/25315046",
+                "https://i.gkd.li/i/25815630",
+                "https://i.gkd.li/i/26865671"
+              ]
+            },
+            {
+              "key": 1,
+              "name": "浏览器扫码登录",
+              "matches": [
+                "[text^=\"获取你的\"||text^=\"取得你的\"||text^=\"申请使用\"||text^=\"請求使用\"]",
+                "[text=\"允许\"||text=\"允許\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/13065462",
+                "https://i.gkd.li/import/12663602",
+                "https://i.gkd.li/import/14164920",
+                "https://i.gkd.li/i/15271716",
+                "https://i.gkd.li/i/18809991",
+                "https://i.gkd.li/i/19496823",
+                "https://i.gkd.li/i/21792855",
+                "https://i.gkd.li/i/16972565"
+              ]
+            },
+            {
+              "key": 2,
+              "name": "网页版文件传输助手扫码登录",
+              "matches": "[text=\"打开网页版文件传输助手\"||text=\"開啟網頁版檔案傳輸助手\"] + * > Button[text=\"打开\"||text=\"開啟\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12793745",
+                "https://i.gkd.li/i/20532303"
+              ]
+            },
+            {
+              "key": 3,
+              "name": "微信表情开发平台扫码登录",
+              "matches": "View[desc=\"取消登录\"||desc=\"取消登入\"] - Button[text=\"登录\"||text=\"登入\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/14164954"
+              ]
+            },
+            {
+              "key": 4,
+              "name": "微信红包封面开放平台扫码登录",
+              "matches": "Button[text=\"取消\"] - Button[text=\"确定\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/14164990"
+              ]
+            },
+            {
+              "key": 5,
+              "name": "微信开发者工具扫码登录",
+              "matches": "[desc=\"取消\"] - [desc=\"确认登录\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/14472990"
+              ]
+            },
+            {
+              "key": 6,
+              "name": "微信读书网页版扫码登录",
+              "matches": "[text=\"微信读书网页版\"] +3 Button[text=\"登 录\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12506197"
+              ]
+            },
+            {
+              "preKeys": [
+                4,
+                6
+              ],
+              "key": 10,
+              "name": "点击[X]返回",
+              "matches": [
+                "[text=\"登录成功\"||text=\"已确定\"]",
+                "ImageView[desc=\"返回\"]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/14193413",
+                "https://i.gkd.li/import/12506201"
+              ]
+            },
+            {
+              "preKeys": [
+                1
+              ],
+              "key": 20,
+              "activityIds": [
+                ".plugin.webview.ui.tools.SDKOAuthOtherUI"
+              ],
+              "matches": [
+                "[text=\"申请获得\"][visibleToUser=true]",
+                "[text=\"允许\"][visibleToUser=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/24560465"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 59,
           "name": "功能类-自动查看原图/原视频",
           "desc": "浏览图片时自动切换至原图模式",
           "enable": false,
@@ -96590,7 +96732,7 @@
           ]
         },
         {
-          "key": 58,
+          "key": 60,
           "name": "全屏广告-小程序部分通用广告",
           "desc": "包括部分开屏广告，弹窗广告等",
           "enable": false,
@@ -96668,7 +96810,7 @@
           ]
         },
         {
-          "key": 59,
+          "key": 61,
           "name": "分段广告-订阅号消息页面广告",
           "desc": "自动点击“x”",
           "enable": false,
@@ -131110,7 +131252,7 @@
               "activityIds": [
                 ".ui.webview.MWebActivity"
               ],
-              "matches": "@Image[text^=\"yellow-tip-close\"] <3 [childCount=3] <2 [id=\"app\"] <<3 [vid=\"webview\"]",
+              "matches": "@Image[text^=\"yellow-tip-close\"] <3 [childCount=3] <2 [id=\"app\"] < WebView < WebView < [vid=\"webview\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25563755"
               ]
@@ -131142,7 +131284,7 @@
               "activityIds": [
                 ".ui.webview.MWebActivity"
               ],
-              "matches": "Image - @TextView[text=\"展开更多\"] < View[childCount=2][visibleToUser=true] <n [id=\"app\"] <<3 [vid=\"webview\"]",
+              "matches": "Image - @TextView[text=\"展开更多\"] < View[childCount=2][visibleToUser=true] <n [id=\"app\"] < WebView < WebView < [vid=\"webview\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25564200"
               ]
@@ -131181,12 +131323,23 @@
               "activityIds": [
                 "com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity"
               ],
-              "matches": "@[text=\"取消\"][clickable=true][visibleToUser=true] - [text=\"后将展示广告\"] <2 View[childCount=3] <<2 ComposeView <<3 FrameLayout[childCount=1] <n * < [vid=\"video_container\"]",
+              "matches": "@[text=\"取消\"] - [text=\"后将展示广告\"] <2 View < View < ComposeView < LinearLayout < RecyclerView < FrameLayout <n FrameLayout < [vid=\"video_container\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/29379312"
+                "https://i.gkd.li/i/29379312",
+                "https://i.gkd.li/i/32741484"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/2fed6260-9cd4-4546-a8ea-de89fce88b5d"
+              ]
+            },
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity"
+              ],
+              "matches": "@[text=\"取消\"][clickable=true][visibleToUser=true] - [text=\"后将展示广告\"] <2 View[childCount=3] <<2 ComposeView <<3 FrameLayout[childCount=1] <n * < [vid=\"video_container\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/29379312"
               ]
             }
           ],
