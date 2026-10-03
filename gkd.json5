@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 129,
+  "version": 130,
   "categories": [
     {
       "key": -1,
@@ -94937,7 +94937,8 @@
           "priorityTime": 10000,
           "activityIds": [
             ".plugin.appbrand.ui.AppBrandUI",
-            ".plugin.appbrand.launching.AppBrandLaunchProxyUI"
+            ".plugin.appbrand.launching.AppBrandLaunchProxyUI",
+            ".plugin.appbrand.ui.AppBrandPluginUI"
           ],
           "rules": [
             {
@@ -94951,7 +94952,8 @@
                 "https://i.gkd.li/i/12785183",
                 "https://i.gkd.li/i/13306883",
                 "https://i.gkd.li/i/13407275",
-                "https://i.gkd.li/i/15108441"
+                "https://i.gkd.li/i/15108441",
+                "https://i.gkd.li/i/32969391"
               ]
             },
             {
