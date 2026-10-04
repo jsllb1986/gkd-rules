@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 130,
+  "version": 131,
   "categories": [
     {
       "key": -1,
@@ -2003,6 +2003,11 @@
         },
         {
           "id": "com.yingyonghui.market",
+          "enable": false,
+          "groups": []
+        },
+        {
+          "id": "com.bambulab.creator",
           "enable": false,
           "groups": []
         },
