@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 131,
+  "version": 132,
   "categories": [
     {
       "key": -1,
@@ -46288,6 +46288,31 @@
           "rules": [
             {
               "key": 0,
+              "matches": "@[clickable=true][index>0][desc=\"关闭广告面板\" || desc=\"Close ad panel\" || desc=\"隐藏广告\"] <<(10-n) [vid=\"panel_header\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13797491",
+                "https://i.gkd.li/i/13705106",
+                "https://i.gkd.li/i/14784199",
+                "https://i.gkd.li/i/27373744",
+                "https://i.gkd.li/i/27373748",
+                "https://i.gkd.li/i/33054103"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/e1655855-8497-4b92-8919-4fdb4f6f00b1",
+                "https://e.gkd.li/d024797b-88c5-4ab4-aa53-433b1889eaf1"
+              ]
+            },
+            "ImageView[desc=\"更多选项\"||desc^=\"More\"] + @ImageView[desc=\"关闭广告面板\"||desc^=\"Close\"]",
+            {
+              "matches": "@[desc=\"关闭广告面板\" || desc=\"Close ad panel\"] <<n [vid=\"panel_header\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13797491",
+                "https://i.gkd.li/i/13705106",
+                "https://i.gkd.li/i/14784199"
+              ]
+            },
+            {
+              "key": 0,
               "matches": "@[desc=\"关闭广告面板\" || desc=\"Close ad panel\"][clickable=true] - ImageView <<3 FrameLayout < [vid=\"panel_header\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13797491",
@@ -46305,15 +46330,6 @@
               "exampleUrls": [
                 "https://e.gkd.li/e1655855-8497-4b92-8919-4fdb4f6f00b1",
                 "https://e.gkd.li/d024797b-88c5-4ab4-aa53-433b1889eaf1"
-              ]
-            },
-            "ImageView[desc=\"更多选项\"||desc^=\"More\"] + @ImageView[desc=\"关闭广告面板\"||desc^=\"Close\"]",
-            {
-              "matches": "@[desc=\"关闭广告面板\" || desc=\"Close ad panel\"] <<n [vid=\"panel_header\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/13797491",
-                "https://i.gkd.li/i/13705106",
-                "https://i.gkd.li/i/14784199"
               ]
             }
           ]
@@ -49699,7 +49715,7 @@
     },
     {
       "id": "com.hihonor.baidu.browser",
-      "name": "(荣耀)浏览器",
+      "name": "百度浏览器(荣耀版)",
       "groups": [
         {
           "key": 1,
@@ -49712,7 +49728,7 @@
           "rules": [
             {
               "key": 0,
-              "matches": "@[text*=\"跳过\"][clickable=true] <3 LinearLayout[childCount=3] +2 [text=\"广告\"]",
+              "matches": "@[text*=\"跳过\"][clickable=true] <n LinearLayout[childCount>1] +2 [text=\"广告\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/32739487"
               ]
