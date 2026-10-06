@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 132,
+  "version": 133,
   "categories": [
     {
       "key": -1,
@@ -67042,6 +67042,33 @@
             "[id=\"close_btn\"][text=\"跳过\"]"
           ],
           "enable": false
+        }
+      ]
+    },
+    {
+      "id": "com.microsoft.deviceintegrationservice",
+      "name": "Device Integration Service",
+      "groups": [
+        {
+          "key": 1,
+          "name": "功能类-自动[允许]连接至Windows",
+          "desc": "点击[允许]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.microsoft.deviceExperiences.permission.MediaProjectionPermissionActivity"
+              ],
+              "matches": "[text*=\"连接至 Windows\"] +(1,2) [visibleToUser=true] > [text=\"允许\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33084704"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/8a8e5daa-4d6c-4fe3-aba8-90364624a5e6"
+              ]
+            }
+          ],
+          "activityIds": []
         }
       ]
     },
