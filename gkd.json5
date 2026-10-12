@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 135,
+  "version": 136,
   "categories": [
     {
       "key": -1,
@@ -75599,9 +75599,39 @@
             {
               "key": 0,
               "activityIds": [
-                ".act.AnswerDetail2Activity"
+                ".act.AnswerDetail2Activity",
+                "com.yfanads.ads.uw.base.inner.YdInterstitialActivity"
               ],
               "matches": "[vid=\"iv_close\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13695874",
+                "https://i.gkd.li/i/33297531"
+              ]
+            },
+            {
+              "key": 1,
+              "activityIds": [
+                ".act.HomeNewActivity",
+                "com.qingxia.common.homework.ui.HomeworkRecord4Activity",
+                "net.liucong.camera.ext.ScanningQrActivity"
+              ],
+              "matches": "[vid=\"ad_close\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/17265140",
+                "https://i.gkd.li/i/33297507",
+                "https://i.gkd.li/i/33297555"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/b83aa566-8105-4877-abcd-800abfe7634e"
+              ]
+            },
+            "[id=\"com.pcncn.jj:id/interact_ad_root\"] [id=\"com.pcncn.jj:id/iv_close\"]",
+            {
+              "key": 0,
+              "activityIds": [
+                "com.pcncn.jj.act.AnswerDetail2Activity"
+              ],
+              "matches": "[id=\"com.pcncn.jj:id/iv_close\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13695874"
               ]
@@ -75621,17 +75651,6 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/17265140"
-              ]
-            },
-            "[id=\"com.pcncn.jj:id/interact_ad_root\"] [id=\"com.pcncn.jj:id/iv_close\"]",
-            {
-              "key": 0,
-              "activityIds": [
-                "com.pcncn.jj.act.AnswerDetail2Activity"
-              ],
-              "matches": "[id=\"com.pcncn.jj:id/iv_close\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/13695874"
               ]
             }
           ],
@@ -94864,90 +94883,51 @@
         },
         {
           "key": 7,
-          "name": "功能类-自动选中发送原图",
+          "name": "功能类-自动[选中]发送原图",
           "desc": "自动选中底部中间的发送原图，可手动取消勾选",
+          "fastQuery": true,
           "actionMaximum": 1,
+          "actionMaximumKey": 1,
           "activityIds": [
             ".plugin.gallery.ui.AlbumPreviewUI",
             ".plugin.gallery.ui.ImagePreviewUI",
             ".plugin.picker.LocalMediaPickerUI",
-            "com.tencent.mm.plugin.gallery.ui.AlbumPreviewUI",
-            "com.tencent.mm.plugin.gallery.ui.ImagePreviewUI"
+            ".plugin.picker.preview.LocalMediaPreviewUI"
           ],
           "rules": [
             {
               "key": 1,
-              "fastQuery": true,
-              "anyMatches": [
-                "@[desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\" || (checkable=true && checked=false)] + [text=\"原图\" || text=\"原圖\" || text=\"Full Image\"][visibleToUser=true]",
-                "[desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"][!(desc*=\"选择\")][text=null][visibleToUser=true]"
-              ],
+              "matches": "@[clickable=true][desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"] + [text=\"原图\" || text=\"原圖\" || text=\"Full Image\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/16987145",
-                "https://i.gkd.li/i/16987144",
-                "https://i.gkd.li/i/27852612",
-                "https://i.gkd.li/i/19625049",
-                "https://i.gkd.li/i/32857934"
+                "https://i.gkd.li/i/16987144"
               ],
               "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/16987141",
                 "https://i.gkd.li/i/16987147",
-                "https://i.gkd.li/i/27852606",
-                "https://i.gkd.li/i/29746331"
+                "https://i.gkd.li/i/27852606"
+              ]
+            },
+            {
+              "key": 2,
+              "matches": "@[clickable=true] > [checkable=true][checked=false] + [text=\"原图\" || text=\"原圖\" || text=\"Full Image\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32857934",
+                "https://i.gkd.li/i/33297749"
               ],
               "exampleUrls": [
-                "https://e.gkd.li/32dc0943-e85f-416d-bb01-6ed610d4bdd8",
-                "https://e.gkd.li/93d41161-ab69-4c2d-83bb-637d7292f5e6"
+                "https://e.gkd.li/150dd5c1-6425-4d36-b4a2-b42a9f27c40c",
+                "https://e.gkd.li/d46da56a-5382-4714-bcfd-89856f9aa309"
               ]
             },
             {
-              "key": 1,
-              "matches": "@ImageButton[desc=\"未选中,原图,复选框\"] + [text=\"原图\"]",
+              "key": 3,
+              "matches": "[clickable=true][desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"][!(desc*=\"选择\")][text=null]",
               "snapshotUrls": [
-                "https://i.gkd.li/import/12686641",
-                "https://i.gkd.li/import/12840865",
-                "https://i.gkd.li/import/12686640"
-              ]
-            },
-            {
-              "key": 1,
-              "fastQuery": true,
-              "anyMatches": [
-                "@[desc=\"未选中,原图,复选框\"][visibleToUser=true] + [text=\"原图\"]",
-                "@[desc=\"未选中,原图,复选框\"][visibleToUser=true]"
-              ],
-              "exampleUrls": [
-                "https://e.gkd.li/32dc0943-e85f-416d-bb01-6ed610d4bdd8",
-                "https://e.gkd.li/93d41161-ab69-4c2d-83bb-637d7292f5e6"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/16987145",
-                "https://i.gkd.li/i/16987144",
-                "https://i.gkd.li/i/19625049"
-              ],
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/16987141",
-                "https://i.gkd.li/i/16987147"
-              ]
-            },
-            {
-              "key": 1,
-              "anyMatches": [
-                "@[desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"][visibleToUser=true] + [text=\"原图\" || text=\"原圖\" || text=\"Full Image\"]",
-                "[desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"][!(desc*=\"选择\")][text=null][visibleToUser=true]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/16987145",
-                "https://i.gkd.li/i/16987144",
-                "https://i.gkd.li/i/18413281",
-                "https://i.gkd.li/i/14661734",
                 "https://i.gkd.li/i/27852612",
                 "https://i.gkd.li/i/19625049"
               ],
               "excludeSnapshotUrls": [
                 "https://i.gkd.li/i/16987141",
-                "https://i.gkd.li/i/16987147",
-                "https://i.gkd.li/i/27852606",
                 "https://i.gkd.li/i/29746331"
               ]
             }
@@ -95306,8 +95286,75 @@
           ]
         },
         {
-          "enable": false,
           "key": 15,
+          "name": "功能类-自动选中发送原图",
+          "desc": "(微信8.0.56有bug无法正确识别)图片和视频选择器-自动选中底部中间的发送原图",
+          "fastQuery": true,
+          "actionMaximum": 1,
+          "activityIds": [
+            "com.tencent.mm.plugin.gallery.ui.AlbumPreviewUI",
+            "com.tencent.mm.plugin.gallery.ui.ImagePreviewUI",
+            ".plugin.gallery.ui.AlbumPreviewUI",
+            ".plugin.gallery.ui.ImagePreviewUI"
+          ],
+          "rules": [
+            {
+              "key": 1,
+              "matches": "@ImageButton[desc=\"未选中,原图,复选框\"] + [text=\"原图\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12686641",
+                "https://i.gkd.li/import/12840865",
+                "https://i.gkd.li/import/12686640"
+              ]
+            },
+            {
+              "key": 1,
+              "fastQuery": true,
+              "anyMatches": [
+                "@[desc=\"未选中,原图,复选框\"][visibleToUser=true] + [text=\"原图\"]",
+                "@[desc=\"未选中,原图,复选框\"][visibleToUser=true]"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/32dc0943-e85f-416d-bb01-6ed610d4bdd8",
+                "https://e.gkd.li/93d41161-ab69-4c2d-83bb-637d7292f5e6"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/16987145",
+                "https://i.gkd.li/i/16987144",
+                "https://i.gkd.li/i/19625049"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/16987141",
+                "https://i.gkd.li/i/16987147"
+              ]
+            },
+            {
+              "key": 1,
+              "anyMatches": [
+                "@[desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"][visibleToUser=true] + [text=\"原图\" || text=\"原圖\" || text=\"Full Image\"]",
+                "[desc^=\"未选中\" || desc^=\"未選定\" || desc^=\"Unselected\"][!(desc*=\"选择\")][text=null][visibleToUser=true]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/16987145",
+                "https://i.gkd.li/i/16987144",
+                "https://i.gkd.li/i/18413281",
+                "https://i.gkd.li/i/14661734",
+                "https://i.gkd.li/i/27852612",
+                "https://i.gkd.li/i/19625049"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/16987141",
+                "https://i.gkd.li/i/16987147",
+                "https://i.gkd.li/i/27852606",
+                "https://i.gkd.li/i/29746331"
+              ]
+            }
+          ],
+          "enable": false
+        },
+        {
+          "enable": false,
+          "key": 16,
           "name": "分段广告-订阅号文章广告反馈",
           "desc": "⚠ 此规则有概率误触。自动点击反馈理由，配合【订阅号文章广告】规则使用",
           "activityIds": [
@@ -95342,35 +95389,6 @@
               ]
             }
           ]
-        },
-        {
-          "key": 16,
-          "name": "全屏广告-微信小程序-开屏广告",
-          "fastQuery": true,
-          "matchTime": 10000,
-          "activityIds": [
-            "com.tencent.mm.plugin.appbrand.ui.AppBrandUI",
-            "com.tencent.mm.plugin.appbrand.launching.AppBrandLaunchProxyUI"
-          ],
-          "rules": [
-            {
-              "actionDelay": 800,
-              "matches": [
-                "FrameLayout > TextView + FrameLayout > TextView[text=\"广告\"]",
-                "FrameLayout > TextView + FrameLayout > TextView[text=\"跳过\"]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/12701979",
-                "https://i.gkd.li/import/12777076",
-                "https://i.gkd.li/import/12785012",
-                "https://i.gkd.li/import/12785183",
-                "https://i.gkd.li/import/13306883",
-                "https://i.gkd.li/import/12785246",
-                "https://i.gkd.li/import/13407275"
-              ]
-            }
-          ],
-          "enable": false
         },
         {
           "key": 17,
@@ -95554,34 +95572,33 @@
           "enable": false
         },
         {
-          "enable": false,
           "key": 21,
-          "name": "全屏广告-提瓦特助手小程序-弹窗广告",
+          "name": "全屏广告-微信小程序-开屏广告",
+          "fastQuery": true,
+          "matchTime": 10000,
           "activityIds": [
-            "com.tencent.mm.plugin.appbrand.ui.AppBrandUI"
+            "com.tencent.mm.plugin.appbrand.ui.AppBrandUI",
+            "com.tencent.mm.plugin.appbrand.launching.AppBrandLaunchProxyUI"
           ],
           "rules": [
             {
-              "key": 0,
+              "actionDelay": 800,
               "matches": [
-                "RelativeLayout[childCount=1][clickable=true] > [text=\"提瓦特小助手\"]",
-                "FrameLayout[childCount=5] + FrameLayout[childCount=2] >2 FrameLayout[childCount=1]"
+                "FrameLayout > TextView + FrameLayout > TextView[text=\"广告\"]",
+                "FrameLayout > TextView + FrameLayout > TextView[text=\"跳过\"]"
               ],
               "snapshotUrls": [
-                "https://i.gkd.li/import/12926021"
-              ]
-            },
-            {
-              "key": 1,
-              "matches": [
-                "FrameLayout > FrameLayout > FrameLayout > TextView[text=\"广告\"]",
-                "FrameLayout[childCount=6] + FrameLayout[childCount=2] > FrameLayout > FrameLayout > ImageView"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/13459614"
+                "https://i.gkd.li/import/12701979",
+                "https://i.gkd.li/import/12777076",
+                "https://i.gkd.li/import/12785012",
+                "https://i.gkd.li/import/12785183",
+                "https://i.gkd.li/import/13306883",
+                "https://i.gkd.li/import/12785246",
+                "https://i.gkd.li/import/13407275"
               ]
             }
-          ]
+          ],
+          "enable": false
         },
         {
           "key": 22,
@@ -95613,6 +95630,36 @@
         {
           "enable": false,
           "key": 23,
+          "name": "全屏广告-提瓦特助手小程序-弹窗广告",
+          "activityIds": [
+            "com.tencent.mm.plugin.appbrand.ui.AppBrandUI"
+          ],
+          "rules": [
+            {
+              "key": 0,
+              "matches": [
+                "RelativeLayout[childCount=1][clickable=true] > [text=\"提瓦特小助手\"]",
+                "FrameLayout[childCount=5] + FrameLayout[childCount=2] >2 FrameLayout[childCount=1]"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/12926021"
+              ]
+            },
+            {
+              "key": 1,
+              "matches": [
+                "FrameLayout > FrameLayout > FrameLayout > TextView[text=\"广告\"]",
+                "FrameLayout[childCount=6] + FrameLayout[childCount=2] > FrameLayout > FrameLayout > ImageView"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/import/13459614"
+              ]
+            }
+          ]
+        },
+        {
+          "enable": false,
+          "key": 24,
           "name": "分段广告-小程序-内部广告",
           "activityIds": [
             "com.tencent.mm.plugin.appbrand.ui.AppBrandUI"
@@ -95656,26 +95703,6 @@
               "matches": "[text=\"与我无关\"][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/import/13200048"
-              ]
-            }
-          ]
-        },
-        {
-          "enable": false,
-          "key": 24,
-          "name": "全屏广告-小程序-京东购物",
-          "desc": "低价包邮广告",
-          "actionDelay": 500,
-          "actionMaximum": 1,
-          "activityIds": [
-            "com.tencent.mm.plugin.appbrand.ui.AppBrandUI"
-          ],
-          "rules": [
-            {
-              "matches": "@Image -n * > View[text=\"可横向滚动\"]",
-              "action": "clickCenter",
-              "snapshotUrls": [
-                "https://i.gkd.li/import/13298294"
               ]
             }
           ]
@@ -96009,62 +96036,21 @@
           "activityIds": []
         },
         {
+          "enable": false,
           "key": 33,
-          "name": "功能类-自动领取微信红包",
-          "desc": "自动领取私聊红包,群聊红包",
-          "fastQuery": true,
+          "name": "全屏广告-小程序-京东购物",
+          "desc": "低价包邮广告",
+          "actionDelay": 500,
+          "actionMaximum": 1,
+          "activityIds": [
+            "com.tencent.mm.plugin.appbrand.ui.AppBrandUI"
+          ],
           "rules": [
             {
-              "key": 1,
-              "name": "点击别人发的红包",
-              "activityIds": [
-                ".ui.LauncherUI",
-                ".ui.chatting.variants.ChattingMainUI"
-              ],
-              "matches": "LinearLayout[childCount=1] >2 @FrameLayout[clickable=true] >2 LinearLayout[getChild(1).childCount=1] +2 RelativeLayout > [text=\"微信红包\"]",
+              "matches": "@Image -n * > View[text=\"可横向滚动\"]",
+              "action": "clickCenter",
               "snapshotUrls": [
-                "https://i.gkd.li/i/18134826",
-                "https://i.gkd.li/i/24347101"
-              ],
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/18134823",
-                "https://i.gkd.li/i/18134833"
-              ]
-            },
-            {
-              "preKeys": [
-                1
-              ],
-              "key": 2,
-              "name": "点击红包-开",
-              "matchRoot": true,
-              "activityIds": [
-                ".plugin.luckymoney.ui.LuckyMoney"
-              ],
-              "matches": "@Button[desc=\"开\"] -3 LinearLayout >2 [text$=\"红包\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/18134828",
-                "https://i.gkd.li/i/21177180"
-              ],
-              "excludeSnapshotUrls": [
-                "https://i.gkd.li/i/12567698"
-              ]
-            },
-            {
-              "preKeys": [
-                1,
-                2
-              ],
-              "name": "从红包结算界面返回",
-              "activityIds": [
-                ".plugin.luckymoney.ui.LuckyMoney"
-              ],
-              "matches": "@ImageView[desc=\"返回\"] +n LinearLayout >8 [text$=\"红包\"]",
-              "snapshotUrls": [
-                "https://i.gkd.li/i/18134829",
-                "https://i.gkd.li/i/18135031",
-                "https://i.gkd.li/i/23825631",
-                "https://i.gkd.li/i/24414957"
+                "https://i.gkd.li/import/13298294"
               ]
             }
           ]
@@ -96803,6 +96789,67 @@
         },
         {
           "key": 58,
+          "name": "功能类-自动领取微信红包",
+          "desc": "自动领取私聊红包,群聊红包",
+          "fastQuery": true,
+          "rules": [
+            {
+              "key": 1,
+              "name": "点击别人发的红包",
+              "activityIds": [
+                ".ui.LauncherUI",
+                ".ui.chatting.variants.ChattingMainUI"
+              ],
+              "matches": "LinearLayout[childCount=1] >2 @FrameLayout[clickable=true] >2 LinearLayout[getChild(1).childCount=1] +2 RelativeLayout > [text=\"微信红包\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18134826",
+                "https://i.gkd.li/i/24347101"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/18134823",
+                "https://i.gkd.li/i/18134833"
+              ]
+            },
+            {
+              "preKeys": [
+                1
+              ],
+              "key": 2,
+              "name": "点击红包-开",
+              "matchRoot": true,
+              "activityIds": [
+                ".plugin.luckymoney.ui.LuckyMoney"
+              ],
+              "matches": "@Button[desc=\"开\"] -3 LinearLayout >2 [text$=\"红包\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18134828",
+                "https://i.gkd.li/i/21177180"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/12567698"
+              ]
+            },
+            {
+              "preKeys": [
+                1,
+                2
+              ],
+              "name": "从红包结算界面返回",
+              "activityIds": [
+                ".plugin.luckymoney.ui.LuckyMoney"
+              ],
+              "matches": "@ImageView[desc=\"返回\"] +n LinearLayout >8 [text$=\"红包\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/18134829",
+                "https://i.gkd.li/i/18135031",
+                "https://i.gkd.li/i/23825631",
+                "https://i.gkd.li/i/24414957"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 59,
           "name": "功能类-登录自动授权",
           "desc": "微信相关平台扫码登录自动授权",
           "enable": false,
@@ -96927,7 +96974,7 @@
           ]
         },
         {
-          "key": 59,
+          "key": 60,
           "name": "功能类-自动查看原图/原视频",
           "desc": "浏览图片时自动切换至原图模式",
           "enable": false,
@@ -96955,7 +97002,7 @@
           ]
         },
         {
-          "key": 60,
+          "key": 61,
           "name": "全屏广告-小程序部分通用广告",
           "desc": "包括部分开屏广告，弹窗广告等",
           "enable": false,
@@ -97033,7 +97080,7 @@
           ]
         },
         {
-          "key": 61,
+          "key": 62,
           "name": "分段广告-订阅号消息页面广告",
           "desc": "自动点击“x”",
           "enable": false,
@@ -97103,7 +97150,7 @@
           ]
         },
         {
-          "key": 62,
+          "key": 63,
           "name": "功能类-收款付款后自动点击完成/返回",
           "desc": "支付完成后自动点击完成或返回按钮",
           "enable": false,
@@ -99594,21 +99641,6 @@
               ]
             },
             {
-              "key": 4,
-              "matchRoot": true,
-              "matches": "@View[clickable=true][width<174][height<174] -(2,4,5) TextView[text=\"广告\" || (text.length>9 && getChild(0).name$=\"ImageView\")] <n ScrollView < View < DetachableComposeView <<(14,16) FrameLayout <(2,3,4,5) [id=\"android:id/content\"]",
-              "exampleUrls": [
-                "https://e.gkd.li/1d81db1b-a722-4800-b6b7-4e5edb470984"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/21139431",
-                "https://i.gkd.li/i/21152859",
-                "https://i.gkd.li/i/23599723",
-                "https://i.gkd.li/i/23625826",
-                "https://i.gkd.li/i/27021826"
-              ]
-            },
-            {
               "key": 5,
               "matchRoot": true,
               "activityIds": [
@@ -99617,19 +99649,6 @@
               "matches": "[text*=\"广告\"] -2 @View[clickable=true][getChild(0).height<90] < View[childCount>2] < * < * < * < ViewFactoryHolder <n View < View[index=parent.childCount.minus(1)] <n [childCount>6] < DetachableComposeView <2 FrameLayout <2 [id=\"android:id/content\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/21152960"
-              ]
-            },
-            {
-              "key": 6,
-              "matchRoot": true,
-              "matches": "@View[clickable=true][width<174][height<174] -2 TextView[text.length>5][getChild(0).height<78] <2 [childCount=4] <n ScrollView < View < DetachableComposeView <<14 FrameLayout <(4,5) [id=\"android:id/content\"]",
-              "exampleUrls": [
-                "https://e.gkd.li/e4e6aca1-e7cb-4346-980b-638f26f61864"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/i/21379340",
-                "https://i.gkd.li/i/21410460",
-                "https://i.gkd.li/i/21410716"
               ]
             },
             {
@@ -99660,11 +99679,25 @@
             },
             {
               "key": 10,
-              "fastQuery": false,
-              "matches": "@View[clickable=true] <4 View[childCount>4] + [text=\"广告\"][visibleToUser=true]",
+              "matches": "@View[clickable=true] <4 View[childCount>4] + [visibleToUser=true][text=\"广告\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/24715171",
                 "https://i.gkd.li/i/26660624"
+              ]
+            },
+            {
+              "key": 11,
+              "matchRoot": true,
+              "matches": "@View[clickable=true][width<174][height<174] -2 TextView[text.length>5] + [childCount=1] > [text.length<7][text^=\"去浏览\" || text^=\"去微信\" || text^=\"立即\" || text*=\"下载\" || text*=\"了解\" || text*=\"查看\" || text*=\"详情\"]",
+              "exampleUrls": [
+                "https://e.gkd.li/1d81db1b-a722-4800-b6b7-4e5edb470984"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/21139431",
+                "https://i.gkd.li/i/23625826",
+                "https://i.gkd.li/i/21410460",
+                "https://i.gkd.li/i/21410716",
+                "https://i.gkd.li/i/33306617"
               ]
             },
             {
@@ -99679,7 +99712,8 @@
                 7,
                 8,
                 9,
-                10
+                10,
+                11
               ],
               "key": 50,
               "matches": "[text=\"直接关闭\"][visibleToUser=true]",
@@ -99701,11 +99735,12 @@
                 7,
                 8,
                 9,
-                10
+                10,
+                11
               ],
               "key": 51,
               "matchRoot": true,
-              "anyMatches": "[text=\"直接关闭\"] < @View[clickable=true] <n View < View < View < View < ViewGroup < [id=\"android:id/content\"]",
+              "matches": "[text=\"直接关闭\"] < @View[clickable=true] <n View < View < View < View < ViewGroup < [id=\"android:id/content\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/24715184"
               ]
