@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 136,
+  "version": 137,
   "categories": [
     {
       "key": -1,
@@ -75613,13 +75613,15 @@
               "activityIds": [
                 ".act.HomeNewActivity",
                 "com.qingxia.common.homework.ui.HomeworkRecord4Activity",
-                "net.liucong.camera.ext.ScanningQrActivity"
+                "net.liucong.camera.ext.ScanningQrActivity",
+                "com.qingxia.common.book.ui.Collection2Activity"
               ],
               "matches": "[vid=\"ad_close\"][clickable=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/17265140",
                 "https://i.gkd.li/i/33297507",
-                "https://i.gkd.li/i/33297555"
+                "https://i.gkd.li/i/33297555",
+                "https://i.gkd.li/i/33315721"
               ],
               "exampleUrls": [
                 "https://e.gkd.li/b83aa566-8105-4877-abcd-800abfe7634e"
@@ -90547,6 +90549,31 @@
       "name": "WakeUp课程表",
       "groups": [
         {
+          "key": 0,
+          "name": "开屏广告",
+          "fastQuery": true,
+          "matchTime": 10000,
+          "actionMaximum": 1,
+          "actionMaximumKey": 0,
+          "resetMatch": "app",
+          "priorityTime": 10000,
+          "rules": [
+            {
+              "key": 0,
+              "matches": "[text*=\"跳过\"][text.length<10][width<500 && height<300][visibleToUser=true]"
+            },
+            {
+              "key": 1,
+              "matches": "@ImageView[visibleToUser=true][width<156 && height<156] < * < [width>1000] +2 ViewGroup >2 [text=\"广告\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33348748"
+              ]
+            }
+          ],
+          "order": -10,
+          "activityIds": []
+        },
+        {
           "key": 1,
           "name": "评价提示",
           "rules": [
@@ -90639,6 +90666,27 @@
               "matches": "[vid=\"iv_close\"][clickable=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/25769013"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 5,
+          "name": "局部广告",
+          "desc": "点击[关闭]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                ".schedule.ScheduleActivity"
+              ],
+              "matches": "[vid=\"id_ad_close\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33348695"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/520832d5-ec9b-4436-9095-3157d77a7979"
               ]
             }
           ],
@@ -123222,7 +123270,7 @@
               "activityIds": [
                 "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
               ],
-              "matches": "@Image[childCount=0][width<80 && height<80] < View[childCount=1] < View[childCount=1] - View[childCount=1] > [text=\"反馈\"][visibleToUser=true]",
+              "matches": "@Image[childCount=0][width<80 && height<80] < View[childCount=1] < View[childCount=1] - View[childCount=1] > [visibleToUser=true][text=\"反馈\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/22946236"
               ]
@@ -123264,12 +123312,14 @@
               "fastQuery": true,
               "activityIds": [
                 "com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVideoActivity",
-                "com.byazt.qde.Stub_Standard_Portrait_Activity"
+                "com.byazt.qde.Stub_Standard_Portrait_Activity",
+                "com.byazt.cef.Stub_Standard_Portrait_Activity"
               ],
-              "matches": "@ImageView[visibleToUser=true][width<100 && height<100] <<3 ViewGroup[index=parent.childCount.minus(1)] <n ViewGroup + ViewGroup >3 [text=\"关闭悬浮球可继续浏览应用\"]",
+              "matches": "@ImageView[visibleToUser=true][width<100 && height<100] < * < [childCount=1] < ViewGroup <2 [childCount=2] >6 [text*=\"落地页\" || text*=\"三方APP\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/28790670",
-                "https://i.gkd.li/i/28834493"
+                "https://i.gkd.li/i/28834493",
+                "https://i.gkd.li/i/33345377"
               ]
             },
             {
@@ -123323,6 +123373,16 @@
               "snapshotUrls": [
                 "https://i.gkd.li/i/17378546",
                 "https://i.gkd.li/i/23145860"
+              ]
+            },
+            {
+              "key": 7,
+              "activityIds": [
+                "com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity"
+              ],
+              "matches": "@Image[childCount=0][width<80 && height<80] < View[childCount=1] < View[childCount=1] - View[childCount=1] > [text=\"反馈\"][visibleToUser=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/22946236"
               ]
             },
             {
