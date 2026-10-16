@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 140,
+  "version": 141,
   "categories": [
     {
       "key": -1,
@@ -77049,9 +77049,10 @@
           "key": 7,
           "name": "功能类-自动[展开]书籍简介",
           "desc": "书单列表页/书籍详情页",
+          "fastQuery": true,
           "rules": [
             {
-              "fastQuery": true,
+              "key": 1,
               "actionCd": 500,
               "activityIds": [
                 ".ui.activity.RecomBookListDetailActivity",
@@ -77066,12 +77067,56 @@
                 "https://e.gkd.li/48250906-5ae1-448e-84f8-900cdfbff970",
                 "https://e.gkd.li/7f933b03-487c-48ad-825a-bb3a1ff08154"
               ]
+            },
+            {
+              "key": 2,
+              "actionCd": 2000,
+              "forcedTime": 5000,
+              "activityIds": [
+                ".flutter.QDBookDetailFlutterActivity"
+              ],
+              "matches": "@ImageView[clickable=true] < View[desc.length>30] <n ScrollView < View < View < View < View < View < FrameLayout < [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33534760",
+                "https://i.gkd.li/i/33535207",
+                "https://i.gkd.li/i/33535541"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/33534953"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/c44b8465-e586-4dd7-8957-7e3c90097564"
+              ]
             }
           ],
           "activityIds": []
         },
         {
           "key": 8,
+          "name": "功能类-自动[收起]书架上方推广",
+          "desc": "点击1次[收起]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "matchTime": 10000,
+              "actionMaximum": 1,
+              "resetMatch": "app",
+              "activityIds": [
+                ".ui.activity.MainGroupActivity"
+              ],
+              "matches": "@[vid=\"operationItemCloseIcon\"] - [text=\"收起\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33534248"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/d8f0794f-2cc4-463f-ae76-55a417ad4a5a"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 9,
           "name": "全屏广告-活动弹窗",
           "activityIds": [
             "com.qidian.QDReader.ui.activity.MainGroupActivity",
@@ -77103,20 +77148,6 @@
             "https://i.gkd.li/import/12818198",
             "https://i.gkd.li/import/13469004"
           ],
-          "enable": false
-        },
-        {
-          "key": 9,
-          "name": "全屏广告-请求通知权限提示信息",
-          "desc": "点击顶部提醒左侧x按钮",
-          "fastQuery": true,
-          "activityIds": [
-            "com.afollestad.materialdialogs.MaterialDialog"
-          ],
-          "rules": [
-            "@[id=\"com.qidian.QDReader:id/ivClose\"] + [text^=\"开启推送\"]"
-          ],
-          "snapshotUrls": "https://i.gkd.li/import/12640242",
           "enable": false
         },
         {
@@ -77359,7 +77390,7 @@
         },
         {
           "key": 16,
-          "name": "功能类-订阅至最新章后自动[返回]",
+          "name": "功能类-订阅后续章节后自动[返回]",
           "desc": "返回小说正文页 (对于自定义订阅不可用)",
           "fastQuery": true,
           "activityIds": [
@@ -77369,7 +77400,7 @@
           ],
           "rules": [
             {
-              "key": 1,
+              "key": 10,
               "name": "①未订最新章-待后续",
               "action": "none",
               "actionMaximum": 1,
@@ -77379,9 +77410,23 @@
               ]
             },
             {
-              "key": 2,
+              "key": 11,
+              "name": "①未订后续章",
+              "action": "none",
+              "forcedTime": 5000,
+              "actionMaximum": 1,
+              "activityIds": [
+                ".flutter.BatchOrderDialogActivity"
+              ],
+              "matches": "@[desc^=\"订阅后续付费章\"] <2 View < View < View < View < FrameLayout < [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33536620"
+              ]
+            },
+            {
+              "key": 20,
               "preKeys": [
-                1
+                10
               ],
               "name": "②已订最新章-返回键",
               "action": "back",
@@ -77396,11 +77441,29 @@
               ]
             },
             {
-              "key": 3,
+              "key": 21,
               "preKeys": [
-                2
+                11
+              ],
+              "name": "②提示已订阅n章",
+              "action": "none",
+              "forcedTime": 10000,
+              "activityIds": [
+                ".flutter.BatchOrderDialogActivity"
+              ],
+              "matches": "@ImageView[desc^=\"已订阅\"] <2 View < View < View < View < FrameLayout < [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33537343"
+              ]
+            },
+            {
+              "key": 30,
+              "preKeys": [
+                20,
+                21
               ],
               "name": "③退出目录",
+              "forcedTime": 10000,
               "matches": "@[vid=\"btnBack\"][clickable=true] + * >6 [vid=\"layoutTitle\"][text=\"目录\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/26221238"
@@ -77433,8 +77496,22 @@
           "activityIds": []
         },
         {
-          "enable": false,
           "key": 18,
+          "name": "全屏广告-请求通知权限提示信息",
+          "desc": "点击顶部提醒左侧x按钮",
+          "fastQuery": true,
+          "activityIds": [
+            "com.afollestad.materialdialogs.MaterialDialog"
+          ],
+          "rules": [
+            "@[id=\"com.qidian.QDReader:id/ivClose\"] + [text^=\"开启推送\"]"
+          ],
+          "snapshotUrls": "https://i.gkd.li/import/12640242",
+          "enable": false
+        },
+        {
+          "enable": false,
+          "key": 19,
           "name": "功能类-起点中文网登录自动确认",
           "desc": "自动点击【登录】",
           "activityIds": [
@@ -77455,7 +77532,7 @@
           "snapshotUrls": "https://i.gkd.li/import/12903081"
         },
         {
-          "key": 19,
+          "key": 20,
           "name": "全屏广告-福利中心-我知道了",
           "desc": "福利中心看视频后获得奖励，自动点击“我知道了”",
           "activityIds": [
@@ -77471,7 +77548,7 @@
           "enable": false
         },
         {
-          "key": 20,
+          "key": 21,
           "name": "全屏广告",
           "fastQuery": true,
           "rules": [
@@ -77495,7 +77572,7 @@
           ]
         },
         {
-          "key": 21,
+          "key": 22,
           "name": "功能类-自动点击\"知道了\"",
           "desc": "福利中心自动点击\"知道了\"",
           "rules": [
@@ -77506,7 +77583,7 @@
           "enable": false
         },
         {
-          "key": 22,
+          "key": 23,
           "name": "功能类-自动看广告",
           "desc": "点击去完成",
           "rules": [
@@ -79947,6 +80024,27 @@
           "enable": false,
           "rules": [
             {}
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 1,
+          "name": "功能类-自动[确认]安装",
+          "desc": "点击[确认]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.rosan.installer.ui.activity.InstallerActivity"
+              ],
+              "matches": "[text=\"确认\"] < @View[clickable=true] <n View < View[index=parent.childCount.minus(1)] -n [text=\"安装确认\"] <n View < View < View < View < ViewGroup < [id=\"android:id/content\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33545659"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/71b051a6-c805-42d8-9c35-877044b92272"
+              ]
+            }
           ],
           "activityIds": []
         }
