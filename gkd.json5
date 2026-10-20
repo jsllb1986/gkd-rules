@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 141,
+  "version": 142,
   "categories": [
     {
       "key": -1,
@@ -9368,6 +9368,33 @@
               ],
               "snapshotUrls": [
                 "https://i.gkd.li/i/17058992"
+              ]
+            }
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
+      "id": "cc.forestapp",
+      "name": "Forest",
+      "groups": [
+        {
+          "key": 1,
+          "name": "全屏广告",
+          "desc": "结束一次种植后概率弹出",
+          "rules": [
+            {
+              "activityIds": [
+                "com.google.android.gms.ads.AdActivity"
+              ],
+              "matches": "Button[clickable=true][desc=\"Skip\" || desc=\"Close\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33598870",
+                "https://i.gkd.li/i/33598865"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/fa5e8255-df84-4f36-b54f-c31a4331abdb"
               ]
             }
           ],
@@ -21019,11 +21046,12 @@
                 ".ui.cloudp2p.RichMediaActivity",
                 ".module.sharelink.ChainVerifyActivity"
               ],
-              "matches": "[text=\"立即更新\"] -2 [text=\"下次再说\"]",
+              "matches": "[text=\"立即更新\"] -(1,2) [text=\"下次再说\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/16118181",
                 "https://i.gkd.li/i/24834209",
-                "https://i.gkd.li/i/26574534"
+                "https://i.gkd.li/i/26574534",
+                "https://i.gkd.li/i/33673328"
               ]
             },
             "[text=\"立即更新\"] -n [text=\"下次再说\"]",
@@ -30551,7 +30579,7 @@
               "actionCd": 300,
               "actionMaximum": 5,
               "excludeMatches": "[text*=\"搜索\"]",
-              "matches": "[!(vid=\"item_view\") && !(vid=\"card_view\")] > [text*=\"跳过\" || text*=\"Skip\"][text.length<10][width<500 && height<300][visibleToUser=true]",
+              "matches": "[text*=\"跳过\" || text*=\"Skip\"][!(vid=\"text_view\" || vid=\"title_view\")][text.length<10][width<500 && height<300][visibleToUser=true]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/12917990",
                 "https://i.gkd.li/i/13211392",
@@ -30562,7 +30590,8 @@
               "excludeSnapshotUrls": [
                 "https://i.gkd.li/i/13247733",
                 "https://i.gkd.li/i/13296816",
-                "https://i.gkd.li/i/18245546"
+                "https://i.gkd.li/i/18245546",
+                "https://i.gkd.li/i/33674023"
               ]
             },
             {
@@ -76798,6 +76827,21 @@
             {
               "fastQuery": true,
               "action": "clickCenter",
+              "matches": "([text*=\"跳过\"][!(text=\"跳过福利激励视频\")][text.length<10][width<500 && height<300][visibleToUser=true]) || ([vid=\"splash_skip_button\"][visibleToUser=true])",
+              "exampleUrls": [
+                "https://e.gkd.li/3e2357fd-dced-4929-85e0-a9a06ce5fea0"
+              ],
+              "snapshotUrls": [
+                "https://i.gkd.li/i/19580847",
+                "https://i.gkd.li/i/19633020"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/33630317"
+              ]
+            },
+            {
+              "fastQuery": true,
+              "action": "clickCenter",
               "matches": "([text*=\"跳过\"][text.length<10][width<500 && height<300][visibleToUser=true]) || ([vid=\"splash_skip_button\"][visibleToUser=true])",
               "exampleUrls": [
                 "https://e.gkd.li/3e2357fd-dced-4929-85e0-a9a06ce5fea0"
@@ -89712,6 +89756,33 @@
         },
         {
           "key": 39,
+          "name": "功能类-横屏直播时自动[关闭]弹幕",
+          "desc": "点击1次[关闭弹幕]图标",
+          "rules": [
+            {
+              "fastQuery": true,
+              "actionMaximum": 1,
+              "activityIds": [
+                ".live.LivePlayActivity",
+                ".detail.ui.DetailActivity"
+              ],
+              "matches": "@[desc=\"关闭弹幕\"] < [childCount=2] + * > [text=\"发弹幕说点什么…\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/33672005",
+                "https://i.gkd.li/i/33672759"
+              ],
+              "excludeSnapshotUrls": [
+                "https://i.gkd.li/i/33672707"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/27cd54c6-0398-4e01-8b42-9fd9b963c514"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 40,
           "name": "全屏广告-视频推荐广告",
           "desc": "通过返回操作跳过广告",
           "rules": [
@@ -89747,7 +89818,7 @@
           ]
         },
         {
-          "key": 40,
+          "key": 41,
           "name": "局部广告-关闭用户推荐",
           "rules": [
             {
@@ -89765,7 +89836,7 @@
           "enable": false
         },
         {
-          "key": 41,
+          "key": 42,
           "name": "功能类-设置无声进入抖音弹窗",
           "desc": "点击[拒绝]",
           "rules": [
@@ -89783,7 +89854,7 @@
           "enable": false
         },
         {
-          "key": 42,
+          "key": 43,
           "name": "功能类-[添加快捷方式到桌面]弹窗",
           "desc": "关闭弹窗",
           "actionMaximum": 1,
@@ -89835,7 +89906,7 @@
           "enable": false
         },
         {
-          "key": 43,
+          "key": 44,
           "name": "局部广告-拍同款弹窗",
           "desc": "点击不感兴趣",
           "rules": [
@@ -89853,7 +89924,7 @@
           "enable": false
         },
         {
-          "key": 44,
+          "key": 45,
           "name": "全屏广告-[去首页商城]弹窗",
           "desc": "点击[知道了]",
           "rules": [
@@ -89879,7 +89950,7 @@
           "enable": false
         },
         {
-          "key": 45,
+          "key": 46,
           "name": "全屏广告-低价秒杀券弹窗",
           "desc": "点击关闭",
           "rules": [
@@ -89904,7 +89975,7 @@
           "enable": false
         },
         {
-          "key": 46,
+          "key": 47,
           "name": "权限提示-请求访问通讯录弹窗",
           "desc": "点击[拒绝]",
           "actionMaximum": 1,
@@ -99085,7 +99156,7 @@
         {
           "key": 37,
           "name": "分段广告-QQ空间空友爱看",
-          "desc": "①点击[更多操作] ②点击[不感兴趣] ③选择原因 ④点击[提交]",
+          "desc": "①点击右侧折叠 ②[不感兴趣/关闭推荐] ③选择原因 ④点击[提交]",
           "fastQuery": true,
           "activityIds": [
             "com.qzone.reborn.feedpro.activity.QzoneFriendFeedProActivity"
@@ -99093,10 +99164,12 @@
           "rules": [
             {
               "key": 0,
-              "name": "①更多操作",
-              "matches": "@[desc=\"更多操作\"][clickable=true][visibleToUser=true] <3 * +4 * >5 [text=\"空友爱看\"]",
+              "name": "①点击右侧折叠",
+              "matches": "@[clickable=true][index=parent.childCount.minus(1)] -2 [text=\"空友爱看\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/32656065"
+                "https://i.gkd.li/i/32656065",
+                "https://i.gkd.li/i/33508601",
+                "https://i.gkd.li/i/33665642"
               ]
             },
             {
@@ -99104,10 +99177,12 @@
               "preKeys": [
                 0
               ],
-              "name": "②不感兴趣",
-              "matches": "@[clickable=true] >2 [text=\"不感兴趣\"]",
+              "name": "②不感兴趣/关闭推荐",
+              "matches": "@[clickable=true] >2 [text=\"不感兴趣\" || text=\"关闭推荐\"]",
               "snapshotUrls": [
-                "https://i.gkd.li/i/32656067"
+                "https://i.gkd.li/i/32656067",
+                "https://i.gkd.li/i/33508604",
+                "https://i.gkd.li/i/33665763"
               ]
             },
             {
@@ -99136,6 +99211,25 @@
               "matches": "[desc$=\"已选中\"] +n * > [desc=\"提交\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/32656070"
+              ]
+            },
+            {
+              "key": 0,
+              "name": "①更多操作",
+              "matches": "@[desc=\"更多操作\"][clickable=true][visibleToUser=true] <3 * +4 * >5 [text=\"空友爱看\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32656065"
+              ]
+            },
+            {
+              "key": 1,
+              "preKeys": [
+                0
+              ],
+              "name": "②不感兴趣",
+              "matches": "@[clickable=true] >2 [text=\"不感兴趣\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/32656067"
               ]
             }
           ]
