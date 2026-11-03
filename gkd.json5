@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 153,
+  "version": 154,
   "categories": [
     {
       "key": -1,
@@ -19317,6 +19317,32 @@
       ]
     },
     {
+      "id": "com.asjdhjhd.mgd.p3",
+      "name": "橘汁",
+      "groups": [
+        {
+          "key": 1,
+          "name": "全屏广告",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "com.windmill.sdk.host.stub.StubActivityStandard_TL_Portrait"
+              ],
+              "matches": "@ImageView[visibleToUser=true][width<78] < [childCount=1] +2 FrameLayout >2 [text=\"立即下载\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/34303867"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/c080c336-c36e-4001-8fd1-c2ec0ef0a1da"
+              ]
+            }
+          ],
+          "activityIds": []
+        }
+      ]
+    },
+    {
       "id": "com.at.a552360580763717",
       "name": "安心加速器",
       "groups": [
@@ -21970,22 +21996,57 @@
           "rules": [
             {
               "key": 0,
+              "fastQuery": true,
+              "activityIds": [
+                ".tblauncher.MainTabActivity"
+              ],
+              "matches": "@View[clickable=true] < [childCount=2] -2 [text=\"开启互动消息通知\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/34249649"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/7fa4aebb-42a7-47f7-bb23-e43fbac7e03b"
+              ]
+            },
+            {
+              "key": 1,
               "activityIds": [
                 ".pb.pb.main.PbActivity"
               ],
-              "matches": "@ImageView[clickable=true] -2 LinearLayout > [text^=\"打开通知\"]",
+              "matches": "@ImageView[clickable=true] -2 LinearLayout > [visibleToUser=true][text^=\"打开通知\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13536170"
               ]
             },
             {
-              "key": 1,
+              "key": 2,
               "activityIds": [
                 ".immessagecenter.mention.reply.ReplyMeActivity"
               ],
               "matches": "TextView[text=\"开启消息推送\"] +2 TextView[text=\"不开启\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/13675694"
+              ]
+            },
+            {
+              "key": 3,
+              "activityIds": [
+                "com.baidu.tbadk.browser.TBWebContainerActivity"
+              ],
+              "matches": "[text=\"开启通知\"] <n * > [clickable=true][text=\"暂不开启\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13804455",
+                "https://i.gkd.li/i/20918198"
+              ]
+            },
+            {
+              "key": 0,
+              "activityIds": [
+                ".pb.pb.main.PbActivity"
+              ],
+              "matches": "@ImageView[clickable=true] -2 LinearLayout > [text^=\"打开通知\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/13536170"
               ]
             },
             {
@@ -50264,6 +50325,29 @@
         },
         {
           "key": 5,
+          "name": "功能类-自动[查看更多]应用更新",
+          "desc": "点击[查看更多]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "actionMaximum": 3,
+              "resetMatch": "app",
+              "activityIds": [
+                ".appupdate.UpdateManagerActivity"
+              ],
+              "matches": "@[clickable=true] > [text=\"查看更多\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/34304183"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/f7626132-4702-4cd4-b036-88935f45734d"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 6,
           "name": "全屏广告-广告提示",
           "fastQuery": true,
           "activityIds": [
@@ -50280,7 +50364,7 @@
           "enable": false
         },
         {
-          "key": 6,
+          "key": 7,
           "name": "全屏广告-推送通知",
           "fastQuery": true,
           "activityIds": [
@@ -50293,7 +50377,7 @@
           "enable": false
         },
         {
-          "key": 7,
+          "key": 8,
           "name": "全屏广告-为您专属推荐",
           "desc": "【取消】",
           "fastQuery": true,
@@ -50314,7 +50398,7 @@
           "enable": false
         },
         {
-          "key": 8,
+          "key": 9,
           "name": "全屏广告-应用推荐卡片添加至桌面",
           "desc": "【我再想想】",
           "fastQuery": true,
@@ -50335,7 +50419,7 @@
           "enable": false
         },
         {
-          "key": 9,
+          "key": 10,
           "name": "全屏广告-个性化内容推荐",
           "desc": "【取消】",
           "fastQuery": true,
@@ -50356,7 +50440,7 @@
           "enable": false
         },
         {
-          "key": 10,
+          "key": 11,
           "name": "通知提示",
           "desc": "【取消】",
           "fastQuery": true,
@@ -78513,6 +78597,37 @@
         },
         {
           "key": 18,
+          "name": "全屏广告-追更至最新章节弹窗",
+          "desc": "①[取消勾选]提醒 ②x掉弹窗",
+          "fastQuery": true,
+          "actionMaximum": 1,
+          "activityIds": [
+            ".ui.activity.QDReaderActivity"
+          ],
+          "rules": [
+            {
+              "key": 1,
+              "name": "①[取消勾选]提醒",
+              "matches": "[vid=\"switchUpdate\"][checkable=true][checked=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/34316607"
+              ]
+            },
+            {
+              "key": 2,
+              "name": "②x掉弹窗",
+              "matches": "@[vid=\"ivClose\"] +2 [visibleToUser=true] >2 [text=\"追更至最新章节\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/34316605"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/f969ad39-da92-458f-95f6-e2939857c808"
+              ]
+            }
+          ]
+        },
+        {
+          "key": 19,
           "name": "全屏广告-请求通知权限提示信息",
           "desc": "点击顶部提醒左侧x按钮",
           "fastQuery": true,
@@ -78527,7 +78642,7 @@
         },
         {
           "enable": false,
-          "key": 19,
+          "key": 20,
           "name": "功能类-起点中文网登录自动确认",
           "desc": "自动点击【登录】",
           "activityIds": [
@@ -78548,7 +78663,7 @@
           "snapshotUrls": "https://i.gkd.li/import/12903081"
         },
         {
-          "key": 20,
+          "key": 21,
           "name": "全屏广告-福利中心-我知道了",
           "desc": "福利中心看视频后获得奖励，自动点击“我知道了”",
           "activityIds": [
@@ -78564,7 +78679,7 @@
           "enable": false
         },
         {
-          "key": 21,
+          "key": 22,
           "name": "全屏广告",
           "fastQuery": true,
           "rules": [
@@ -78588,7 +78703,7 @@
           ]
         },
         {
-          "key": 22,
+          "key": 23,
           "name": "功能类-自动点击\"知道了\"",
           "desc": "福利中心自动点击\"知道了\"",
           "rules": [
@@ -78599,7 +78714,7 @@
           "enable": false
         },
         {
-          "key": 23,
+          "key": 24,
           "name": "功能类-自动看广告",
           "desc": "点击去完成",
           "rules": [
