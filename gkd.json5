@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 156,
+  "version": 157,
   "categories": [
     {
       "key": -1,
@@ -130941,6 +130941,27 @@
               ],
               "exampleUrls": [
                 "https://e.gkd.li/c6a867d4-c234-4412-be73-7900aadbdca4"
+              ]
+            }
+          ],
+          "activityIds": []
+        },
+        {
+          "key": 6,
+          "name": "功能类-下载完自动[打开]文件",
+          "desc": "点击[打开]",
+          "rules": [
+            {
+              "fastQuery": true,
+              "activityIds": [
+                "org.chromium.chrome.browser.ChromeTabbedActivity"
+              ],
+              "matches": "@[text=\"打开\"] < FrameLayout - [visibleToUser=true] > [text$=\"文件已下载完毕\"]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/34482455"
+              ],
+              "exampleUrls": [
+                "https://e.gkd.li/e83bcee8-2540-4b99-8077-fe18378f5ac5"
               ]
             }
           ],
