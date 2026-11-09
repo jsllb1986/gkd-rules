@@ -5,7 +5,7 @@
   "updateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.json5",
   "checkUpdateUrl": "https://cdn.jsdelivr.net/gh/jsllb1986/gkd-rules@main/gkd.version.json5",
   "supportUri": "https://github.com/jsllb1986/gkd-rules",
-  "version": 158,
+  "version": 159,
   "categories": [
     {
       "key": -1,
@@ -44914,19 +44914,26 @@
           "matchTime": 5000,
           "actionMaximum": 1,
           "resetMatch": "app",
+          "activityIds": [
+            ".MainActivity"
+          ],
           "rules": [
             {
-              "activityIds": [
-                ".MainActivity"
-              ],
+              "key": 0,
               "matches": "@Button[clickable=true] -4 * > [desc=\"代理\"]",
               "snapshotUrls": [
                 "https://i.gkd.li/i/26210674",
                 "https://i.gkd.li/i/29658034"
               ]
+            },
+            {
+              "key": 1,
+              "matches": "[desc=\"代理\"] + [visibleToUser=true] > [desc=\"延迟测试\"][clickable=true]",
+              "snapshotUrls": [
+                "https://i.gkd.li/i/34530552"
+              ]
             }
-          ],
-          "activityIds": []
+          ]
         }
       ]
     },
@@ -90552,7 +90559,7 @@
           "rules": [
             {
               "fastQuery": true,
-              "actionCd": 300,
+              "actionCd": 1200,
               "actionDelay": 200,
               "swipeArg": {
                 "start": {
@@ -90596,7 +90603,6 @@
           "rules": [
             {
               "fastQuery": true,
-              "actionCd": 300,
               "actionDelay": 200,
               "swipeArg": {
                 "start": {
@@ -91391,7 +91397,6 @@
           "rules": [
             {
               "fastQuery": true,
-              "actionCd": 300,
               "actionDelay": 200,
               "swipeArg": {
                 "start": {
